@@ -15,7 +15,10 @@ Install Instructions:
 
 
 Features to be implemented:
+
 1) When four players are ready, redirect to game page.
+
 2) Fix the issue of buying property
+
 ...............
 
