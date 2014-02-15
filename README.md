@@ -1,5 +1,5 @@
-monopoly
-========
+MONOPOLY - CSCI3100
+===================
 To all developers in the project:
 Please enter your name and sid here.
 
