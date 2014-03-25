@@ -115,7 +115,7 @@ if ( $PaymentOption == "PayPal" )
 		?>
 <html>
 <script>
-alert("Payment Successful");
+alert("Payment Successful.You can back to the Homepage.");
 // add relevant message above or remove the line if not required
 window.onload = function(){
     if(window.opener){
