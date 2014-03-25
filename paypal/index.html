@@ -1,7 +1,10 @@
 <!-- INFO: The post URL "checkout.php" is invoked when clicked on "Pay with PayPal" button.-->
+
 <html>
 
 <form action='checkout.php' METHOD='POST'>
+    The amount of recharge:<br>
+    <input type='number' name='amount' id='amount'>
 	<input type='image' name='paypal_submit' id='paypal_submit'  src='https://www.paypal.com/en_US/i/btn/btn_dg_pay_w_paypal.gif' border='0' align='top' alt='Pay with PayPal'/>
 </form>
 
@@ -20,4 +23,5 @@
 	});
 
 </script>
+
 </html>
