@@ -17,8 +17,9 @@ if ( $PaymentOption == "PayPal")
         //' TODO: Enter the total Payment Amount within the quotes.
         //' example : $paymentAmount = "15.00";
         //'------------------------------------
-
-        $paymentAmount = "2.00";
+        session_start();
+        $_SESSION["amount"]=$_POST["amount"];
+        $paymentAmount =$_POST["amount"];
         
         
         //'------------------------------------
