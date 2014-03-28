@@ -4,9 +4,6 @@
  * =====================================
  */
 require_once ("paypalfunctions.php");
-require '../database.php';
-require '../class/user.php';
-
 
 $PaymentOption = "PayPal";
 if ( $PaymentOption == "PayPal" )
@@ -115,9 +112,6 @@ if ( $PaymentOption == "PayPal" )
 
 		// Add javascript to close Digital Goods frame. You may want to add more javascript code to
 		// display some info message indicating status of purchase in the parent window
-		session_start();
-		$user=new User($db);
-		$user->upmoney($_SESSION['uid'],$amt);
 		?>
 <html>
 <script>

@@ -4,25 +4,6 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-		<?php
-		$toname="";
-		require './database.php';
-		require './config.php';
-		session_start();
-		if(isset($_POST['username']) && !empty($_POST['username'])){
-			$user=new User($db);
-			$uid=$user->login($_POST['username'], $_POST['password']);
-		}else{
-			$uid=0;
-		}
-		if($uid || isset($_SESSION['uid'])){
-			if(!isset($_SESSION['uid'])){
-				$_SESSION['uid']=$uid;
-				$_SESSION['name']=$_POST['username'];
-				$toname = $_SESSION['name'];
-			}
-			$toname = $_SESSION['name'];
-		?>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Monopoly - Room List</title>
@@ -38,7 +19,25 @@
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
         <script src="html5uploader.js"></script>
     </head>
-
+<?php
+$toname="";
+require './database.php';
+require './config.php';
+session_start();
+if(isset($_POST['username']) && !empty($_POST['username'])){
+	$user=new User($db);
+	$uid=$user->login($_POST['username'], $_POST['password']);
+}else{
+	$uid=0;
+}
+if($uid || isset($_SESSION['uid'])){
+	if(!isset($_SESSION['uid'])){
+		$_SESSION['uid']=$uid;
+		$_SESSION['name']=$_POST['username'];
+		$toname = $_SESSION['name'];
+	}
+	$toname = $_SESSION['name'];
+?>
 <body onload="new uploader('drop', 'status', 'uploader.php', 'list', '<?php echo $toname;?>');">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
@@ -78,7 +77,7 @@
                 <li>Lose:<?=$userinfo['money']?></li>
                 <li>Money:<?=$userinfo['money']?></li>
                 <li><button class="function_button orangebg"><i class="fa fa-envelope"></i> Message</button></li>
-                <li><button class="function_button bluebg"><i class="fa fa-credit-card"></i> Shop</button></a></li>
+                <li><button class="function_button bluebg"><i class="fa fa-credit-card"></i> Shop</button></li>
                 <li><a href="./index.php"><button class="function_button greenbg"><i class="fa fa-sign-out"></i> Logout</button></a></li>
             </ul>
             </div>
@@ -131,20 +130,6 @@
               </div>
         </div>
 </div>
-    <div class="payroom">
-	<div class="passwordroom_header">
-	Recharge
-	</div>
-	<div class="create_room_content">
-<form action='paypal/checkout.php' METHOD='POST'>
-<input type="text" name="amount" id="amount" placeholder="The amount to recharge">
-<input type="submit" name="paypal_submit" id="paypal_submit" style="width: 70px;height:30px;padding-top: 5px;padding-bottom: 5px;padding-left: 15px;padding-right: 15px;border-bottom-width: 0px; background-color:#b0c4de;">
-	<button class="cancel_button">Cancel</button>
-</form>
-
-
-	</div>
-	</div>
     <div class="create_room">
     	<div class="create_room_header">
     	Create a room
@@ -166,7 +151,6 @@
 		<button class="cancel_button">Cancel</button>
     	</div>
     </div>
-	
     <div class="changeavatar">
         <div class="changeavatar_header">
         Change avatar
@@ -174,7 +158,6 @@
         <div id="drop">Drag and drop the image(JPG) here</div>
         <button class="cancel_button">Close</button>
     </div>
-	
     </div> <!-- /container -->
 <?php
 }else{
@@ -294,7 +277,13 @@ if(isset($_SESSION['name'])){
                 $('.pageno').click(function(){
                 	//alert($(this).val());
                 	var msg = {};
+                    <?php
+                    if(isset($_SESSION['name'])){
+                    ?>
                     msg.uname = '<?= $_SESSION['name'];?>';
+                    <?php
+                    }
+                    ?>
                 	msg.act="getroomlist";
                 	msg.page=$(this).val();
                 	socket.send(JSON.stringify(msg));
@@ -303,9 +292,6 @@ if(isset($_SESSION['name'])){
                     $('.cancel_button').click();
                 	$('.create_room').show();
                 });
-				$('.function_button.bluebg').click(function(){
-					$('.payroom').show();
-				});
                 $(document.body).on( "click", '.enter', function() {
             $('.cancel_button').click();
 				  //alert($(this).val());
@@ -370,18 +356,5 @@ if(isset($_SESSION['name'])){
 }
 ?>
         </script>
-		<script src='https://www.paypalobjects.com/js/external/dg.js' type='text/javascript'></script>
-
-
-		<script>
-
-			var dg = new PAYPAL.apps.DGFlow(
-			{
-				trigger: 'paypal_submit',
-				expType: 'instant'
-				 //PayPal will decide the experience type for the buyer based on his/her 'Remember me on your computer' option.
-			});
-
-		</script>
     </body>
 </html>

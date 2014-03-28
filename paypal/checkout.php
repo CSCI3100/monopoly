@@ -35,7 +35,7 @@ if ( $PaymentOption == "PayPal")
         //'
         //' This is set to the value entered on the Integration Assistant 
         //'------------------------------------
-        $returnURL = "http://localhost/monopoly/paypal/orderconfirm.php";
+        $returnURL = "http://tinghim.kd.io/paypal/orderconfirm.php";
 
         //'------------------------------------
         //' The cancelURL is the location buyers are sent to when they hit the
@@ -43,7 +43,7 @@ if ( $PaymentOption == "PayPal")
         //'
         //' This is set to the value entered on the Integration Assistant 
         //'------------------------------------
-        $cancelURL = "http://localhost/monopoly/paypal/cancel.php";
+        $cancelURL = "http://tinghim.kd.io/paypal/cancel.php";
 
         //'------------------------------------
         //' Calls the SetExpressCheckout API call
