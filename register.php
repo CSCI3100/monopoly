@@ -10,6 +10,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        </style>
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
 
@@ -47,45 +48,11 @@
 		Registration
 	</div>
 	<h1 class="title">Monopoly</h1>
-    <?php
-        if(isset($_GET['referLink'])){
-            require './database.php';
-            require './class/user.php';
-            $referrer=new User($db);
-            $referrerName = $referrer->getReferrer($_GET['referLink']);
-            if($referrerName != ""){
-    ?>
-                Referred by: <b><?php echo $referrerName['name']; ?></b><br/>
-    <?php
-            }
-        }
-    ?>
     <form name="input" action="register.php" method="post">
       <input type="text" id="username" name="username" placeholder="Username"><br />
       <input type="password" id="password" name="password" placeholder="Password"><br />
       <input type="password" id="password2" name="paassword2" placeholder="Password(Confirmation)"><br />
-      <input type="email" id="email" name="email" placeholder="E-mail address"><br/>
-      <input type="text" id="birthdate" name="birthdate" placeholder="Date of birth"><br/><br/>
-      <?php
-        if(isset($_GET['referLink'])){
-
-      ?>
-        <input type="hidden" name="referLink" value="<?php echo $_GET['referLink']; ?>">
-
-      <?php
-        }
-      ?>
-      <button type="button" class="button" id="profiles" value="0">Add Profile</button>
-      
-      <!-- Profile part if checked -->
-      <div id="profileOption">
-        <br/>
-        <input type="tel" id="phone" name="phone" placeholder="Phone number"><br />
-        <input type="tel" id="mobile" name="mobile" placeholder="Mobile phone number"><br />
-        <textarea type="textarea" id="personalDesc" name="personalDesc" placeholder="Personal description"></textarea><br /><br />
-      </div>
-
-	       <button type="submit" class="button reg">Register</button>
+	  <button type="submit" class="button reg">Register</button>
     </form>
     </div>
     </div>
@@ -99,12 +66,7 @@ $newuser=new User($db);
 if($newuser->duplicate_uname($_POST['username'])){
     $msg= "The username ".$_POST['username']." has been used.";
 }else{
-    //($username, $password, $email, $dob, $phone, $mphone, $pDesc)
-    if(isset($_POST['referLink'])){
-        $newuser->register($_POST['username'],$_POST['password'],$_POST['email'],$_POST['birthdate'],$_POST['phone'],$_POST['mobile'],$_POST['personalDesc'], $_POST['referLink']);
-    }else{
-        $newuser->register($_POST['username'],$_POST['password'],$_POST['email'],$_POST['birthdate'],$_POST['phone'],$_POST['mobile'],$_POST['personalDesc'], NULL);
-    }
+    $newuser->register($_POST['username'],$_POST['password']);
     $msg= "Successful registration";
 }
 ?>
@@ -152,32 +114,8 @@ if($newuser->duplicate_uname($_POST['username'])){
                     }else if($('#password').val()!=$('#password2').val()){
                         alert('The password are not the same.');
                         return false;
-                    }else if($('#email').val()==""){
-                        alert('Please enter an E-mail address');
-                        $('#email').focus();
-                        return false;
-                    }else if($('#birthdate').val()==""){
-                        alert('Please enter your date of birth');
-                        $('#birthdate').focus();
-                        return false;
                     }else{
                         return true;
-                    }
-                });
-                $('#birthdate').focus(function(){
-                    $('#birthdate').attr("type","date");
-                });
-                $('#profiles').click(function(){
-                    if($(this).val() == 0){
-                        console.log("0");
-                        $('#profiles').css("background","#e74c3c");
-                        $('#profileOption').css("display","block");
-                        $(this).val('1');
-                    }else{
-                        console.log("1");
-                        $(this).css("background","#BAC2C0");
-                        $('#profileOption').css("display","none");
-                        $(this).val('0');
                     }
                 });
             });

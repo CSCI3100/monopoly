@@ -21,27 +21,16 @@ class User{
 			die($e->getMessage());
 		}
 	}
-	public function register($username, $password, $email, $dob, $phone, $mphone, $pDesc, $referLink){
+	public function register($username, $password){
 		$password   = sha1($password);
-		$query 	= $this->db->prepare("INSERT INTO user (name,password,email,dateOfBirth,phone,mobilePhone,personalDesc,referLink) VALUES (?,?,?,?,?,?,?,?)");
+		$query 	= $this->db->prepare("INSERT INTO user (name,password) VALUES (?,?)");
 		$query->bindValue(1, $username);
 		$query->bindValue(2, $password);
-		$query->bindValue(3, $email);
-		$query->bindValue(4, $dob);
-		$query->bindValue(5, $phone);
-		$query->bindValue(6, $mphone);
-		$query->bindValue(7, $pDesc);
-		$query->bindValue(8, hash("sha256", $username));
-
-		if($referLink != NULL){
-			//Insert referring action
-		}
-
 		try{
 			$query->execute();
 		}catch(PDOException $e){
 			die($e->getMessage());
-		}
+		}	
 	}
 	public function login($username, $password){
 		$query = $this->db->prepare("SELECT * FROM user WHERE name = ?");
@@ -67,6 +56,16 @@ class User{
 	public function setplayerno($uid,$playerno){
 		$query = $this->db->prepare("UPDATE user set playerno=? WHERE uid = ?");
 		$query->bindValue(1, $playerno);
+		$query->bindValue(2, $uid);
+		try{
+			$query->execute();
+		}catch(PDOException $e){
+			die($e->getMessage());
+		}
+	}
+	public function upmoney($uid,$money){
+		$query = $this->db->prepare("UPDATE user set money=money+? WHERE uid = ?");
+		$query->bindValue(1, $money);
 		$query->bindValue(2, $uid);
 		try{
 			$query->execute();
@@ -103,19 +102,5 @@ class User{
         }catch(PDOException $e){
             die($e->getMessage());
         }
-    }
-
-    //Get referrer name
-    function getReferrer($link){
-    	$query = $this->db->prepare("SELECT name FROM user WHERE referLink = ?");
-		$query->bindValue(1, $link);
-		try{
-			$query->execute();
-			$data = $query->fetch();
-			return $data;
-	 
-		}catch(PDOException $e){
-			return "";
-		}
     }
 }
