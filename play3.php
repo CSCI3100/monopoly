@@ -6,66 +6,59 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Monopoly - Room List</title>
+        <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         </style>
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/new.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
+    <body>
+	<svg class="bigload" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+				<path id="loading-12-icon" d="M291,82.219c0,16.568-13.432,30-30,30s-30-13.432-30-30s13.432-30,30-30S291,65.65,291,82.219z
+					 M261,404.781c-15.188,0-27.5,12.312-27.5,27.5s12.312,27.5,27.5,27.5s27.5-12.312,27.5-27.5S276.188,404.781,261,404.781z
+					 M361.504,113.167c-4.142,7.173-13.314,9.631-20.487,5.489c-7.173-4.141-9.631-13.313-5.49-20.487
+					c4.142-7.173,13.314-9.631,20.488-5.489C363.188,96.821,365.645,105.994,361.504,113.167z M188.484,382.851
+					c-14.348-8.284-32.697-3.368-40.98,10.98c-8.285,14.349-3.367,32.696,10.98,40.981c14.35,8.283,32.697,3.367,40.98-10.981
+					C207.75,409.482,202.834,391.135,188.484,382.851z M421.33,184.888c-8.368,4.831-19.07,1.965-23.901-6.404
+					c-4.832-8.368-1.965-19.07,6.404-23.902c8.368-4.831,19.069-1.964,23.9,6.405C432.566,169.354,429.699,180.056,421.33,184.888z
+					 M135.399,329.767c-8.285-14.35-26.633-19.266-40.982-10.982c-14.348,8.285-19.264,26.633-10.979,40.982
+					c8.284,14.348,26.632,19.264,40.981,10.98C138.767,362.462,143.683,344.114,135.399,329.767z M436.031,277.249
+					c-11.044,0-20-8.953-20-19.999c0-11.045,8.955-20.001,20.001-20.001c11.044,0,19.999,8.955,19.999,20.002
+					C456.031,268.295,447.078,277.249,436.031,277.249z M115.97,257.251c-0.001-16.57-13.433-30.001-30.001-30.002
+					c-16.568,0.001-29.999,13.432-30,30.002c0.001,16.566,13.433,29.998,30.001,30C102.538,287.249,115.969,273.817,115.97,257.251z
+					 M401.333,364.248c-10.759-6.212-14.446-19.97-8.234-30.73c6.212-10.759,19.971-14.446,30.731-8.233
+					c10.759,6.211,14.445,19.971,8.232,30.73C425.852,366.774,412.094,370.46,401.333,364.248z M135.398,184.736
+					c8.285-14.352,3.368-32.698-10.98-40.983c-14.349-8.283-32.695-3.367-40.981,10.982c-8.282,14.348-3.366,32.696,10.981,40.981
+					C108.768,204,127.115,199.082,135.398,184.736z M326.869,421.328c-6.902-11.953-2.807-27.242,9.148-34.145
+					s27.243-2.806,34.146,9.149c6.902,11.954,2.806,27.243-9.15,34.145C349.059,437.381,333.771,433.284,326.869,421.328z
+					 M188.482,131.649c14.352-8.286,19.266-26.633,10.982-40.982c-8.285-14.348-26.631-19.264-40.982-10.98
+					c-14.346,8.285-19.264,26.633-10.98,40.982C155.787,135.017,174.137,139.932,188.482,131.649z"/>
+			</svg>
 <?php
-$toname="";
 require './database.php';
 require './config.php';
 session_start();
 $room = new Room($db);
-if(isset($_POST['username']) && !empty($_POST['username'])){
-	$user=new User($db);
-	$uid=$user->login($_POST['username'], $_POST['password']);
-}else{
-	$uid=0;
-}
-if($uid || isset($_SESSION['uid'])){
-    $toname = $_SESSION['name'];
-	if(!isset($_SESSION['uid'])){
-		$_SESSION['uid']=$uid;
-		$_SESSION['name']=$_POST['username'];
-		$toname = $_SESSION['name'];
-	}
+if(isset($_SESSION['uid']) && !empty($_SESSION['uid'])){
 ?>
-
-<div class="three_col">
-        <div class="left">
-            <div class="left_header">
-            <?=$_SESSION['name'];?>
-            </div>
-            <div class="left_content">
-<?php
-    $user=new User($db);
-	$userinfo=$user->userinfo($_SESSION['uid']);
-?>
-            <ul>
-                <li class="avatar"><img id="toavatar" src="./data/<?=$toname;?>.png"></li>
-                <li>You are in:<b id="p_stop"></b></li>
-                <li>Money:<b id="p_money"><?=$settings['start_money']?></b></li>
-						<li><button id="dicebutton" onclick="pDice()" class="function_button orangebg"><i class="fa fa-envelope"></i> Dice</button></li>
-                <li><button onclick="cDice()" class="function_button orangebg"><i class="fa fa-envelope"></i> Dice</button></li>
-                <li><button onclick="checkProp()" class="function_button bluebg"><i class="fa fa-credit-card"></i> Property</button></li>
-                <li>You still have <b id="show-time"><?=$settings["round_time"];?></b> seconds<br /><button class="function_button greenbg"><i class="fa fa-sign-out"></i> Finish this round</button></li>
-            </ul>
-            </div>
-        </div>
-        <div class="middle">
-        <div class="middle_header">
-        Players
-        </div>
-        <div class="room_players_other">
-        <div class="room_players_other_indiv">
+	<div class="bg1">
+	<div class="big_play">
+	<div class="room_left">
+		<div class="room_left_header">
+		Room:<?=$room->getroomname($_GET['rid']);?>
+		</div>
+		<div id="map-canvas" class="big_play_content">
+		</div>
+	<div class="gamewarn">
+		sdfgsdfsdfsdfdsf
+	</div>
+		<div class="playroom_player">
+			<div class="playroom_player_indiv">
 				<svg class="miniload" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                      width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
                 <path id="loading-12-icon" d="M291,82.219c0,16.568-13.432,30-30,30s-30-13.432-30-30s13.432-30,30-30S291,65.65,291,82.219z
@@ -88,7 +81,7 @@ if($uid || isset($_SESSION['uid'])){
                      M188.482,131.649c14.352-8.286,19.266-26.633,10.982-40.982c-8.285-14.348-26.631-19.264-40.982-10.98
                     c-14.346,8.285-19.264,26.633-10.98,40.982C155.787,135.017,174.137,139.932,188.482,131.649z"/>
 			</div>
-			<div class="room_players_other_indiv">
+			<div class="playroom_player_indiv">
 				<svg class="miniload" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                      width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
                 <path id="loading-12-icon" d="M291,82.219c0,16.568-13.432,30-30,30s-30-13.432-30-30s13.432-30,30-30S291,65.65,291,82.219z
@@ -112,7 +105,7 @@ if($uid || isset($_SESSION['uid'])){
                     c-14.346,8.285-19.264,26.633-10.98,40.982C155.787,135.017,174.137,139.932,188.482,131.649z"/>
             </svg>
 			</div>
-			<div class="room_players_other_indiv">
+			<div class="playroom_player_indiv">
 				<svg class="miniload" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                      width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
                 <path id="loading-12-icon" d="M291,82.219c0,16.568-13.432,30-30,30s-30-13.432-30-30s13.432-30,30-30S291,65.65,291,82.219z
@@ -135,31 +128,43 @@ if($uid || isset($_SESSION['uid'])){
                      M188.482,131.649c14.352-8.286,19.266-26.633,10.982-40.982c-8.285-14.348-26.631-19.264-40.982-10.98
                     c-14.346,8.285-19.264,26.633-10.98,40.982C155.787,135.017,174.137,139.932,188.482,131.649z"/>
 			</div>
-        </div>
-        </div>
-        <div class="right">
-            <div class="right_header">
-            Room:<?php echo $room->getroomname($_GET['rid']);?>
-            </div>
-            <div class="right_content r_fixed">
-                <div id="map-canvas" class="big_play_content">
-                </div>
-            </div>
-			<div class="gamewarn">
+		</div>
 
+		<div class="chatroom_header">
+		Chatroom
+		</div>
+		<div class="chatroom_content bigplayfixed">
+
+		</div>
+		<div class="chatroom_send">
+		<input type="text" id="send_content">
+		<input class="sendsubmit" value="Send" type="submit" id="send_content_submit">
+		</div>
 	</div>
-            <div class="chat_header">
-                Chat
-            </div>
-            <div class="chat_box">
-            </div>
-              <div class="chat_send">
-               <input type="text" id="send_content">
-              <input class="sendsubmit" value="Send" type="submit" id="send_content_submit">
-              </div>
-        </div>
-</div>
-<div class="ingamepopup drawcard">
+	<div class="room_right">
+		<div class="room_right_header">
+		<?=$_SESSION['name'];?>
+		</div>
+		<?php
+		$user=new User($db);
+		$userinfo=$user->userinfo($_SESSION['uid']);
+		?>
+		<div class="play_right_content">
+		<ul>
+			<li><img src="./img/avatar.png"></li>
+			<li>You are in:<b id="p_stop"></b></li>
+			<li>Money:<b id="p_money"><?=$settings['start_money']?></b></li>
+			<li>Property:</li>
+			<li style="text-align:center"><button id="dicebutton" onclick="pDice()" class="play_button">Dice</button></li>
+            <li style="text-align:center"><button onclick="cDice()" class="play_button">Cheat dice</button></li>
+			<li style="text-align:center"><button onclick="checkProp()" class="play_button">Property</button></li>
+			<li style="text-align:center">You still have <b id="show-time"><?=$settings["round_time"];?></b> seconds<br /><button class="play_button">Finish this round</button></li>
+		</ul>
+		</div>
+	</div>
+    </div>
+	
+    <div class="ingamepopup drawcard">
     	<div class="ingamepopup_header">
     	Draw a card
     	</div>
@@ -177,7 +182,6 @@ if($uid || isset($_SESSION['uid'])){
     	</div>
     	<div class="create_room_content">
     	<img class="buybimg" src=""><br />
-    	Name:<b class="building_name"></b><br />
 		Price:<b class="building_price">2000</b><br />
     	<button class="buybutton">Buy</button>
 		<button class="cancel_button">Cancel</button>
@@ -190,38 +194,28 @@ if($uid || isset($_SESSION['uid'])){
     	<div class="create_room_content">
     	<img class="rentimg" src=""><br />
 		Owner:<b class="building_owner"></b><br />
-		Rent:$<b class="building_rent"></b><br />
+		Rent:<b class="building_rent"></b><br />
     	<button class="paybutton">Pay</button>
         </div>
     </div>
-    <div class="ingamepopup mybuilding">
-    	<div class="ingamepopup_header">
-    	My Property
-    	</div>
-    	<div class="create_room_content showmybuilding">
-		<div class="my_small_prop">
-    	<img class="rentimg" src="./img/big/station.png"><br />Rent:$100</div>
-    </div>
-		<button class="cancel_button">Close</button>
     </div> <!-- /container -->
+    <div class="footer"></div>
 <?php
 }else{
-$msg="Incorrect password";
+	$msg="Please login";
 ?>
     <div class="bg1">
     <div class="login_form bmsg">
     <div class="login_header">
-        Error
+        Registration
     </div>
     <h2 class="msg"><?=$msg;?></h2>
-	 <a href="./index.php"><button class="warningbutton">Home</button></a>
     </div>
     </div>
-    </div> <!-- /container -->
+    </div> <!-- /container --> 
 <?php
 }
 ?>
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 
@@ -236,8 +230,8 @@ var myPlayerNo;
 var MY_MAPTYPE_ID = 'custom_style';
 var gameStopName = new Array();
 gameStopName[0]="Train Station";
-gameStopName[1]="Chung Chi Admin";//CC admin
-gameStopName[2]="Wong Fok Yuen";//王褔元
+gameStopName[1]=3;//CC admin
+gameStopName[2]=5;//王褔元
 gameStopName[3]=6;//陳國本
 gameStopName[4]="Sino building";//信和
 gameStopName[5]="CC staff hostel";//CC staff hostel
@@ -245,10 +239,10 @@ gameStopName[6]="MMW";//new eng build
 gameStopName[7]="????";//教研樓
 gameStopName[8]="HSB";//HSB
 gameStopName[9]="Shaw Science building";//逸夫科學
-gameStopName[10]="BMSB";//BMSB
-gameStopName[11]="Sir Run Run";//sir run run
+gameStopName[10]="BMSBM";//BMSB
+gameStopName[11]=24.5;//sir run run
 gameStopName[12]="Pi Chu building"; //pi chu
-gameStopName[13]="NA College"; //NA tower
+gameStopName[13]="NA Tower"; //NA tower
 gameStopName[14]=33;
 gameStopName[15]=36;
 gameStopName[16]=38;
@@ -617,7 +611,7 @@ var featureOpts = [
   animateCircle(2);
   animateCircle(3);
   google.maps.event.addListener(map, 'click', function(e) {
-	console.log('new google.maps.LatLng(' + e.latLng.A + ',' +e.latLng.k + ')' );
+	console.log('new google.maps.LatLng(' + e.latLng.d + ',' +e.latLng.e + ')' );
   });
   
  <?php
@@ -663,7 +657,6 @@ function pDice(){
 		socket.send(JSON.stringify(msg));
 		movable=0;
 		$('#dicebutton').prop('disabled', true);
-		$('.ingamepopup').hide();
 	}else{
 		if(payrent!=1){
 			gameshowmsg('You did not pay rent!');
@@ -702,7 +695,7 @@ function gameshowmsg(msg){
 }
 
 function updatemoney(tempplayerno,tempmoney){  //update user money on the user info area
-	$('.room_players_other_indiv').each(function(){
+	$('.playroom_player_indiv').each(function(){
 		if($(this).hasClass(''+tempplayerno+'')){  //check if it is the targeted user
 			$(this).find('.opmoney').html(eval(tempmoney));
 		}
@@ -787,18 +780,10 @@ if(isset($_SESSION['name'])){
 				socket.send(JSON.stringify(msg));
 				$('.buybuilding').hide();
 			});
-			$('.paybutton').click(function(){
-				alert('hi');
-				var msg = {};
-				msg.act = "payrent";
-				msg.rid = <?=$_GET['rid'];?>;
-				msg.rent = parseInt($('.building_rent').html());
-				socket.send(JSON.stringify(msg));
-			})
 			function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
             function SetupWebSocket()
 			{
-				var host = 'ws://freddymok.com:9876/mono/server.php';
+				var host = 'ws://127.0.0.1:9876/mono/server.php';
 				socket = new WebSocket(host);
 				socket.onopen = function(e) { 
 					var msg = {};
@@ -824,9 +809,9 @@ if(isset($_SESSION['name'])){
 						for(i=0;i<retData['players'].length;i++){
 							var tempplayer = retData['players'][i];
 							if(tempplayer['playerno'] != myPlayerNo){
-								$('.room_players_other_indiv:eq('+tempplayerno+')').html('');
-								$('.room_players_other_indiv:eq('+tempplayerno+')').addClass(''+tempplayer["playerno"]+'');
-								$('.room_players_other_indiv:eq('+tempplayerno+')').html('<img src="./data/'+tempplayer['name']+'.png">'+tempplayer['name']+'<br />Money: <b class="opmoney">'+tempplayer['money']+'</b> <button value="'+ tempplayer['playerno'] +'"class="checkprop">Property</button>');
+								$('.playroom_player_indiv:eq('+tempplayerno+')').html('');
+								$('.playroom_player_indiv:eq('+tempplayerno+')').addClass(''+tempplayer["playerno"]+'');
+								$('.playroom_player_indiv:eq('+tempplayerno+')').html(tempplayer['name']+'<br /> <img src="./img/avatar.png"><br />Money: <b class="opmoney">'+tempplayer['money']+'</b> <button value="'+ tempplayer['playerno'] +'"class="checkprop">Property</button>');
 								tempplayerno++;
 							}
 						}
@@ -844,7 +829,7 @@ if(isset($_SESSION['name'])){
 								msg.act = "addround";
 								msg.playerno = myPlayerNo;
 								socket.send(JSON.stringify(msg));
-								//$("#p_money").html(eval($("#p_money").html())+eval(<?=$settings["round_money"];?>)); //add money
+								$("#p_money").html(eval($("#p_money").html())+eval(<?=$settings["round_money"];?>)); //add money
 							}
 						}
 
@@ -869,8 +854,8 @@ if(isset($_SESSION['name'])){
 							$("#p_stop").html(gameStopName[tempstop]); //update the stop name
 						}
 						gameshowmsg(retData['uname'] +' moves to '+ gameStopName[tempstop]);
-						$('.chat_box').append('<b class="systemmsg">[SYSTEM] : '+retData['uname'] +' moves to '+ gameStopName[tempstop]+'.</b><br />');
-						$('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
+						$('.chatroom_content').append('<b class="systemmsg">[SYSTEM] : '+retData['uname'] +' moves to '+ gameStopName[tempstop]+'.</b><br />');
+						$('.chatroom_content').scrollTop($('.chatroom_content')[0].scrollHeight);
 						if(playerOffset[tempno]==66.5 && tempno==myPlayerNo-1){//to be edited(same playerno)
 							var msg={};
 							msg.act = "jail";
@@ -891,15 +876,14 @@ if(isset($_SESSION['name'])){
 							updatemoney(retData['playerno'],retData['money']);
 						}
 						gameshowmsg(retData['cardpname'] +' '+ retData['cardmsg']);
-						$('.chat_box').append('<b class="systemmsg">[SYSTEM] : '+retData['cardpname'] +' '+ retData['cardmsg']+'</b><br />');
-						$('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
+						$('.chatroom_content').append('<b class="systemmsg">[SYSTEM] : '+retData['cardpname'] +' '+ retData['cardmsg']+'</b><br />');
+						$('.chatroom_content').scrollTop($('.chatroom_content')[0].scrollHeight);
 					}else if(retData["act"]=="chatroommsg"){
-						$('.chat_box').append(retData["uname"]+" : "+retData["sendcontent"]+" ["+retData["stime"]+"]<br />");
-						$('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
+						$('.chatroom_content').append(retData["uname"]+" : "+retData["sendcontent"]+" ["+retData["stime"]+"]<br />");
+						$('.chatroom_content').scrollTop($('.chatroom_content')[0].scrollHeight);
 					}else if(retData["act"]=="recordstopno"){
 						//console.log('here'+ retData["marker"]);
 						if(retData["playerno"] == myPlayerNo){
-							$('.building_name').html(retData["bname"]);
 							$('.building_price').html(retData["money"]);
 							$('.buybimg').attr('src', "./img/big/"+retData['img']);
 							$('.buybuilding').show();
@@ -926,8 +910,8 @@ if(isset($_SESSION['name'])){
 						}
 						if(retData["sendcontent"]){
 							gameshowmsg(retData["sendcontent"]);
-							$('.chat_box').append('<b class="systemmsg">[SYSTEM] : ' + retData["sendcontent"] + "</b><br />");
-							$('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
+							$('.chatroom_content').append('<b class="systemmsg">[SYSTEM] : ' + retData["sendcontent"] + "</b><br />");
+							$('.chatroom_content').scrollTop($('.chatroom_content')[0].scrollHeight);
 						}
 					}else if(retData["act"] == "takerent"){
 						payrent = 0;
@@ -935,28 +919,6 @@ if(isset($_SESSION['name'])){
 						$('.building_owner').html(retData["name"]);
 						$('.rentimg').attr('src', "./img/big/"+retData['img']);
 						$('.payrent').show();
-					}else if(retData["act"] == "mybuilding"){
-						
-						if(retData["mybuilding"].length == 0){
-							alert("You have no property");
-						}else{
-							$('.mybuilding').show();
-							myprops = retData["mybuilding"];
-							$('.showmybuilding').html('');
-							for(i=0;i<myprops.length;i++){
-								$('.showmybuilding').append('<div class="my_small_prop"><img class="rentimg" src="./img/big/'+myprops[i]['img']+'"><br />Rent:$'+myprops[i]['rent']+'</div>');
-							}
-						}
-					}else if(retData["act"] == "getchance"){
-						$('.drawcard').show(); //get a chance to draw a card.
-					}else if(retData["act"] == "payrentsucceed"){
-						if(myPlayerNo == retData['playerno']){
-							$('.payrent').hide();
-							$('#p_money').html(eval(retData['money']));
-							payrent = 1;
-						}else{
-							updatemoney(retData['playerno'],eval(retData['money']));
-						}
 					}else if(retData["act"] == "selfwarn"){
 						gameshowmsg(retData["sendcontent"]);
 					}

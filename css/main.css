@@ -10,7 +10,6 @@
 html, body {
 	 width:100%;
 	 height:100%;
-	 padding:20px;
 	 margin:0;
 	 background:#5293C2;
 	 font-family: 'Advent Pro', sans-serif;
@@ -237,7 +236,7 @@ html, body {
 	background: rgb(95,95,95);
 }
 .big_play_content{
-	height:819px;
+	height:750px;
 }
 .room_player{
 	width:50%;
@@ -251,6 +250,16 @@ html, body {
 	height:100%;
 	float:left;
 }
+
+.mybuilding{
+	max-width:440px !important;
+	width:540px !important;
+	height:430px !important;
+}
+.my_small_prop{
+	float:left;
+	padding:9px;
+}
 .room_right_header{
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight:700;
@@ -262,6 +271,10 @@ html, body {
 	background:url(bg2.png);
 	color:#fff;
 	text-align:center;
+}
+.showmybuilding{
+	overflow:hidden;
+	clear:both;
 }
 .play_right_content{
 	height:1146px;
@@ -313,7 +326,7 @@ box-shadow:inset -16px 0 0 0 #FFAD0A;
 	text-decoration:none;
 	color:#eee;
 }
-.create_room, .passwordroom, .ingamepopup{
+.create_room, .passwordroom, .ingamepopup, .changeavatar{
 	display:none;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight:700;
@@ -334,34 +347,39 @@ box-shadow:inset -16px 0 0 0 #FFAD0A;
 }
 .buybuilding{
 	display:none;
-	height:250px;
+	height:270px;
+}
+.payrent{
+	display:none;
+	height:300px;
 }
 .drawcard{
-	display:block;
+	display:none;
 	height:250px;
 }
 .gamewarn{
 	display:none;
 	position:absolute;
-	width:75%;
-	top:50px;
+	width:60%;
+	top:70px;
 	height:40px;
 	line-height:40px;
 	font-size:23px;
 	background:#333;
+	text-align:center;
 	color:yellow;
 	float:left;
 }
 .passwordroom{
 	height:150px;
 }
-.create_room_header, .passwordroom_header, .ingamepopup_header{
+.create_room_header, .passwordroom_header, .ingamepopup_header, .changeavatar_header{
 	width:100%;
 	height:50px;
 	line-height:50px;
 	font-size:30px;
 	color:#fff;
-	background:url(bg.png);
+    background:#00A0B0;
 }
 .create_room_content{
 	width:100%;
@@ -377,7 +395,7 @@ box-shadow:inset -16px 0 0 0 #FFAD0A;
 	border:0;
 	border-bottom:3px solid #7D8281;
 }
-.create_room_button, .passwordbutton, .drawbutton, .buybutton{
+.create_room_button, .passwordbutton, .drawbutton, .buybutton, .paybutton{
 	border:0;
 	color:#fff;
 	background: #2ecc71;

@@ -6,18 +6,41 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
+        <title>Monopoly - Waiting Room</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         </style>
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/new.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="html5uploader.js"></script>
     </head>
-    <body>
-	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<?php
+$toname="";
+require './database.php';
+require './config.php';
+session_start();
+$room = new Room($db);
+if(isset($_POST['username']) && !empty($_POST['username'])){
+	$user=new User($db);
+	$uid=$user->login($_POST['username'], $_POST['password']);
+}else{
+	$uid=0;
+}
+if($uid || isset($_SESSION['uid'])){
+    $toname = $_SESSION['name'];
+	if(!isset($_SESSION['uid'])){
+		$_SESSION['uid']=$uid;
+		$_SESSION['name']=$_POST['username'];
+		$toname = $_SESSION['name'];
+	}
+?>
+<body onload="new uploader('drop', 'status', 'uploader.php', 'list', '<?php echo $toname;?>');">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
 				<path id="loading-12-icon" d="M291,82.219c0,16.568-13.432,30-30,30s-30-13.432-30-30s13.432-30,30-30S291,65.65,291,82.219z
 					 M261,404.781c-15.188,0-27.5,12.312-27.5,27.5s12.312,27.5,27.5,27.5s27.5-12.312,27.5-27.5S276.188,404.781,261,404.781z
@@ -39,59 +62,89 @@
 					 M188.482,131.649c14.352-8.286,19.266-26.633,10.982-40.982c-8.285-14.348-26.631-19.264-40.982-10.98
 					c-14.346,8.285-19.264,26.633-10.98,40.982C155.787,135.017,174.137,139.932,188.482,131.649z"/>
 			</svg>
+<div class="three_col">
+        <div class="left">
+            <div class="left_header">
+            <?=$_SESSION['name'];?>
+            </div>
+            <div class="left_content">
 <?php
-require './database.php';
-require './class/user.php';
-require './class/room.php';
-session_start();
-$room = new Room($db);
-if(isset($_SESSION['uid']) && !empty($_SESSION['uid'])){
+    $user=new User($db);
+	$userinfo=$user->userinfo($_SESSION['uid']);
 ?>
-	<div class="bg1">
-	<div class="room_list">
-	<div class="room_left">
-		<div class="room_left_header">
-		Room:<?=$room->getroomname($_GET['rid']);?>
-		</div>
-		<div class="room_player_content">
-			
-		</div>
-		
-		<div class="chatroom_header">
-		Chatroom
-		</div>
-		<div class="chatroom_content">
+            <ul>
+                <li class="avatar"><img id="toavatar" src="./data/<?=$toname;?>.png"></li>
+                <li>Win:<?=$userinfo['money']?></li>
+                <li>Lose:<?=$userinfo['money']?></li>
+                <li>Money:<?=$userinfo['money']?></li>
+                <li><button class="function_button orangebg"><i class="fa fa-envelope"></i> Message</button></li>
+                <li><button class="function_button bluebg"><i class="fa fa-credit-card"></i> Shop</button></li>
+                <li><a href="./index.php"><button class="function_button greenbg"><i class="fa fa-sign-out"></i> Logout</button></a></li>
+            </ul>
+            </div>
+        </div>
+        <div class="middle">
+        <div class="middle_header">
+        Players
+        </div>
+        <div class="middle_content">
+        <ul>
+        <!--playerlist-->
+        </ul>
+        </div>
+        </div>
+        <div class="right">
+            <div class="right_header">
+                Room: <?php echo $room->getroomname($_GET['rid']);?>
+            </div>
+            <div class="right_content h_fixed">
+                <div class="right_room_list">
+                </div>
+            </div>
 
-		</div>
-		<div class="chatroom_send">
-		<input type="text" id="send_content">
-		<input class="sendsubmit" value="Send" type="submit" id="send_content_submit">
-		</div>
-	</div>
-	<div class="room_right">
-		<div class="room_right_header">
-		<?=$_SESSION['name'];?>
-		</div>
-		<?php
-		$user=new User($db);
-		$userinfo=$user->userinfo($_SESSION['uid']);
-		?>
-		<div class="room_right_content">
-		<ul>
-			<li>Win:<?=$userinfo['money']?></li>
-			<li>Lose:<?=$userinfo['money']?></li>
-			<li>Money:<?=$userinfo['money']?></li>
-			<li class="player_button"><a href="./roomlist.php">Room list</a></li>
-		</ul>
-		</div>
-	</div>
+            <div class="chat_header">
+                Chat
+            </div>
+            <div class="chat_box">
+            </div>
+              <div class="chat_send">
+               <input type="text" id="send_content">
+              <input class="sendsubmit" value="Send" type="submit" id="send_content_submit">
+              </div>
+        </div>
+</div>
+    <div class="create_room">
+    	<div class="create_room_header">
+    	Create a room
+    	</div>
+    	<div class="create_room_content">
+    	<input type="text" id="roomname" name="roomname" placeholder="Name of room">
+    	<input type="password" id="password" name="password" placeholder="Password(If any)">
+    	<button class="create_room_button">Create</button>
+    	<button class="cancel_button">Cancel</button>
+    	</div>
     </div>
-
-    </div> <!-- /container -->        
-    <div class="footer"></div>
+    <div class="passwordroom">
+    	<div class="passwordroom_header">
+    	Enter password
+    	</div>
+    	<div class="create_room_content">
+    	<input type="password" id="rmpassword" name="rmpassword" placeholder="Room password">
+    	<button class="passwordbutton">Enter</button>
+		<button class="cancel_button">Cancel</button>
+    	</div>
+    </div>
+    <div class="changeavatar">
+        <div class="changeavatar_header">
+        Change avatar
+        </div>
+        <div id="drop">Drag and drop the image(JPG) here</div>
+        <button class="cancel_button">Close</button>
+    </div>
+    </div> <!-- /container -->
 <?php
 }else{
-	$msg="Plese login";
+$msg="Incorrect password";
 ?>
     <div class="bg1">
     <div class="login_form bmsg">
@@ -99,111 +152,117 @@ if(isset($_SESSION['uid']) && !empty($_SESSION['uid'])){
         Error
     </div>
     <h2 class="msg"><?=$msg;?></h2>
+	 <a href="./index.php"><button class="warningbutton">Home</button></a>
     </div>
     </div>
-    </div> <!-- /container --> 
+    </div> <!-- /container -->
 <?php
 }
 ?>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	 <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 
         <script src="js/vendor/bootstrap.min.js"></script>
 
         <script src="js/main.js"></script>
 
-        <script>
-            $(document).ready(function(){
-				$('svg').fadeOut(500);
-				$('.bg1').fadeIn(300);
-            	SetupWebSocket();
-<?php
-if(isset($_SESSION['name'])){
-?>
-				$('#send_content_submit').click(function(){
-					if($('#send_content').val()==''){
-						alert('Your message is empty!');
-						$('#send_content').focus();
-					}else{
-                    	var msg = {};
-						msg.act = "sendmsg";
-						msg.rid = <?=$_GET['rid'];?>; //global message
-						msg.uname = '<?= $_SESSION['name'];?>';
-						msg.sendcontent=$('#send_content').val();
-						socket.send(JSON.stringify(msg));
-						$('#send_content').val('');
-					}
-				});
-<?php
-}
-?>
-				$('#send_content').bind('keydown', function(e) {
-					if(e.keyCode==13){
-						$('#send_content_submit').click();
-					}
-				});
-            	$(document.body).on( "click", '.ready', function() {
-            		var msg = {};
-            		msg.act = "getready";
-            		msg.uid = <?=$_SESSION['uid'];?>;
-            		msg.rid = <?=$_GET['rid'];?>;
-            		//console.log(msg);
-            		socket.send(JSON.stringify(msg));
-            	});
-				$(window).on('beforeunload', function(){
-					  var msg = {};
-					  msg.act="leaveroom";
-					  msg.uname = '<?= $_SESSION['name'];?>';
-					  msg.rid = <?=$_GET['rid'];?>;
-					  socket.send(JSON.stringify(msg));
-				});
-				$(document).on("keydown", disableF5);
-            });
-			function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
-            function SetupWebSocket()
-			{
-				var host = 'ws://127.0.0.1:12345/mono/server.php';
-				socket = new WebSocket(host);
-				socket.onopen = function(e) { 
-					var msg = {};
-					msg.act = "enterroom";
-					msg.uname = '<?= $_SESSION['name'];?>';
-					msg.rid = <?=$_GET['rid'];?>;
-					socket.send(JSON.stringify(msg));
-				};
-				socket.onmessage = function(e) {
-					var retData=$.parseJSON(e.data);
-					//console.log(retData["roomlist"].length);
-					if(retData['act']=='roomplayer'){
-						$('.room_player_content').html('');
-						var i=0;
-						for(i=0;i<retData['players'].length;i++){
-							var playerinfo = retData['players'][i];
-							console.log(playerinfo);
-							if(playerinfo['state']==0){
-								var pstate="Not ready";
-								if(playerinfo['name']=='<?= $_SESSION['name'];?>'){
-									var readybutton='<br /><button class="ready">Ready</button>';
-								}else{
-									var readybutton='';
-								}
-							}else{
-								var pstate="Ready";
-								var readybutton="";
-							}
-							$('.room_player_content').append('<div class="room_player"><h3>'+playerinfo['name']+'</h3><img src="./img/avatar.png"><br />State:'+pstate+readybutton+'</div>')
-						}
-					}else if(retData["act"]=="chatroommsg"){
-						$('.chatroom_content').append(retData["uname"]+" : "+retData["sendcontent"]+" ["+retData["stime"]+"]<br />");
-						$('.chatroom_content').scrollTop($('.chatroom_content')[0].scrollHeight);
-					}
-					//console.log(retData);	
-				};
-				socket.onclose = function(e) {
-					alert('Disconnected - status ' + this.readyState); 
-				};
-			}
+                                                                                                                                                                                                                                                                                                                                                                            <script>
+                                                                                                                                                                                                                                                                                                                                                                            $(document).ready(function(){
+            $('svg').fadeOut(500);
+        $('.bg1').fadeIn(300);
+        SetupWebSocket();
+        <?php
+        if(isset($_SESSION['name'])){
+        ?>
+        $('#send_content_submit').click(function(){
+        if($('#send_content').val()==''){
+        alert('Your message is empty!');
+            $('#send_content').focus();
+        }else{
+        var msg = {};
+        msg.act = "sendmsg";
+        msg.rid = <?=$_GET['rid'];?>; //global message
+                                        msg.uname = '<?= $_SESSION['name'];?>';
+        msg.sendcontent=$('#send_content').val();
+        socket.send(JSON.stringify(msg));
+        $('#send_content').val('');
+        }
+        });
+        <?php
+        }
+        ?>
+        $('#send_content').bind('keydown', function(e) {
+        if(e.keyCode==13){
+            $('#send_content_submit').click();
+        }
+        });
+        $(document.body).on( "click", '.ready', function() {
+        var msg = {};
+        msg.act = "getready";
+        msg.uid = <?=$_SESSION['uid'];?>;
+        msg.rid = <?=$_GET['rid'];?>;
+        //console.log(msg);
+        socket.send(JSON.stringify(msg));
+        });
+        $(window).on('beforeunload', function(){
+        var msg = {};
+        msg.act="leaveroom";
+        msg.uname = '<?= $_SESSION['name'];?>';
+        msg.rid = <?=$_GET['rid'];?>;
+        socket.send(JSON.stringify(msg));
+        });
+        $(document).on("keydown", disableF5);
+        });
+        function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
+        function SetupWebSocket()
+        {
+            var host = 'ws://freddymok.com:9876/mono/server.php';
+            socket = new WebSocket(host);
+        socket.onopen = function(e) {
+        var msg = {};
+        msg.act = "enterroom";
+        msg.uname = '<?= $_SESSION['name'];?>';
+        msg.rid = <?=$_GET['rid'];?>;
+        socket.send(JSON.stringify(msg));
+        };
+        socket.onmessage = function(e) {
+            var retData=$.parseJSON(e.data);
+        //console.log(retData["roomlist"].length);
+        if(retData['act']=='roomplayer'){
+            $('.right_room_list').html('');
+            var i=0;
+            for(i=0;i<retData['players'].length;i++){
+            var playerinfo = retData['players'][i];
+            console.log(playerinfo);
+            if(playerinfo['state']==0){
+            var pstate="Not ready";
+                if(playerinfo['name']=='<?= $_SESSION['name'];?>'){
+                    var readybutton='<br /><button class="ready">Ready</button>';
+                }else{
+                    var readybutton='';
+                }
+            }else{
+                 var pstate="Ready";
+                 var readybutton="";
+            }
+                $('.right_room_list').append('<div class="right_rooms hf_fixed"><img src="./data/'+playerinfo['name']+'.png"><h4>'+playerinfo['name']+'</h4>State:'+pstate+readybutton+'</div>')
+            }
+            console.log(retData);
+            if(retData['totalnum'] == 4){
+                window.location.href = './play.php?rid='+playerinfo["rid"];
+            }
+        }else if(retData["act"]=="chatroommsg"){
+            $('.chat_box').append(retData["uname"]+" : "+retData["sendcontent"]+" ["+retData["stime"]+"]<br />");
+            $('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
+        }
+        //console.log(retData);
+        };
+            socket.onclose = function(e) {
+                alert('Disconnected - status ' + this.readyState);
+            };
+        }
 
         </script>
-    </body>
+		</body>
 </html>

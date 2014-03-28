@@ -2,18 +2,24 @@
 <?php  /*  >php -q server.php  */
 require './database.php';
 require './config.php';
-require './class/room.php';
-require './class/relation.php';
 $debug = true;
 
 error_reporting(E_ALL);
 set_time_limit(0);
 ob_implicit_flush();
 date_default_timezone_set('Asia/Hong_Kong');
-$sock = WebSocket("0.0.0.0",12345);
+$sock = WebSocket("0.0.0.0",9876);
 $sockets = array($sock);
 $users = array();
 $playroom = array();
+$logfile = date("Y-m-d").".log";
+if (file_exists($logfile)) {
+    //nothing to do
+}else{
+    $handle = fopen("./log/".$logfile, 'wa') or die('Cannot open file:  '.$logfile);
+    fclose($handle);
+}
+
 while(true)
 {
 	$read = $sockets;
@@ -103,9 +109,10 @@ while(true)
 							}
 						}
 					}
-					console(var_dump($users));
+					//console(var_dump($users));
 					$send_packet["roomlist"]=$room->getroomlist($val['page']);
 					send($user->socket,json_encode($send_packet));
+                    update_player_list();
 					break;
 					case "createroom":
 					console(var_dump($val));
@@ -166,29 +173,32 @@ while(true)
 					global_msg(json_encode($send_packet));
 					break;
 					case "getready":
-					console(var_dump($val));
-					foreach ($users as $u) {
-						if($u->id == $user->id){
-							$u->state=1;
-							console(var_dump($u));
-							break;
-						}
-					}
-					$room_player = array();
-					foreach ($users as $u) { //retrieve a list of player in the room
-						if($u->rid == $val['rid']){
-							$tempuser = new tempUser($u);
-							array_push($room_player,$tempuser);
-							$tempuser = null;
-						}
-					}
-					//console(var_dump($user));
-					$send_packet=array();
-					$send_packet["act"]="roomplayer";
-					$send_packet["players"]=$room_player;
-					room_msg($val['rid'],json_encode($send_packet));
-					//global_msg(json_encode($send_packet));//needed to be modified to send to specifc people in that room
-					console(var_dump($room_player));
+                        console(var_dump($val));
+                        foreach ($users as $u) {
+                            if($u->id == $user->id){
+                                $u->state=1;
+                                console(var_dump($u));
+                                break;
+                            }
+                        }
+
+                        $checktotal = 0;
+                        $room_player = array();
+                        foreach ($users as $u) { //retrieve a list of player in the room
+                            if($u->rid == $val['rid']){
+                                $checktotal++;
+                                $tempuser = new tempUser($u);
+                                array_push($room_player,$tempuser);
+                                $tempuser = null;
+                            }
+                        }
+                        $send_packet=array();
+                        $send_packet["act"]="roomplayer";
+                        $send_packet["players"]=$room_player;
+                        $send_packet["totalnum"] = $checktotal;
+                        room_msg($val['rid'],json_encode($send_packet));
+                        //global_msg(json_encode($send_packet));//needed to be modified to send to specific people in that room
+                        console(var_dump($room_player));
 					break;
 					case "leaveroom":
 					console(var_dump($val));
@@ -303,7 +313,7 @@ while(true)
 					break;
 					case "addround":
 					console(var_dump($val));
-					$user->money+=200;
+					$user->money+=$settings["round_money"]; //add money for passing one round
 					console(var_dump($user));
 					$send_packet=array();
 					$send_packet['act'] = "notice";
@@ -339,7 +349,7 @@ while(true)
 								$user->money+=800;
 							break;
 							case "6":
-								$send_packet['cardmsg']="losts $500";
+								$send_packet['cardmsg']="loses $500";
 								$user->money-=500;
 							break;
 						}
@@ -350,10 +360,12 @@ while(true)
 					case "recordstopno":
 						console(var_dump($val));
 						$soldout = 0;
+						$foundbuilding = null;
 						foreach($buildingArray as $building){
 							if($building->stopNo == $val['stopno']){
 								foreach($user->room->relations as $relation){
 									if($building->stopNo == $relation->stopno){
+										$foundbuilding = $relation;
 										$soldout = 1;
 									}else{
 										$soldout = 0;
@@ -365,18 +377,35 @@ while(true)
 									$send_packet['playerno']=$user->playerno;
 									$send_packet['act']="recordstopno";
 									$send_packet['marker']=$building->stopNo;
+									$send_packet['bname']=$building->rname;
 									$send_packet['money'] = $building->price;
 									$send_packet['img'] = $building->img;
 									room_msg($val['rid'],json_encode($send_packet));
 									//to be done
+								}else{ //charge rent!
+									if($foundbuilding->playerno != $user->playerno){
+										$send_packet=array();
+										$send_packet['act'] = "takerent";
+										$send_packet['img'] = $foundbuilding->img;
+										$send_packet['name'] = $foundbuilding->name;
+										$send_packet['rent'] = $foundbuilding->rent;
+										send($user->socket,json_encode($send_packet));
+									}
 								}
 								break;
 							}
+						}
+						console("my name is".$user->name);
+						if(in_array($val['stopno'],$luckArray)){
+							$send_packet=array();
+							$send_packet['act'] = "getchance";
+							send($user->socket,json_encode($send_packet));
 						}
 					break;
 					case "buybuilding":
 						console(var_dump($val));
 						console(var_dump($user->room));
+						$send_packet['bought'] = 0;
 						foreach($buildingArray as $building){
 							if($building->stopNo == $val['stopno']){
 								//transaction begin;
@@ -385,7 +414,9 @@ while(true)
 									$newRelation = new relation();
 									$newRelation->playerno = $user->playerno;
 									$newRelation->stopno = $building->stopNo;
+									$newRelation->img = $building->img;
 									$newRelation->rent = $building->rent;
+									$newRelation->name = $user->name;
 									array_push($user->room->relations, $newRelation);
 									console(var_dump($user));
 									console(var_dump($user->room));
@@ -394,14 +425,46 @@ while(true)
 									$send_packet['playerno'] = $user->playerno;
 									$send_packet['money'] = $user->money;
 									$send_packet['sendcontent'] = $user->name . " has purchased ". $building->rname;
+									$send_packet['bought'] = 1;
 									room_msg($user->rid,json_encode($send_packet));
-								}else{
-									
+								}else{ //no money to buy
+									$send_packet = array();
+									$send_packet['act'] = "selfwarn";
+									$send_packet['sendcontent'] = "You do not have enough money";
+									send($user->socket,json_encode($send_packet));
 								}
 								console(var_dump($user));
 								break;
 							}
 						}
+					break;
+					case "payrent":
+						console("The rent is ".$val['rent']);
+						if($user->money > $val['rent']){
+							console("You have enough money");
+							$user->money -= $val['rent'];
+							$send_packet = array();
+							$send_packet['playerno'] = $user->playerno;
+							$send_packet['act'] = "payrentsucceed";
+							$send_packet['money'] = $user->money;
+							room_msg($val['rid'],json_encode($send_packet));
+						}else{
+							console("You do have enough money");
+							//TODO:implement not enough money for paying rent
+						}
+					break;
+					case "checkprop": //check my property
+                        $mybuilding = array();
+                        foreach($user->room->relations as $relation){
+                            if($relation->playerno == $user->playerno){
+                                //var_dump($relation);
+                                array_push($mybuilding, $relation);
+                            }
+                        }
+                        $send_packet = array();
+                        $send_packet['act'] = "mybuilding";
+                        $send_packet['mybuilding'] = $mybuilding;
+                        send($user->socket,json_encode($send_packet));
 					break;
 				}
 			}
@@ -412,6 +475,28 @@ while(true)
 
 //---------------------------------------------------------------
 
+function update_player_list(){
+    global $users;
+    $allusers = array();
+    foreach($users as $u){
+        $tempUser = new tempUser($u);
+        array_push($allusers, $tempUser);
+    }
+    $send_packet = array();
+    $send_packet['players'] = $allusers;
+    $send_packet['act'] = "userinfo";
+    $msg = json_encode($send_packet);
+    foreach ($users as $u) {
+        if($u->rid == 0){
+            send($u->socket,$msg);
+        }
+    }
+    $logfile = date("Y-m-d").".log";
+    $handle = fopen("./log/".$logfile, 'a') or die('Cannot open file:  '.$logfile);
+    $msg = date("D M j G:i:s T Y") ."\n" .  $msg . "\n";
+    fwrite($handle, $msg);
+    fclose($handle);
+}
 function room_msg($rid,$msg){ //send message to a specific room
 	global $users;
 	foreach ($users as $u){
@@ -419,6 +504,11 @@ function room_msg($rid,$msg){ //send message to a specific room
 			send($u->socket,$msg);
 		}
 	}
+    $logfile = date("Y-m-d").".log";
+    $handle = fopen("./log/".$logfile, 'a') or die('Cannot open file:  '.$logfile);
+    $msg = date("D M j G:i:s T Y") ."\n" .  $msg . "\n";
+    fwrite($handle, $msg);
+    fclose($handle);
 }
 
 function global_msg($msg){
@@ -426,6 +516,11 @@ function global_msg($msg){
 	foreach ($users as $u) {
 		send($u->socket,$msg);
 	}
+    $logfile = date("Y-m-d").".log";
+    $handle = fopen("./log/".$logfile, 'a') or die('Cannot open file:  '.$logfile);
+    $msg = date("D M j G:i:s T Y") ."\n" .  $msg . "\n";
+    fwrite($handle, $msg);
+    fclose($handle);
 }
 
 function doTest($socket)
@@ -434,7 +529,7 @@ function doTest($socket)
 		console("[doTest] " . $socket);
 		$sendText = date('Y-m-d H:i:s');
 		
-		// ¦pªG°e¥¢±Ñ´N°±¤î
+		// ï¿½pï¿½Gï¿½eï¿½ï¿½ï¿½Ñ´Nï¿½ï¿½ï¿½ï¿½
 		if (!send($socket, $sendText)) {
 			echo "[doTest] Stop \n";
 			return;
@@ -445,7 +540,7 @@ function doTest($socket)
 
 function process($socket,$msg)
 {
-	// °T®§»Ý­n¸Ñ½X
+	// ï¿½Tï¿½ï¿½ï¿½Ý­nï¿½Ñ½X
 	$action = unmask($msg);
 	console("< " . $action);
 }
@@ -456,8 +551,8 @@ function process($socket,$msg)
  */
 function unmask($recvMsg) 
 {
-	// ord ¦^¶Ç ascii code
-	// 127 ¡÷ 0x01111111
+	// ord ï¿½^ï¿½ï¿½ ascii code
+	// 127 ï¿½ï¿½ 0x01111111
 	$length = ord($recvMsg[1]) & 127;
 	
 	if($length == 126) 
@@ -562,8 +657,8 @@ function WebSocket($address,$port)
 
 function connect($socket)
 {
-	global $sockets,$users;
-	$newUser = new socketUser();
+	global $sockets,$users,$settings;
+	$newUser = new socketUser($settings["start_money"]);
 	$newUser->id = uniqid();
 	$newUser->socket = $socket;
 	$newUser->offset=0; //initalize the offset here
@@ -622,6 +717,7 @@ function disconnect($socket)
 	{ 
 		array_splice($sockets, $index, 1); 
 	}
+    update_player_list(); //update the player list
 }
 
 function dohandshake($user,$buffer)
@@ -686,7 +782,14 @@ function getuserbysocket($socket)
 
 function    wrap($msg = ""){ return chr(0) . $msg . chr(255); }
 function  unwrap($msg = ""){ return substr($msg, 1, strlen($msg) - 2); }
-function console($msg = ""){ global $debug; if($debug) { echo $msg . "\n"; } }
+
+
+function console($msg = ""){
+    global $debug;
+    if($debug) {
+        echo $msg . "\n";
+    }
+}
 
 class socketUser
 {
@@ -698,9 +801,12 @@ class socketUser
 	var $rid=0;
 	var $state=0;
 	var $playerno;
-	var $money=15000;
+	var $money;
 	var $offset=0;
 	var $room;
+    public function __construct($money){
+        $this->money = $money;
+    }
 }
 class tempUser {
 	var $id;

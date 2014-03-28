@@ -76,4 +76,21 @@ class User{
 			die($e->getMessage());
 		}
 	}
+
+    //below are admin function
+    public function get_user_list(){
+        $query = $this->db->prepare("SELECT * FROM user ORDER BY uid");
+        try{
+            $query->execute();
+            $data = $query->fetchAll();
+            $toBeReturn = "";
+            foreach($data as $one){
+                $toBeReturn .= '<li><img src="../data/'.$one['name'].'.png"><br />'.$one['name'].'<br /><button class="edit">Edit</li>';
+            }
+            return $toBeReturn;
+
+        }catch(PDOException $e){
+            die($e->getMessage());
+        }
+    }
 }

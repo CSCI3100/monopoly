@@ -11,18 +11,16 @@
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         </style>
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/new.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        <script src="html5uploader.js"></script>
     </head>
+    <body>
 <?php
-$toname="";
 require './database.php';
-require './config.php';
+require './class/user.php';
+require './class/room.php';
 session_start();
 if(isset($_POST['username']) && !empty($_POST['username'])){
 	$user=new User($db);
@@ -34,11 +32,8 @@ if($uid || isset($_SESSION['uid'])){
 	if(!isset($_SESSION['uid'])){
 		$_SESSION['uid']=$uid;
 		$_SESSION['name']=$_POST['username'];
-		$toname = $_SESSION['name'];
 	}
-	$toname = $_SESSION['name'];
 ?>
-<body onload="new uploader('drop', 'status', 'uploader.php', 'list', '<?php echo $toname;?>');">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
 				<path id="loading-12-icon" d="M291,82.219c0,16.568-13.432,30-30,30s-30-13.432-30-30s13.432-30,30-30S291,65.65,291,82.219z
@@ -61,75 +56,62 @@ if($uid || isset($_SESSION['uid'])){
 					 M188.482,131.649c14.352-8.286,19.266-26.633,10.982-40.982c-8.285-14.348-26.631-19.264-40.982-10.98
 					c-14.346,8.285-19.264,26.633-10.98,40.982C155.787,135.017,174.137,139.932,188.482,131.649z"/>
 			</svg>
-<div class="three_col">
-        <div class="left">
-            <div class="left_header">
-            <?=$_SESSION['name'];?>
-            </div>
-            <div class="left_content">
-<?php
-    $user=new User($db);
-	$userinfo=$user->userinfo($_SESSION['uid']);
-?>
-            <ul>
-                <li class="avatar"><img id="toavatar" src="./data/<?=$toname;?>.png"></li>
-                <li>Win:<?=$userinfo['money']?></li>
-                <li>Lose:<?=$userinfo['money']?></li>
-                <li>Money:<?=$userinfo['money']?></li>
-                <li><button class="function_button orangebg"><i class="fa fa-envelope"></i> Message</button></li>
-                <li><button class="function_button bluebg"><i class="fa fa-credit-card"></i> Shop</button></li>
-                <li><a href="./index.php"><button class="function_button greenbg"><i class="fa fa-sign-out"></i> Logout</button></a></li>
-            </ul>
-            </div>
-        </div>
-        <div class="middle">
-        <div class="middle_header">
-        Players
-        </div>
-        <div class="middle_content">
-        <ul>
-        <!--playerlist-->
-        </ul>
-        </div>
-        </div>
-        <div class="right">
-            <div class="right_header">
-                Rooms
-            </div>
-            <div class="right_content">
-                <div class="right_room_list">
-                    <div class="right_rooms">
-                    </div>
-                </div>
-            </div>
-            <div class="room_option">
-        <?php
-        $i=0;
-        $room = new Room($db);
-        if(($room->getroomno())%4!=0){
-            $totalroom=floor($room->getroomno()/4)+1;
-        }else{
-            $totalroom=$room->getroomno()/4;
-        }
-        for($i=0;$i<$totalroom;$i++){
-        ?>
-        <button class="pageno" value="<?=($i+1);?>"><?=($i+1);?></button>
-        <?php
-        }
-        ?>
-        <button class="no_createroom">Create</button>
-            </div>
-            <div class="chat_header">
-                Chat
-            </div>
-            <div class="chat_box">
-            </div>
-              <div class="chat_send">
-               <input type="text" id="send_content">
-              <input class="sendsubmit" value="Send" type="submit" id="send_content_submit">
-              </div>
-        </div>
-</div>
+	<div class="bg1">
+	<div class="room_list">
+	<div class="room_left">
+		<div class="room_left_header">
+		Room
+		</div>
+		<div class="room_left_content">
+			
+		</div>
+		<div class="room_page">
+		<?php
+		$i=0;
+		$room = new Room($db);
+		if(($room->getroomno())%4!=0){
+			$totalroom=floor($room->getroomno()/4)+1;
+		}else{
+			$totalroom=$room->getroomno()/4;
+		}
+		for($i=0;$i<$totalroom;$i++){
+		?>
+		<button class="pageno" value="<?=($i+1);?>"><?=($i+1);?></button>
+		<?php
+		}
+		?>
+		<button class="no_createroom">Create</button>
+		</div>
+		<div class="chatroom_header">
+		Chatroom
+		</div>
+		<div class="chatroom_content">
+
+		</div>
+		<div class="chatroom_send">
+		<input type="text" id="send_content">
+		<input class="sendsubmit" value="Send" type="submit" id="send_content_submit">
+		</div>
+	</div>
+	<div class="room_right">
+		<div class="room_right_header">
+		<?=$_SESSION['name'];?>
+		</div>
+		<?php
+		$user=new User($db);
+		$userinfo=$user->userinfo($_SESSION['uid']);
+		?>
+		<div class="room_right_content">
+		<ul>
+			<li style="text-align:center"><img src="./img/avatar.png"></li>
+			<li>Win:<?=$userinfo['money']?></li>
+			<li>Lose:<?=$userinfo['money']?></li>
+			<li>Money:<?=$userinfo['money']?></li>
+			<li class="player_button"><a href="./index.php">Logout</a></li>
+		</ul>
+		</div>
+	</div>
+    </div>
     <div class="create_room">
     	<div class="create_room_header">
     	Create a room
@@ -151,17 +133,12 @@ if($uid || isset($_SESSION['uid'])){
 		<button class="cancel_button">Cancel</button>
     	</div>
     </div>
-    <div class="changeavatar">
-        <div class="changeavatar_header">
-        Change avatar
-        </div>
-        <div id="drop">Drag and drop the image(JPG) here</div>
-        <button class="cancel_button">Close</button>
-    </div>
-    </div> <!-- /container -->
+
+    </div> <!-- /container -->        
+    <div class="footer"></div>
 <?php
 }else{
-$msg="Incorrect password";
+	$msg="Incorrect password";
 ?>
     <div class="bg1">
     <div class="login_form bmsg">
@@ -172,12 +149,12 @@ $msg="Incorrect password";
 	 <a href="./index.php"><button class="warningbutton">Home</button></a>
     </div>
     </div>
-    </div> <!-- /container -->
+    </div> <!-- /container --> 
 <?php
 }
 ?>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	 <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js"></script>
+	 <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js"></script>	
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 
         <script src="js/vendor/bootstrap.min.js"></script>
@@ -190,29 +167,10 @@ $msg="Incorrect password";
             $(document).ready(function(){
 				$('svg').fadeOut(500);
 				$('.bg1').fadeIn(300);
-                if($(window).height()>750){
-				    $('.left').height($(window).height());
-				    $('.middle').height($(window).height());
-				    $('.right').height($(window).height());
-				    $('.chat_box').height($(window).height()-70-70-48-300-60);
-                }
-				$( window ).resize(function() {
-                    if($(window).height()>750){
-                       $('.left').height($(window).height());
-                       $('.middle').height($(window).height());
-                       $('.right').height($(window).height());
-				       $('.chat_box').height($(window).height()-70-70-48-300-60);
-                    }
-				});
             	SetupWebSocket();
 <?php
 if(isset($_SESSION['name'])){
 ?>
-                $('.avatar>img').click(function(){
-                    $('.cancel_button').click();
-                    $('.changeavatar').show();
-
-                })
 				$('#send_content_submit').click(function(){
 					if($('#send_content').val()==''){
 						//$('#send_content').focus();
@@ -272,80 +230,69 @@ if(isset($_SESSION['name'])){
                 $('.cancel_button').click(function(){
                 	$('.create_room').hide();
 					$('.passwordroom').hide();
-                    $('.changeavatar').hide();
                 });
                 $('.pageno').click(function(){
                 	//alert($(this).val());
                 	var msg = {};
-                    msg.uname = '<?= $_SESSION['name'];?>';
                 	msg.act="getroomlist";
                 	msg.page=$(this).val();
                 	socket.send(JSON.stringify(msg));
                 });
                 $('.no_createroom').click(function(){
-                    $('.cancel_button').click();
                 	$('.create_room').show();
                 });
                 $(document.body).on( "click", '.enter', function() {
-            $('.cancel_button').click();
 				  //alert($(this).val());
-				  if($(this).parent().find('input').length){
+				  if($(this).parent().find('img').length){
 					pwsha1 = $(this).parent().find('input').val();
-					pwrid = $(this).val();
+					pwrid = $(this).val(); 
 					//alert(pwrid+' '+pwsha1);
 					$('.passwordroom').show();
 				  }else{
-					window.location.href = './room.php?rid='+$(this).val();
+					window.location.href = './room.php?rid='+$(this).val(); 
 				  }
 				});
             });
 <?php
 if(isset($_SESSION['name'])){
 ?>
-        function SetupWebSocket()
-        {
-            var host = 'ws://freddymok.com:9876/mono/server.php';
-            socket = new WebSocket(host);
-        socket.onopen = function(e) {
-        var msg = {};
-        msg.uname = '<?= $_SESSION['name'];?>';
-        msg.act = "getroomlist";
-        msg.page = 1;
-        socket.send(JSON.stringify(msg));
-        };
-        socket.onmessage = function(e) {
-            var retData=$.parseJSON(e.data);
-            console.log(retData);
-        if(retData["act"]=="roomlist"){
-        $('.right_room_list').html("");
-            var i;
-        for(i=0;i<retData["roomlist"].length;i++){
-            var temproom=retData["roomlist"][i];
-            console.log(temproom);
-            var keyicon='';
-        if(temproom['password'] != "da39a3ee5e6b4b0d3255bfef95601890afd80709"){
-            keyicon='&nbsp;<i class="fa fa-lock"></i><input type="hidden" value='+temproom['password']+'>';
-        }
-            $('.right_room_list').append('<div class="right_rooms"><h3>'+temproom["name"]+'</h3>Player:'+temproom['playercount']+'/4'+keyicon+'<br /><button class="enter" value='+temproom['rid']+'>Enter</button></div>');
-        }
-        }else if(retData["act"]=="transferroom"){
-            window.location.href = './room.php?rid='+retData["rid"];
-        }else if(retData["act"]=="chatroommsg"){
-            $('.chat_box').append(retData["uname"]+" : "+retData["sendcontent"]+" ["+retData["stime"]+"]<br />");
-        $('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
-        }else if(retData["act"]=="userinfo"){
-            $('.middle_content>ul').html("");
-            for(i=0;i<retData["players"].length;i++){
-                var tempUser = retData["players"][i];
-                $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["name"]+'<i class="fa fa-plus addfd"></i></div></li>');
-            }
-        }
-        };
-        socket.onclose = function(e) {
-            alert('Disconnected - status ' + this.readyState);
-        };
-    }
-
+            function SetupWebSocket()
+			{
+				var host = 'ws://freddymok.com:9876/mono/server.php';
+				socket = new WebSocket(host);
+				socket.onopen = function(e) { 
+					var msg = {};
+					msg.uname = '<?= $_SESSION['name'];?>';
+					msg.act = "getroomlist";
+					msg.page = 1;
+					socket.send(JSON.stringify(msg));
+				};
+				socket.onmessage = function(e) {
+					var retData=$.parseJSON(e.data);
+					//console.log(retData["roomlist"].length);
+					if(retData["act"]=="roomlist"){
+						$('.room_left_content').html("");
+						var i;
+						for(i=0;i<retData["roomlist"].length;i++){
+							var temproom=retData["roomlist"][i];
+							console.log(temproom);
+							var keyicon='';
+							if(temproom['password'] != "da39a3ee5e6b4b0d3255bfef95601890afd80709"){
+								keyicon='<img src="./img/key.png"><input type="hidden" value='+temproom['password']+'>';
+							}
+							$('.room_left_content').append('<div class="room_left_rooms"><h3>'+temproom["name"]+'</h3>Player:'+temproom['playercount']+'/4'+keyicon+'<br /><button class="enter" value='+temproom['rid']+'>Enter</button></div>');
+						}
+					}else if(retData["act"]=="transferroom"){
+						 window.location.href = './room.php?rid='+retData["rid"]; 
+					}else if(retData["act"]=="chatroommsg"){
+						$('.chatroom_content').append(retData["uname"]+" : "+retData["sendcontent"]+" ["+retData["stime"]+"]<br />");
+						$('.chatroom_content').scrollTop($('.chatroom_content')[0].scrollHeight);
+					}
+				};
+				socket.onclose = function(e) {
+					alert('Disconnected - status ' + this.readyState); 
+				};
+			}
 <?php
 }
 ?>

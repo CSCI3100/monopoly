@@ -6,7 +6,7 @@ class building{
 	public $color;
 	public $stopNo;
 	public $img;
-	public $rend;
+	public $rent;
 	public $name;
 }
 ?>

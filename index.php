@@ -7,24 +7,24 @@ session_destroy();
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Monopoly</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <style>
-        </style>
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+    </style>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
 
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-    </head>
-    <body>
-			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-					 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+    <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+</head>
+<body>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
 				<path id="loading-12-icon" d="M291,82.219c0,16.568-13.432,30-30,30s-30-13.432-30-30s13.432-30,30-30S291,65.65,291,82.219z
 					 M261,404.781c-15.188,0-27.5,12.312-27.5,27.5s12.312,27.5,27.5,27.5s27.5-12.312,27.5-27.5S276.188,404.781,261,404.781z
 					 M361.504,113.167c-4.142,7.173-13.314,9.631-20.487,5.489c-7.173-4.141-9.631-13.313-5.49-20.487
@@ -46,65 +46,65 @@ session_destroy();
 					c-14.346,8.285-19.264,26.633-10.98,40.982C155.787,135.017,174.137,139.932,188.482,131.649z"/>
 			</svg>
 
-	<div class="bg1">
-	<div class="login_form">
-	<div class="login_header">
-		Portal
-	</div>
-	<h1 class="title">Monopoly</h1>
-    <h1 class="chititle">冚家富貴</h1>
-    <form id="loginform" name="input" action="roomlist.php" method="post">
-      <input type="text" id="username" name="username" placeholder="Username"><br />
-      <input type="password" id="password" name="password" placeholder="Password"><br />
-      </form>
-      <button type="submit" class="button loginin">Sign in</button>
-	<a href="./register.php"><button class="button reg">Register</button></a>
-    
-    </div>
-    </div>
-    </div> <!-- /container -->        
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/main.js"></script>
+<div class="bg1">
+    <div class="login_form">
+        <div class="login_header">
+            Portal
+        </div>
+        <h1 class="title">Monopoly</h1>
+        <h1 class="chititle">中大大富翁</h1>
+        <form id="loginform" name="input" action="roomlist.php" method="post">
+            <input type="text" id="username" name="username" placeholder="Username"><br />
+            <input type="password" id="password" name="password" placeholder="Password"><br />
+        </form>
+        <button type="submit" class="button loginin">Sign in</button>
+        <a href="./register.php"><button class="button reg">Register</button></a>
 
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src='//www.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-            $(document).ready(function(){
-				$('svg').fadeOut(500);
-				$('.bg1').show(300);
-                $('.loginin').click(function(){
-                    if($('#username').val()==""){
-                        alert('Please enter a username');
-                        $('#username').focus();
-                        return false;
-                    }else if($('#password').val()==""){
-                        alert('Please enter a password');
-                        $('#password').focus();
-                        return false;
-                    }else{
-                        $('#loginform').submit();
-                    }
-                });
-				$('input').bind('keydown', function(e) {
-					if(e.keyCode==13){
-						if($('#username').val()==""){
-							alert('Please enter a username');
-							$('#username').focus();
-							return false;
-						}else if($('#password').val()==""){
-							alert('Please enter a password');
-							$('#password').focus();
-							return false;
-						}else{
-							$('#loginform').submit();
-						}
-					}
-				});
-            });
-        </script>
-    </body>
+    </div>
+</div>
+</div> <!-- /container -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src='//www.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+    $(document).ready(function(){
+        $('svg').fadeOut(500);
+        $('.bg1').show(300);
+        $('.loginin').click(function(){
+            if($('#username').val()==""){
+                alert('Please enter a username');
+                $('#username').focus();
+                return false;
+            }else if($('#password').val()==""){
+                alert('Please enter a password');
+                $('#password').focus();
+                return false;
+            }else{
+                $('#loginform').submit();
+            }
+        });
+        $('input').bind('keydown', function(e) {
+            if(e.keyCode==13){
+                if($('#username').val()==""){
+                    alert('Please enter a username');
+                    $('#username').focus();
+                    return false;
+                }else if($('#password').val()==""){
+                    alert('Please enter a password');
+                    $('#password').focus();
+                    return false;
+                }else{
+                    $('#loginform').submit();
+                }
+            }
+        });
+    });
+</script>
+</body>
 </html>
