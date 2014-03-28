@@ -52,7 +52,7 @@ session_destroy();
             Portal
         </div>
         <h1 class="title">Monopoly</h1>
-        <h1 class="chititle">中大大富翁</h1>
+        <h1 class="chititle">冚家富貴</h1>
         <form id="loginform" name="input" action="roomlist.php" method="post">
             <input type="text" id="username" name="username" placeholder="Username"><br />
             <input type="password" id="password" name="password" placeholder="Password"><br />

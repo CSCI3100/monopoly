@@ -277,7 +277,13 @@ if(isset($_SESSION['name'])){
                 $('.pageno').click(function(){
                 	//alert($(this).val());
                 	var msg = {};
+                    <?php
+                    if(isset($_SESSION['name'])){
+                    ?>
                     msg.uname = '<?= $_SESSION['name'];?>';
+                    <?php
+                    }
+                    ?>
                 	msg.act="getroomlist";
                 	msg.page=$(this).val();
                 	socket.send(JSON.stringify(msg));
