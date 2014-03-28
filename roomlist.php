@@ -137,9 +137,8 @@
 	</div>
 	<div class="create_room_content">
 <form action='paypal/checkout.php' METHOD='POST'>
-    The amount of recharge:<br>
-    <input type='number' name='amount' id='amount'>
-	<input type='submit' name='paypal_submit' id='paypal_submit' style='width: 60px'>
+<input type="text" name="amount" id="amount" placeholder="The amount to recharge">
+<input type="submit" name="paypal_submit" id="paypal_submit" style="width: 70px;height:30px;padding-top: 5px;padding-bottom: 5px;padding-left: 15px;padding-right: 15px;border-bottom-width: 0px; background-color:#b0c4de;">
 	<button class="cancel_button">Cancel</button>
 </form>
 
