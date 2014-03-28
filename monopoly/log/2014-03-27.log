@@ -1,0 +1,68 @@
+Thu Mar 27 23:49:40 HKT 2014
+{"act":"initinfo","players":[{"id":"533448944cab4","name":"123","rid":29,"state":0,"playerno":1,"money":1500,"offset":0}]}
+Thu Mar 27 23:49:42 HKT 2014
+{"act":"transfer","uname":"123","offset":27,"money":1500,"playerno":1}
+Thu Mar 27 23:49:42 HKT 2014
+{"act":"nextmovable","nextplayerno":2}
+Thu Mar 27 23:49:42 HKT 2014
+{"act":"notice","playerno":1,"money":1700}
+Thu Mar 27 23:49:42 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":0,"bname":"University Station","money":2000,"img":"station.png"}
+Thu Mar 27 23:49:43 HKT 2014
+{"act":"transfer","uname":"123","offset":54,"money":1700,"playerno":1}
+Thu Mar 27 23:49:43 HKT 2014
+{"act":"nextmovable","nextplayerno":2}
+Thu Mar 27 23:49:43 HKT 2014
+{"act":"notice","playerno":1,"money":1900}
+Thu Mar 27 23:49:43 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":0,"bname":"University Station","money":2000,"img":"station.png"}
+Thu Mar 27 23:49:43 HKT 2014
+{"act":"transfer","uname":"123","offset":81,"money":1900,"playerno":1}
+Thu Mar 27 23:49:43 HKT 2014
+{"act":"nextmovable","nextplayerno":2}
+Thu Mar 27 23:49:43 HKT 2014
+{"act":"notice","playerno":1,"money":2100}
+Thu Mar 27 23:49:43 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":0,"bname":"University Station","money":2000,"img":"station.png"}
+Thu Mar 27 23:49:43 HKT 2014
+{"act":"transfer","uname":"123","offset":108,"money":2100,"playerno":1}
+Thu Mar 27 23:49:43 HKT 2014
+{"act":"nextmovable","nextplayerno":2}
+Thu Mar 27 23:49:43 HKT 2014
+{"act":"notice","playerno":1,"money":2300}
+Thu Mar 27 23:49:43 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":0,"bname":"University Station","money":2000,"img":"station.png"}
+Thu Mar 27 23:49:45 HKT 2014
+{"act":"notice","playerno":1,"money":300,"sendcontent":"123 has purchased University Station","bought":1}
+Thu Mar 27 23:49:47 HKT 2014
+{"act":"initinfo","players":[{"id":"533448944cab4","name":"123","rid":29,"state":0,"playerno":1,"money":300,"offset":108},{"id":"5334489bd3aff","name":"acac","rid":29,"state":0,"playerno":2,"money":1500,"offset":0}]}
+Thu Mar 27 23:49:51 HKT 2014
+{"act":"transfer","uname":"acac","offset":27,"money":1500,"playerno":2}
+Thu Mar 27 23:49:51 HKT 2014
+{"act":"nextmovable","nextplayerno":3}
+Thu Mar 27 23:49:51 HKT 2014
+{"act":"notice","playerno":2,"money":1700}
+Thu Mar 27 23:50:22 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"35","0":"35","name":"testpw","1":"testpw","password":"a9993e364706816aba3e25717850c26c9cd0d89d","2":"a9993e364706816aba3e25717850c26c9cd0d89d","playercount":"2","3":"2"},{"rid":"32","0":"32","name":"aaa","1":"aaa","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"2","3":"2"},{"rid":"31","0":"31","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"2","3":"2"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Thu Mar 27 23:50:22 HKT 2014
+{"players":[{"id":"533448944cab4","name":"123","rid":29,"state":0,"playerno":1,"money":300,"offset":108}],"act":"userinfo"}
+Thu Mar 27 23:50:22 HKT 2014
+{"act":"initinfo","players":[{"id":"533448944cab4","name":"123","rid":29,"state":0,"playerno":1,"money":300,"offset":108},{"id":"533448beccc44","name":"acac","rid":29,"state":0,"playerno":3,"money":1500,"offset":0}]}
+Thu Mar 27 23:50:24 HKT 2014
+{"act":"transfer","uname":"acac","offset":27,"money":1500,"playerno":3}
+Thu Mar 27 23:50:24 HKT 2014
+{"act":"nextmovable","nextplayerno":4}
+Thu Mar 27 23:50:24 HKT 2014
+{"act":"notice","playerno":3,"money":1700}
+Thu Mar 27 23:50:50 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"35","0":"35","name":"testpw","1":"testpw","password":"a9993e364706816aba3e25717850c26c9cd0d89d","2":"a9993e364706816aba3e25717850c26c9cd0d89d","playercount":"2","3":"2"},{"rid":"32","0":"32","name":"aaa","1":"aaa","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"2","3":"2"},{"rid":"31","0":"31","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"2","3":"2"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Thu Mar 27 23:50:50 HKT 2014
+{"players":[{"id":"533448944cab4","name":"123","rid":29,"state":0,"playerno":1,"money":300,"offset":108}],"act":"userinfo"}
+Thu Mar 27 23:50:51 HKT 2014
+{"act":"initinfo","players":[{"id":"533448944cab4","name":"123","rid":29,"state":0,"playerno":1,"money":300,"offset":108},{"id":"533448db5b21a","name":"acac","rid":29,"state":0,"playerno":4,"money":1500,"offset":0}]}
+Thu Mar 27 23:50:54 HKT 2014
+{"act":"transfer","uname":"acac","offset":27,"money":1500,"playerno":4}
+Thu Mar 27 23:50:54 HKT 2014
+{"act":"nextmovable","nextplayerno":1}
+Thu Mar 27 23:50:54 HKT 2014
+{"act":"notice","playerno":4,"money":1700}

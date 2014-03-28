@@ -1,0 +1,286 @@
+Server Started : 2014-03-03 19:40:09
+Master socket  : Resource id #12
+Listening on   : 0.0.0.0 port 9876
+
+id:53146a318a408, Resource id #13 CONNECTED!
+
+Requesting handshake...
+Done handshaking...
+
+User 53146a318a408 Connected!
+array(3) {
+  ["uname"]=>
+  string(3) "123"
+  ["act"]=>
+  string(11) "getroomlist"
+  ["page"]=>
+  int(1)
+}
+
+Resource id #13 DISCONNECTED!
+id:53146a51ab488, Resource id #14 CONNECTED!
+
+Requesting handshake...
+Done handshaking...
+
+User 53146a51ab488 Connected!
+array(3) {
+  ["uname"]=>
+  string(3) "123"
+  ["act"]=>
+  string(11) "getroomlist"
+  ["page"]=>
+  int(1)
+}
+
+id:53146a5426cf5, Resource id #15 CONNECTED!
+
+Requesting handshake...
+Done handshaking...
+
+User 53146a5426cf5 Connected!
+Resource id #14 DISCONNECTED!
+array(3) {
+  ["uname"]=>
+  string(3) "123"
+  ["act"]=>
+  string(11) "getroomlist"
+  ["page"]=>
+  int(1)
+}
+
+array(4) {
+  ["act"]=>
+  string(7) "sendmsg"
+  ["rid"]=>
+  int(0)
+  ["uname"]=>
+  string(3) "123"
+  ["sendcontent"]=>
+  string(3) "hgh"
+}
+
+array(4) {
+  ["act"]=>
+  string(7) "sendmsg"
+  ["rid"]=>
+  int(0)
+  ["uname"]=>
+  string(3) "123"
+  ["sendcontent"]=>
+  string(2) "fg"
+}
+
+array(4) {
+  ["act"]=>
+  string(7) "sendmsg"
+  ["rid"]=>
+  int(0)
+  ["uname"]=>
+  string(3) "123"
+  ["sendcontent"]=>
+  string(4) "hfgh"
+}
+
+array(4) {
+  ["act"]=>
+  string(7) "sendmsg"
+  ["rid"]=>
+  int(0)
+  ["uname"]=>
+  string(3) "123"
+  ["sendcontent"]=>
+  string(2) "fg"
+}
+
+array(4) {
+  ["act"]=>
+  string(7) "sendmsg"
+  ["rid"]=>
+  int(0)
+  ["uname"]=>
+  string(3) "123"
+  ["sendcontent"]=>
+  string(1) "h"
+}
+
+id:53146a595d262, Resource id #16 CONNECTED!
+
+Requesting handshake...
+Done handshaking...
+
+User 53146a595d262 Connected!
+Resource id #15 DISCONNECTED!
+array(3) {
+  ["act"]=>
+  string(9) "enterroom"
+  ["uname"]=>
+  string(3) "123"
+  ["rid"]=>
+  int(32)
+}
+
+array(1) {
+  [0]=>
+  object(tempUser)#7 (7) {
+    ["id"]=>
+    string(13) "53146a595d262"
+    ["name"]=>
+    string(3) "123"
+    ["rid"]=>
+    int(32)
+    ["state"]=>
+    int(0)
+    ["playerno"]=>
+    int(3)
+    ["money"]=>
+    int(1500)
+    ["offset"]=>
+    int(0)
+  }
+}
+
+array(0) {
+}
+please:
+Resource id #16 DISCONNECTED!
+id:53146a769c98b, Resource id #17 CONNECTED!
+
+Requesting handshake...
+Done handshaking...
+
+User 53146a769c98b Connected!
+array(3) {
+  ["uname"]=>
+  string(3) "123"
+  ["act"]=>
+  string(11) "getroomlist"
+  ["page"]=>
+  int(1)
+}
+
+array(4) {
+  ["act"]=>
+  string(7) "sendmsg"
+  ["rid"]=>
+  int(0)
+  ["uname"]=>
+  string(3) "123"
+  ["sendcontent"]=>
+  string(6) "sdfsdf"
+}
+
+id:53146a7d10cd3, Resource id #18 CONNECTED!
+
+Requesting handshake...
+Done handshaking...
+
+User 53146a7d10cd3 Connected!
+Resource id #17 DISCONNECTED!
+array(3) {
+  ["act"]=>
+  string(9) "enterroom"
+  ["uname"]=>
+  string(3) "123"
+  ["rid"]=>
+  int(32)
+}
+
+array(1) {
+  [0]=>
+  object(tempUser)#7 (7) {
+    ["id"]=>
+    string(13) "53146a7d10cd3"
+    ["name"]=>
+    string(3) "123"
+    ["rid"]=>
+    int(32)
+    ["state"]=>
+    int(0)
+    ["playerno"]=>
+    int(3)
+    ["money"]=>
+    int(1500)
+    ["offset"]=>
+    int(0)
+  }
+}
+
+array(3) {
+  ["act"]=>
+  string(9) "leaveroom"
+  ["uname"]=>
+  string(3) "123"
+  ["rid"]=>
+  int(32)
+}
+
+The room id is32
+array(0) {
+}
+
+id:53146a7f0c4e6, Resource id #19 CONNECTED!
+
+Requesting handshake...
+Done handshaking...
+
+User 53146a7f0c4e6 Connected!
+Resource id #18 DISCONNECTED!
+array(3) {
+  ["uname"]=>
+  string(3) "123"
+  ["act"]=>
+  string(11) "getroomlist"
+  ["page"]=>
+  int(1)
+}
+
+Resource id #19 DISCONNECTED!
+id:53146ac03554b, Resource id #20 CONNECTED!
+
+Requesting handshake...
+failed
+User 53146ac03554b Connected!
+PHP Warning:  socket_write(): 20 is not a valid Socket resource in /opt/lampp/htdocs/mono/server.php on line 528
+
+Warning: socket_write(): 20 is not a valid Socket resource in /opt/lampp/htdocs/mono/server.php on line 528
+PHP Warning:  socket_close(): 20 is not a valid Socket resource in /opt/lampp/htdocs/mono/server.php on line 653
+
+Warning: socket_close(): 20 is not a valid Socket resource in /opt/lampp/htdocs/mono/server.php on line 653
+Resource id #20 DISCONNECTED!
+id:53146ae390550, Resource id #21 CONNECTED!
+
+Requesting handshake...
+failed
+User 53146ae390550 Connected!
+PHP Warning:  socket_write(): 21 is not a valid Socket resource in /opt/lampp/htdocs/mono/server.php on line 528
+
+Warning: socket_write(): 21 is not a valid Socket resource in /opt/lampp/htdocs/mono/server.php on line 528
+PHP Warning:  socket_close(): 21 is not a valid Socket resource in /opt/lampp/htdocs/mono/server.php on line 653
+
+Warning: socket_close(): 21 is not a valid Socket resource in /opt/lampp/htdocs/mono/server.php on line 653
+Resource id #21 DISCONNECTED!
+id:53146ae3eac0d, Resource id #22 CONNECTED!
+
+Requesting handshake...
+failed
+User 53146ae3eac0d Connected!
+PHP Warning:  socket_write(): 22 is not a valid Socket resource in /opt/lampp/htdocs/mono/server.php on line 528
+
+Warning: socket_write(): 22 is not a valid Socket resource in /opt/lampp/htdocs/mono/server.php on line 528
+PHP Warning:  socket_close(): 22 is not a valid Socket resource in /opt/lampp/htdocs/mono/server.php on line 653
+
+Warning: socket_close(): 22 is not a valid Socket resource in /opt/lampp/htdocs/mono/server.php on line 653
+Resource id #22 DISCONNECTED!
+id:53146ae450e20, Resource id #23 CONNECTED!
+
+Requesting handshake...
+failed
+User 53146ae450e20 Connected!
+PHP Warning:  socket_write(): 23 is not a valid Socket resource in /opt/lampp/htdocs/mono/server.php on line 528
+
+Warning: socket_write(): 23 is not a valid Socket resource in /opt/lampp/htdocs/mono/server.php on line 528
+PHP Warning:  socket_close(): 23 is not a valid Socket resource in /opt/lampp/htdocs/mono/server.php on line 653
+
+Warning: socket_close(): 23 is not a valid Socket resource in /opt/lampp/htdocs/mono/server.php on line 653
+Resource id #23 DISCONNECTED!

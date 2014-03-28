@@ -1,0 +1,40 @@
+Mon Mar 24 2:48:07 HKT 2014
+{"players":[{"id":"532f2c675d418","name":"123","rid":0,"state":0,"playerno":null,"money":1500,"offset":0}],"act":"userinfo"}
+Mon Mar 24 2:48:13 HKT 2014
+{"players":[],"act":"userinfo"}
+Mon Mar 24 2:49:05 HKT 2014
+{"act":"initinfo","players":[{"id":"532f2ca0eb8aa","name":"123","rid":29,"state":0,"playerno":1,"money":1500,"offset":0}]}
+Mon Mar 24 2:49:07 HKT 2014
+{"act":"transfer","uname":"123","offset":27,"money":1500,"playerno":1}
+Mon Mar 24 2:49:07 HKT 2014
+{"act":"nextmovable","nextplayerno":2}
+Mon Mar 24 2:49:07 HKT 2014
+{"act":"notice","playerno":1,"money":1700}
+Mon Mar 24 2:49:07 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":0,"money":2000,"img":"station.png"}
+Mon Mar 24 2:49:07 HKT 2014
+{"act":"transfer","uname":"123","offset":54,"money":1700,"playerno":1}
+Mon Mar 24 2:49:07 HKT 2014
+{"act":"nextmovable","nextplayerno":2}
+Mon Mar 24 2:49:07 HKT 2014
+{"act":"notice","playerno":1,"money":1900}
+Mon Mar 24 2:49:07 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":0,"money":2000,"img":"station.png"}
+Mon Mar 24 2:49:08 HKT 2014
+{"act":"transfer","uname":"123","offset":81,"money":1900,"playerno":1}
+Mon Mar 24 2:49:08 HKT 2014
+{"act":"nextmovable","nextplayerno":2}
+Mon Mar 24 2:49:08 HKT 2014
+{"act":"notice","playerno":1,"money":2100}
+Mon Mar 24 2:49:08 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":0,"money":2000,"img":"station.png"}
+Mon Mar 24 2:49:09 HKT 2014
+{"act":"transfer","uname":"123","offset":108,"money":2100,"playerno":1}
+Mon Mar 24 2:49:09 HKT 2014
+{"act":"nextmovable","nextplayerno":2}
+Mon Mar 24 2:49:09 HKT 2014
+{"act":"notice","playerno":1,"money":2300}
+Mon Mar 24 2:49:09 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":0,"money":2000,"img":"station.png"}
+Mon Mar 24 2:49:11 HKT 2014
+{"act":"notice","playerno":1,"money":300,"sendcontent":"123 has purchased University Station","bought":1}
