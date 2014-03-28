@@ -639,3 +639,37 @@ button:disabled{
 	border:3px solid #ccc;
 }
 
+/* ==========================================================================
+   Optional profile checkbox display option
+   ========================================================================== */
+
+#profileOption{
+	display: none;
+}
+
+#profiles {
+	/*background:#e74c3c;*/
+	background:#BAC2C0;
+	margin-bottom: 28px;
+	border:0;
+	-webkit-box-shadow:inset 0 -4px 0 0 #80322B;
+	box-shadow:inset 0 -4px 0 0 #80322B;
+	-webkit-transition: all 200ms ease-out 0s;
+   -moz-transition: all 200ms ease-out 0s;
+    -o-transition: all 200ms ease-out 0s;
+   transition: all 200ms ease-out 0s;
+}
+
+#personalDesc {
+	width:60%;
+	border:1px solid #BAC2C0;
+	padding: 10px;
+	margin-bottom:5px;
+	background:#BAC2C0;
+	color:#000;
+	border:0;
+	border-bottom:3px solid #7D8281;
+}
+
+
+
