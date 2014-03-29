@@ -139,7 +139,8 @@
 <form action='paypal/checkout.php' METHOD='POST'>
 <input type="text" name="amount" id="amount" placeholder="The amount to recharge">
 <input type="submit" name="paypal_submit" id="paypal_submit" style="width: 70px;height:30px;padding-top: 5px;padding-bottom: 5px;padding-left: 15px;padding-right: 15px;border-bottom-width: 0px; background-color:#b0c4de;">
-	<button class="cancel_button">Cancel</button>
+<input class="cancel_button" type="button" value="Cancel" autocomplete="off" style="width: 70px;height:30px;padding-top: 5px;padding-bottom: 5px;padding-left: 15px;padding-right: 15px;border-bottom-width: 0px; 
+    background-color: #e74c3c; color: #FFF">
 </form>
 
 
@@ -305,6 +306,10 @@ if(isset($_SESSION['name'])){
                 });
 				$('.function_button.bluebg').click(function(){
 					$('.payroom').show();
+	                $('.cancel_button').click(function(){
+	                	$('.payroom').hide();
+
+	                });
 				});
                 $(document.body).on( "click", '.enter', function() {
             $('.cancel_button').click();
