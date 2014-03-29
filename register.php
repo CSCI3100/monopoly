@@ -60,21 +60,27 @@
             }
         }
     ?>
-    <form name="input" action="register.php" method="post">
+    <form id="reg-form" name="input" action="register.php" method="post">
       <input type="text" id="username" name="username" placeholder="Username"><br />
       <input type="password" id="password" name="password" placeholder="Password"><br />
       <input type="password" id="password2" name="paassword2" placeholder="Password(Confirmation)"><br />
       <input type="email" id="email" name="email" placeholder="E-mail address"><br/>
       <input type="text" id="birthdate" name="birthdate" placeholder="Date of birth"><br/><br/>
+      <input type="hidden" id="fb" name="fb" value="0">
+        <input type="hidden" id="fbId" name="fbId">
       <?php
         if(isset($_GET['referLink'])){
 
       ?>
         <input type="hidden" name="referLink" value="<?php echo $_GET['referLink']; ?>">
+        
 
       <?php
         }
       ?>
+
+      If you use Facebook login, then we would get profile for you. You don't need to fill the profile yourself.<br/>
+
       <button type="button" class="button" id="profiles" value="0">Add Profile</button>
       
       <!-- Profile part if checked -->
@@ -84,8 +90,9 @@
         <input type="tel" id="mobile" name="mobile" placeholder="Mobile phone number"><br />
         <textarea type="textarea" id="personalDesc" name="personalDesc" placeholder="Personal description"></textarea><br /><br />
       </div>
-
-	       <button type="submit" class="button reg">Register</button>
+            
+            
+           <button type="button" class="button" id="fb-login">Facebook Login</button> <button type="submit" class="button reg">Register</button>
     </form>
     </div>
     </div>
@@ -96,16 +103,27 @@
 require './database.php';
 require './class/user.php';
 $newuser=new User($db);
-if($newuser->duplicate_uname($_POST['username'])){
+$fbid = ($_POST['fb'] == "1"?$_POST['fbId']:NULL);
+if($newuser->duplicate_uname($_POST['username'], $_POST['fbId'])){
     $msg= "The username ".$_POST['username']." has been used.";
 }else{
     //($username, $password, $email, $dob, $phone, $mphone, $pDesc)
     if(isset($_POST['referLink'])){
-        $newuser->register($_POST['username'],$_POST['password'],$_POST['email'],$_POST['birthdate'],$_POST['phone'],$_POST['mobile'],$_POST['personalDesc'], $_POST['referLink']);
+        $refer = $_POST['referLink'];
     }else{
-        $newuser->register($_POST['username'],$_POST['password'],$_POST['email'],$_POST['birthdate'],$_POST['phone'],$_POST['mobile'],$_POST['personalDesc'], NULL);
+        $refer = NULL;
     }
+    if($_POST['fb'] == "1"){
+        $fbId = $_POST['fbId'];
+    }else{
+        $fbId = NULL;
+    }
+    $newuser->register($_POST['username'],$_POST['password'],$_POST['email'],$_POST['birthdate'],$_POST['phone'],$_POST['mobile'],$_POST['personalDesc'], $refer, $fbId);
     $msg= "Successful registration";
+
+    if($_POST['fb'] == "1"){
+           header("Location: https://www.facebook.com/dialog/feed?app_id=303832676434874&display=popup&caption=%E4%B8%80%E8%B5%B7%E7%8E%A9%E5%86%9A%E5%AE%B6%E5%AF%8C%E8%B2%B4&link=http%3A%2F%2Fb5.hk%2Fmono%2F&redirect_uri=http%3A%2F%2Fb5.hk%2Fmono%2F");
+    }
 }
 ?>
     <div class="bg1">
@@ -129,6 +147,34 @@ if($newuser->duplicate_uname($_POST['username'])){
         <script src="js/main.js"></script>
 
         <script>
+        function chkInput(){
+            if($('#username').val()==""){
+                alert('Please enter a username');
+                $('#username').focus();
+                return false;
+            }else if($('#password').val()==""){
+                alert('Please enter a password');
+                $('#password').focus();
+                return false;
+            }else if($('#password2').val()==""){
+                alert('Please enter your password again.');
+                $('#password2').focus();
+                return false;
+            }else if($('#password').val()!=$('#password2').val()){
+                alert('The password are not the same.');
+                return false;
+            }else if($('#email').val()==""){
+                alert('Please enter an E-mail address');
+                $('#email').focus();
+                return false;
+            }else if($('#birthdate').val()==""){
+                alert('Please enter your date of birth');
+                $('#birthdate').focus();
+                return false;
+            }else{
+                return true;
+            }
+        }
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
             g.src='//www.google-analytics.com/ga.js';
@@ -137,32 +183,7 @@ if($newuser->duplicate_uname($_POST['username'])){
 				$('svg').fadeOut(500);
 				$('.bg1').fadeIn(300);
                 $('.reg').click(function(){
-                    if($('#username').val()==""){
-                        alert('Please enter a username');
-                        $('#username').focus();
-                        return false;
-                    }else if($('#password').val()==""){
-                        alert('Please enter a password');
-                        $('#password').focus();
-                        return false;
-                    }else if($('#password2').val()==""){
-                        alert('Please enter your password again.');
-                        $('#password2').focus();
-                        return false;
-                    }else if($('#password').val()!=$('#password2').val()){
-                        alert('The password are not the same.');
-                        return false;
-                    }else if($('#email').val()==""){
-                        alert('Please enter an E-mail address');
-                        $('#email').focus();
-                        return false;
-                    }else if($('#birthdate').val()==""){
-                        alert('Please enter your date of birth');
-                        $('#birthdate').focus();
-                        return false;
-                    }else{
-                        return true;
-                    }
+                    return chkInput();
                 });
                 $('#birthdate').focus(function(){
                     $('#birthdate').attr("type","date");
@@ -179,6 +200,45 @@ if($newuser->duplicate_uname($_POST['username'])){
                         $('#profileOption').css("display","none");
                         $(this).val('0');
                     }
+                });
+                $('#fb-login').click(function(){
+                    FB.getLoginStatus(function(response) {
+                          if (response.status === 'connected') {
+                            // the user is logged in and has authenticated your
+                            // app, and response.authResponse supplies
+                            // the user's ID, a valid access token, a signed
+                            // request, and the time the access token 
+                            // and signed request each expire
+                            var uid = response.authResponse.userID;
+                            var accessToken = response.authResponse.accessToken;
+                            $('#fbId').val(uid);
+                            $('#fb').val('1');
+                            $('#reg-form').submit();
+                          } else if (response.status === 'not_authorized') {
+                            // the user is logged in to Facebook, 
+                            // but has not authenticated your app
+                            FB.login(function(response) {
+                               if (response.authResponse) {
+                                    var uid = response.authResponse.userID;
+                                    var accessToken = response.authResponse.accessToken;
+                                    $('#fbId').val(uid);
+                                    $('#fb').val('1');
+                                    $('#reg-form').submit();
+                               }
+                            });
+                          } else {
+                            // the user isn't logged in to Facebook.
+                            FB.login(function(response) {
+                               if (response.authResponse) {
+                                    var uid = response.authResponse.userID;
+                                    var accessToken = response.authResponse.accessToken;
+                                    $('#fbId').val(uid);
+                                    $('#fb').val('1');
+                                    $('#reg-form').submit();
+                               }
+                            });
+                          }
+                     });
                 });
             });
         </script>

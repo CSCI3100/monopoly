@@ -326,7 +326,7 @@ box-shadow:inset -16px 0 0 0 #FFAD0A;
 	text-decoration:none;
 	color:#eee;
 }
-.create_room, .passwordroom, .ingamepopup, .changeavatar,.payroom{
+.create_room, .passwordroom, .ingamepopup, .changeavatar{
 	display:none;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight:700;
@@ -671,5 +671,16 @@ button:disabled{
 	border-bottom:3px solid #7D8281;
 }
 
+#fb-login{
+	background:#e74c3c;
+	margin-bottom: 28px;
+	border:0;
+	-webkit-box-shadow:inset 0 -4px 0 0 #80322B;
+	box-shadow:inset 0 -4px 0 0 #80322B;
+	-webkit-transition: all 200ms ease-out 0s;
+   -moz-transition: all 200ms ease-out 0s;
+    -o-transition: all 200ms ease-out 0s;
+   transition: all 200ms ease-out 0s;
+}
 
 

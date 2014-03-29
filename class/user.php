@@ -6,7 +6,7 @@ class User{
 	public function __construct($database) {
 	    $this->db = $database;
 	}
-	 public function duplicate_uname($username) {
+	 public function duplicate_uname($username, $fbId) {
 		$query = $this->db->prepare("SELECT COUNT(uid) FROM user WHERE name= ?");
 		$query->bindValue(1, $username);
 		try{
@@ -15,15 +15,31 @@ class User{
 			if($rows >= 1){
 				return true;
 			}else{
-				return false;
+				if($fbId != NULL){
+					$query = $this->db->prepare("SELECT COUNT(*) FROM user WHERE fbId= ?");
+					$query->bindValue(1, $fbId);
+					try{
+						$query->execute();
+						$rows = $query->fetchColumn();
+						if($rows >= 1){
+							return true;
+						}else{
+							return false;
+						}
+					} catch (PDOException $e){
+						die($e->getMessage());
+					}
+				}else{
+					return false;
+				}
 			}
 		} catch (PDOException $e){
 			die($e->getMessage());
 		}
 	}
-	public function register($username, $password, $email, $dob, $phone, $mphone, $pDesc, $referLink){
+	public function register($username, $password, $email, $dob, $phone, $mphone, $pDesc, $referLink, $fbId){
 		$password   = sha1($password);
-		$query 	= $this->db->prepare("INSERT INTO user (name,password,email,dateOfBirth,phone,mobilePhone,personalDesc,referLink) VALUES (?,?,?,?,?,?,?,?)");
+		$query 	= $this->db->prepare("INSERT INTO user (name,password,email,dateOfBirth,phone,mobilePhone,personalDesc,referLink, fbId) VALUES (?,?,?,?,?,?,?,?,?)");
 		$query->bindValue(1, $username);
 		$query->bindValue(2, $password);
 		$query->bindValue(3, $email);
@@ -32,6 +48,11 @@ class User{
 		$query->bindValue(6, $mphone);
 		$query->bindValue(7, $pDesc);
 		$query->bindValue(8, hash("sha256", $username));
+		if($fbId != NULL){
+			$query->bindValue(9, $fbId);
+		}else{
+			$query->bindValue(9, NULL);
+		}
 
 		if($referLink != NULL){
 			//Insert referring action
