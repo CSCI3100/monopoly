@@ -47,6 +47,10 @@
 		Registration
 	</div>
 	<h1 class="title">Monopoly</h1>
+    <button type="button" class="button" id="fb-login">
+        <img class="_4z_e img" src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/ys/r/56ifBuZRLqK.png" alt="" width="20" height="20">
+        Register via Facebook
+    </button>
     <?php
         if(isset($_GET['referLink'])){
             require './database.php';
@@ -92,7 +96,7 @@
       </div>
             
             
-           <button type="button" class="button" id="fb-login">Facebook Login</button> <button type="submit" class="button reg">Register</button>
+           <!--<button type="button" class="button" id="fb-login">Facebook Login</button> --><button type="submit" class="button reg">Register</button>
     </form>
     </div>
     </div>
@@ -202,6 +206,9 @@ if($newuser->duplicate_uname($_POST['username'], $_POST['fbId'])){
                     }
                 });
                 $('#fb-login').click(function(){
+                    $("#reg-form").attr("action","facebook_reg.php");
+                    $("#reg-form").submit();
+                    /*
                     FB.getLoginStatus(function(response) {
                           if (response.status === 'connected') {
                             // the user is logged in and has authenticated your
@@ -238,7 +245,7 @@ if($newuser->duplicate_uname($_POST['username'], $_POST['fbId'])){
                                }
                             });
                           }
-                     });
+                     });*/
                 });
             });
         </script>
