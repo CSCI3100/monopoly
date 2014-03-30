@@ -72,11 +72,11 @@ class User{
 			$query 	= $this->db->prepare("DELETE FROM `authentication` WHERE `aid` = ?");
 			$query->bindValue(1, $aid);
 			$query->execute();
-			return true;
 		}catch(PDOException $e){
 			die($e->getMessage());
 			return false;
 		}
+		return true;
 	}
 
 	public function postRegister($aid, $password){
@@ -129,7 +129,6 @@ class User{
 				}else{
 					return false;
 				}
-
 			}else{
 				return false;
 			}
@@ -157,6 +156,11 @@ class User{
 
 	public function preRegister($username, $email, $dob, $phone, $mphone, $pDesc, $referLink, $fbId, $displayname){
 		//$password   = sha1($password);
+		$query 	= $this->db->prepare("SELECT * FROM authentication WHERE aid = ?");
+		$query->bindValue(1, hash("sha256", $username));
+		$query->execute();
+		if($query->rowCount() > 0) return false;
+
 		$query 	= $this->db->prepare("INSERT INTO authentication (name,email,dateOfBirth,phone,mobilePhone,personalDesc,aid, fbId, displayName, referLink) VALUES (:name,:email,:dateOfBirth,:phone,:mobilePhone,:personalDesc,:aid,:fbId, :displayName, :referLink)");
 		$query->bindValue(":name", $username);
 		$query->bindValue(":email", $email);
@@ -193,6 +197,7 @@ class User{
 		    $header .= "Content-Type: text/plain\r\n"; 
 
 		    mail("$email", "$subject", "$body", $header);
+		    return true;
 		}catch(PDOException $e){
 			die($e->getMessage());
 		}
