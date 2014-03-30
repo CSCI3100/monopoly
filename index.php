@@ -58,6 +58,7 @@ session_destroy();
             <input type="password" id="password" name="password" placeholder="Password"><br />
         </form>
         <button type="submit" class="button loginin">Sign in</button>
+        <a href="./facebook_login.php"><button type="submit" class="button facebook_login">Facebook Login</button></a>
         <a href="./register.php"><button class="button reg">Register</button></a>
 
     </div>

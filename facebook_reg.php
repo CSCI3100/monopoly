@@ -79,7 +79,7 @@ if ($user) {
     $user = null;
     $params = array(
       'scope' => 'read_stream, user_birthday, user_friends, user_status, user_about_me, user_photos, email',
-      'redirect_uri' => 'http://b5.hk/mono/facebook_reg.php?login=1'
+      'redirect_uri' => 'http://'.$_SERVER['SERVER_NAME'].'/mono/facebook_reg.php?login=1'
     );
 
     $loginUrl = $facebook->getLoginUrl($params);
@@ -89,7 +89,7 @@ if ($user) {
     $user = null;
     $params = array(
       'scope' => 'read_stream, user_birthday, user_friends, user_status, user_about_me, user_photos, email',
-      'redirect_uri' => 'http://b5.hk/mono/facebook_reg.php?login=1'
+      'redirect_uri' => 'http://'.$_SERVER['SERVER_NAME'].'/mono/facebook_reg.php?login=1'
     );
 
     $loginUrl = $facebook->getLoginUrl($params);
