@@ -232,6 +232,7 @@ $msg="Incorrect password";
         <script>
 var socket;		// WebSocket
 var gamenotice;
+var payto;
 var myPlayerNo;
 var MY_MAPTYPE_ID = 'custom_style';
 var gameStopName = new Array();
@@ -645,7 +646,7 @@ function cDice(){
         var msg = {};
         msg.act = "dice";
         msg.rid = <?=$_GET['rid'];?>;
-        msg.step = 27;
+        msg.step = 20;
         msg.playerno=myPlayerNo;
         socket.send(JSON.stringify(msg));
 }
@@ -788,9 +789,9 @@ if(isset($_SESSION['name'])){
 				$('.buybuilding').hide();
 			});
 			$('.paybutton').click(function(){
-				alert('hi');
 				var msg = {};
 				msg.act = "payrent";
+				msg.payto = payto;
 				msg.rid = <?=$_GET['rid'];?>;
 				msg.rent = parseInt($('.building_rent').html());
 				socket.send(JSON.stringify(msg));
@@ -798,7 +799,7 @@ if(isset($_SESSION['name'])){
 			function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
             function SetupWebSocket()
 			{
-				var host = 'ws://freddymok.com:9876/mono/server.php';
+				var host = 'ws://<?=$SERVER_ADDR?>:9876/mono/server.php';
 				socket = new WebSocket(host);
 				socket.onopen = function(e) { 
 					var msg = {};
@@ -931,6 +932,8 @@ if(isset($_SESSION['name'])){
 						}
 					}else if(retData["act"] == "takerent"){
 						payrent = 0;
+						console.log(retData);
+						payto = retData["payto"];
 						$('.building_rent').html(retData["rent"]);
 						$('.building_owner').html(retData["name"]);
 						$('.rentimg').attr('src', "./img/big/"+retData['img']);
@@ -956,6 +959,13 @@ if(isset($_SESSION['name'])){
 							payrent = 1;
 						}else{
 							updatemoney(retData['playerno'],eval(retData['money']));
+						}
+						if(myPlayerNo == retData['otherplayerno']){
+							$('.payrent').hide();
+							$('#p_money').html(eval(retData['othermoney']));
+							payrent = 1;
+						}else{
+							updatemoney(retData['otherplayerno'],eval(retData['othermoney']));
 						}
 					}else if(retData["act"] == "selfwarn"){
 						gameshowmsg(retData["sendcontent"]);
