@@ -176,9 +176,14 @@ if(isset($_POST['authentication'])){
         }else{
             $fbId = NULL;
         }
-        $newuser->preRegister($_POST['username'],$_POST['email'],$_POST['birthdate'],$_POST['phone'],$_POST['mobile'],$_POST['personalDesc'], $refer, $fbId, $_POST['displayname']);
-        $msg= "Registration successful.";
-        $submsg = "Please check your mailbox for further instruction.";
+        if($newuser->preRegister($_POST['username'],$_POST['email'],$_POST['birthdate'],$_POST['phone'],$_POST['mobile'],$_POST['personalDesc'], $refer, $fbId, $_POST['displayname'])){
+            $msg= "Registration successful";
+            $submsg = "Please check your mailbox for further instruction.";
+        }else{
+            $msg= "Verification detail exist";
+            $submsg = "Please contact administration if you cannot receive the verification.";
+        }
+        
 
 
         if($_POST['fb'] == "1"){
