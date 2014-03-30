@@ -54,12 +54,25 @@ class User{
 			$query->bindValue(9, NULL);
 		}
 
-		if($referLink != NULL){
-			//Insert referring action
-		}
-
 		try{
 			$query->execute();
+			if($referLink != NULL){
+				//Insert referring action
+				$query = $this->db->prepare("SELECT uid FROM user WHERE name = ?");
+				$query->bindValue(1, $username);
+	    		$query->execute();
+				$data = $query->fetch();
+				$uid = $data['uid'];
+
+				$query = $this->db->prepare("SELECT uid FROM user WHERE referLink = ?");
+				$query->bindValue(1, $referLink);
+	    		$query->execute();
+				$data = $query->fetch();
+				$referreruid = $data['uid'];
+
+				$this->referralBonus($uid, 1);
+				$this->referralBonus($referreruid, 1);
+			}
 		}catch(PDOException $e){
 			die($e->getMessage());
 		}
@@ -128,7 +141,7 @@ class User{
 
     //Get referrer name
     function getReferrer($link){
-    	$query = $this->db->prepare("SELECT name FROM user WHERE referLink = ?");
+    	$query = $this->db->prepare("SELECT `name` FROM `user` WHERE `referLink` = ?");
 		$query->bindValue(1, $link);
 		try{
 			$query->execute();
@@ -138,5 +151,28 @@ class User{
 		}catch(PDOException $e){
 			return "";
 		}
+    }
+
+    function referralBonus($uid, $money){
+    	try{
+    		$this->db->beginTransaction();
+
+    		$query = $this->db->prepare("SELECT money FROM user WHERE uid = ? FOR UPDATE");
+    		$query->bindValue(1, $uid);
+    		$query->execute();
+			$data = $query->fetch();
+			$money += $data['money'];
+
+			$query = $this->db->prepare("UPDATE user SET money = ? WHERE uid = ? ");
+    		$query->bindValue(1, $money);
+    		$query->bindValue(2, $uid);
+    		$query->execute();
+
+    		$this->db->commit();
+    		return true;
+    	}catch(Exception $e){
+    		$this->db->rollBack();
+    		return false;
+    	}
     }
 }

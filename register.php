@@ -1,3 +1,7 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -50,7 +54,7 @@
     <button type="button" class="button" id="fb-login">
         <img class="_4z_e img" src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/ys/r/56ifBuZRLqK.png" alt="" width="20" height="20">
         Register via Facebook
-    </button>
+    </button><br/>
     <?php
         if(isset($_GET['referLink'])){
             require './database.php';
@@ -74,11 +78,8 @@
         <input type="hidden" id="fbId" name="fbId">
       <?php
         if(isset($_GET['referLink'])){
-
       ?>
         <input type="hidden" name="referLink" value="<?php echo $_GET['referLink']; ?>">
-        
-
       <?php
         }
       ?>
