@@ -385,17 +385,20 @@ while(true)
 								}else{ //charge rent!
 									if($foundbuilding->playerno != $user->playerno){
 										$send_packet=array();
+										console("hihi i need rent");
 										$send_packet['act'] = "takerent";
+										$send_packet['payto'] = $foundbuilding->playerno;
 										$send_packet['img'] = $foundbuilding->img;
 										$send_packet['name'] = $foundbuilding->name;
 										$send_packet['rent'] = $foundbuilding->rent;
+										console(var_dump($send_packet));
 										send($user->socket,json_encode($send_packet));
 									}
 								}
 								break;
 							}
 						}
-						console("my name is".$user->name);
+						//console("my name is".$user->name);
 						if(in_array($val['stopno'],$luckArray)){
 							$send_packet=array();
 							$send_packet['act'] = "getchance";
@@ -441,10 +444,19 @@ while(true)
 					case "payrent":
 						console("The rent is ".$val['rent']);
 						if($user->money > $val['rent']){
-							console("You have enough money");
+							console(var_dump($user->room));
+							foreach($user->room->players as $player){
+								if($player->playerno == $val['payto']){
+									$player->money += $val['rent'];
+									$tempmoney = $player->money;
+									break;
+								}
+							}
 							$user->money -= $val['rent'];
 							$send_packet = array();
 							$send_packet['playerno'] = $user->playerno;
+							$send_packet['otherplayerno'] = $val['payto'];
+							$send_packet['othermoney'] = $tempmoney;
 							$send_packet['act'] = "payrentsucceed";
 							$send_packet['money'] = $user->money;
 							room_msg($val['rid'],json_encode($send_packet));

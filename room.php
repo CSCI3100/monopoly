@@ -217,7 +217,7 @@ $msg="Incorrect password";
         function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
         function SetupWebSocket()
         {
-            var host = 'ws://freddymok.com:9876/mono/server.php';
+            var host = 'ws://<?=$SERVER_ADDR?>:9876/mono/server.php';
             socket = new WebSocket(host);
         socket.onopen = function(e) {
         var msg = {};
