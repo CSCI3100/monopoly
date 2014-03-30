@@ -78,7 +78,11 @@
 	$userinfo=$user->userinfo($_SESSION['uid']);
 ?>
             <ul>
-                <li class="avatar"><img id="toavatar" src="./data/<?=$toname;?>.png"></li>
+                <?php if(file_exists ( "./data/".$toname.".png")) { ?>
+                    <li class="avatar"><img id="toavatar" src="./data/<?=$toname;?>.png"></li>
+                <?php }else{ ?>
+                    <li class="avatar"><img id="toavatar" src="./data/default.png"></li>
+                <?php } ?>
                 <li>Win:<?=$userinfo['money']?></li>
                 <li>Lose:<?=$userinfo['money']?></li>
                 <li>Money:<?=$userinfo['money']?></li>
