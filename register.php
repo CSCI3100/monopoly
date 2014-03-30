@@ -42,92 +42,148 @@ ini_set('display_errors', 1);
 					 M188.482,131.649c14.352-8.286,19.266-26.633,10.982-40.982c-8.285-14.348-26.631-19.264-40.982-10.98
 					c-14.346,8.285-19.264,26.633-10.98,40.982C155.787,135.017,174.137,139.932,188.482,131.649z"/>
 			</svg>
+    
+    
     <?php
-    if(!isset($_POST['username']) && empty($_POST['username'])){
-    ?>
-	<div class="bg1">
-	<div class="login_form">
-	<div class="login_header">
-		Registration
-	</div>
-	<h1 class="title">Monopoly</h1>
-    <button type="button" class="button" id="fb-login">
-        <img class="_4z_e img" src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/ys/r/56ifBuZRLqK.png" alt="" width="20" height="20">
-        Register via Facebook
-    </button><br/>
-    <?php
-        if(isset($_GET['referLink'])){
+    if(!isset($_POST['username']) && empty($_POST['username']) && !isset($_POST['authentication'])){
+        if (isset($_GET['authentication'])) {
             require './database.php';
             require './class/user.php';
-            $referrer=new User($db);
-            $referrerName = $referrer->getReferrer($_GET['referLink']);
-            if($referrerName != ""){
+            $authen = new User($db);
+            $adata = $authen->getPreData($_GET['authentication']);
+            if($adata==NULL){
+                $msg = "Registration error";
     ?>
-                Referred by: <b><?php echo $referrerName['name']; ?></b><br/>
+                <div class="bg1">
+                <div class="login_form bmsg">
+                <div class="login_header">
+                    Registration
+                </div>
+                <h2 class="msg"><?=$msg;?></h2>
+                <a href="./index.php"><button class="warningbutton">Home</button></a>
+                </div>
+                </div>
+                </div> <!-- /container --> 
+    <?php
+            }else{
+    ?>
+                <div class="bg1">
+                <div class="login_form">
+                <div class="login_header">
+                    Registration
+                </div>
+                <h1 class="title">Monopoly</h1>
+                Confirming: <?php echo $adata['displayName']; ?>
+                <form id="reg-form" name="input" action="register.php" method="post">
+                  <input type="hidden" name="authentication" value="<?= $_GET['authentication'] ?>">
+                  <input type="password" id="password" name="password" placeholder="Password"><br />
+                  <input type="password" id="password2" name="paassword2" placeholder="Password(Confirmation)"><br />
+                  <button type="submit" class="button reg">Confirm</button>
+                </form>
+                </div>
+                </div>
+                </div>
+
     <?php
             }
-        }
+        }else{
     ?>
-    <form id="reg-form" name="input" action="register.php" method="post">
-      <input type="text" id="username" name="username" placeholder="Username"><br />
-      <input type="password" id="password" name="password" placeholder="Password"><br />
-      <input type="password" id="password2" name="paassword2" placeholder="Password(Confirmation)"><br />
-      <input type="email" id="email" name="email" placeholder="E-mail address"><br/>
-      <input type="text" id="birthdate" name="birthdate" placeholder="Date of birth"><br/><br/>
-      <input type="hidden" id="fb" name="fb" value="0">
-        <input type="hidden" id="fbId" name="fbId">
-      <?php
-        if(isset($_GET['referLink'])){
-      ?>
-        <input type="hidden" name="referLink" value="<?php echo $_GET['referLink']; ?>">
-      <?php
-        }
-      ?>
+        	<div class="bg1">
+        	<div class="login_form">
+        	<div class="login_header">
+        		Registration
+        	</div>
+        	<h1 class="title">Monopoly</h1>
+            <button type="button" class="button" id="fb-login">
+                <img class="_4z_e img" src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/ys/r/56ifBuZRLqK.png" alt="" width="20" height="20">
+                Register via Facebook
+            </button><br/>
+            <?php
+                if(isset($_GET['referLink'])){
+                    require './database.php';
+                    require './class/user.php';
+                    $referrer=new User($db);
+                    $referrerName = $referrer->getReferrer($_GET['referLink']);
+                    if($referrerName != ""){
+            ?>
+                        Referred by: <b><?php echo $referrerName['name']; ?></b><br/>
+            <?php
+                    }
+                }
+            ?>
+            <form id="reg-form" name="input" action="register.php" method="post">
+              <input type="text" id="username" name="username" placeholder="Username"><br />
+              <input type="text" id="displayname" name="displayname" placeholder="Display Name"><br />
+              <!--
+              <input type="password" id="password" name="password" placeholder="Password"><br />
+              <input type="password" id="password2" name="paassword2" placeholder="Password(Confirmation)"><br />
+              -->
+              <input type="email" id="email" name="email" placeholder="E-mail address"><br/>
+              <input type="text" id="birthdate" name="birthdate" placeholder="Date of birth"><br/><br/>
+              <input type="hidden" id="fb" name="fb" value="0">
+                <input type="hidden" id="fbId" name="fbId">
+              <?php
+                if(isset($_GET['referLink'])){
+              ?>
+                <input type="hidden" name="referLink" value="<?php echo $_GET['referLink']; ?>">
+              <?php
+                }
+              ?>
 
-      If you use Facebook login, then we would get profile for you. You don't need to fill the profile yourself.<br/>
-
-      <button type="button" class="button" id="profiles" value="0">Add Profile</button>
-      
-      <!-- Profile part if checked -->
-      <div id="profileOption">
-        <br/>
-        <input type="tel" id="phone" name="phone" placeholder="Phone number"><br />
-        <input type="tel" id="mobile" name="mobile" placeholder="Mobile phone number"><br />
-        <textarea type="textarea" id="personalDesc" name="personalDesc" placeholder="Personal description"></textarea><br /><br />
-      </div>
-            
-            
-           <!--<button type="button" class="button" id="fb-login">Facebook Login</button> --><button type="submit" class="button reg">Register</button>
-    </form>
-    </div>
-    </div>
-    </div> <!-- /container -->        
+              <button type="button" class="button" id="profiles" value="0">Add Profile</button>
+              
+              <!-- Profile part if checked -->
+              <div id="profileOption">
+                <br/>
+                <input type="tel" id="phone" name="phone" placeholder="Phone number"><br />
+                <input type="tel" id="mobile" name="mobile" placeholder="Mobile phone number"><br />
+                <textarea type="textarea" id="personalDesc" name="personalDesc" placeholder="Personal description"></textarea><br /><br />
+              </div>
+                    
+                    
+                   <!--<button type="button" class="button" id="fb-login">Facebook Login</button> --><button type="submit" class="button reg">Register</button>
+            </form>
+            </div>
+            </div>
+            </div> <!-- /container -->        
 
 <?php
+        }
 }else{
 require './database.php';
 require './class/user.php';
 $newuser=new User($db);
-$fbid = ($_POST['fb'] == "1"?$_POST['fbId']:NULL);
-if($newuser->duplicate_uname($_POST['username'], $_POST['fbId'])){
-    $msg= "The username ".$_POST['username']." has been used.";
+if(isset($_POST['authentication'])){
+    $result = $newuser->postRegister($_POST['authentication'], $_POST['password']);
+    if($result){
+        $msg = "Successful Confirmation";
+    }else{
+        $msg = "Error occurs";
+    }
 }else{
-    //($username, $password, $email, $dob, $phone, $mphone, $pDesc)
-    if(isset($_POST['referLink'])){
-        $refer = $_POST['referLink'];
+    $fbid = (isset($_POST['fb'])?($_POST['fb'] == "1"?$_POST['fbId']:NULL):NULL);
+    if($newuser->duplicate_uname($_POST['username'], $_POST['fbId'], $_POST['displayname'])){
+        $msg= "Account exist or name has been used";
     }else{
-        $refer = NULL;
-    }
-    if($_POST['fb'] == "1"){
-        $fbId = $_POST['fbId'];
-    }else{
-        $fbId = NULL;
-    }
-    $newuser->register($_POST['username'],$_POST['password'],$_POST['email'],$_POST['birthdate'],$_POST['phone'],$_POST['mobile'],$_POST['personalDesc'], $refer, $fbId);
-    $msg= "Successful registration";
+        //($username, $password, $email, $dob, $phone, $mphone, $pDesc)
+        if(isset($_POST['referLink'])){
+            $refer = $_POST['referLink'];
+        }else{
+            $refer = NULL;
+        }
+        if($_POST['fb'] == "1"){
+            $fbId = $_POST['fbId'];
+        }else{
+            $fbId = NULL;
+        }
+        $newuser->preRegister($_POST['username'],$_POST['email'],$_POST['birthdate'],$_POST['phone'],$_POST['mobile'],$_POST['personalDesc'], $refer, $fbId, $_POST['displayname']);
+        $msg= "Registration successful.";
+        $submsg = "Please check your mailbox for further instruction.";
 
-    if($_POST['fb'] == "1"){
-           header("Location: https://www.facebook.com/dialog/feed?app_id=303832676434874&display=popup&caption=%E4%B8%80%E8%B5%B7%E7%8E%A9%E5%86%9A%E5%AE%B6%E5%AF%8C%E8%B2%B4&link=http%3A%2F%2Fb5.hk%2Fmono%2F&redirect_uri=http%3A%2F%2Fb5.hk%2Fmono%2F");
+
+        if($_POST['fb'] == "1"){
+               header("Location: https://www.facebook.com/dialog/feed?app_id=303832676434874&display=popup&caption=%E4%B8%80%E8%B5%B7%E7%8E%A9%E5%86%9A%E5%AE%B6%E5%AF%8C%E8%B2%B4&link=http%3A%2F%2Fb5.hk%2Fmono%2F&redirect_uri=http%3A%2F%2Fb5.hk%2Fmono%2F");
+        }
     }
 }
 ?>
@@ -137,6 +193,11 @@ if($newuser->duplicate_uname($_POST['username'], $_POST['fbId'])){
         Registration
     </div>
     <h2 class="msg"><?=$msg;?></h2>
+    <?php
+        if(isset($submsg)){
+            echo $submsg;
+        }
+    ?><br/>
     <a href="./index.php"><button class="warningbutton">Home</button></a>
     </div>
     </div>
@@ -156,6 +217,10 @@ if($newuser->duplicate_uname($_POST['username'], $_POST['fbId'])){
             if($('#username').val()==""){
                 alert('Please enter a username');
                 $('#username').focus();
+                return false;
+            }else if($('#username').val()==""){
+                alert('Please enter a display name');
+                $('#displayname').focus();
                 return false;
             }else if($('#password').val()==""){
                 alert('Please enter a password');

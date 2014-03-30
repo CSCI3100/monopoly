@@ -3,8 +3,8 @@ require 'database.php';
 require 'class/user.php';
 session_start();
 $cont = false;
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 require 'facebook-sdk/src/facebook.php';
 $config = array(
     'appId' => '303832676434874',
@@ -45,7 +45,7 @@ if ($user) {
         )
     );
     $fbUser = new User($db);
-    if($fbUser->duplicate_uname($user_profile['email'], $user)){
+    if($fbUser->duplicate_uname($user_profile['email'], $user, $user_profile['name'])){
         $msg= "Account exist";
     }else{
         if(isset($_POST['referLink'])){
@@ -55,8 +55,7 @@ if ($user) {
         }
         $myDateTime = DateTime::createFromFormat('m/d/Y', $user_profile['birthday']);
         $newDateString = $myDateTime->format('Y-m-d');
-        $fbUser->register(
-            $user_profile['email'],
+        $fbUser->preRegister(
             $user_profile['email'],
             $user_profile['email'],
             $newDateString,
@@ -64,16 +63,11 @@ if ($user) {
             "",
             (isset($user_profile['bio'])?$user_profile['bio']:""), 
             $refer, 
-            $user);
+            $user,
+            $user_profile['name']);
 
-        $path = './data/'.$user_profile['email'].'.png';
-        $ch = curl_init($user_pic['data']['url']);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $data = curl_exec($ch);
-        curl_close($ch);
-        file_put_contents($path, $data);
-
-        $msg= "Successful registration ";
+        $msg= "Registration successful";
+        $submsg = "Please check your mailbox for further instruction.";
     }
   } catch (FacebookApiException $e) {
     $user = null;
@@ -161,6 +155,11 @@ if ($user) {
             Registration
         </div>
         <h2 class="msg"><?=$msg;?></h2>
+        <?php
+            if(isset($submsg)){
+                echo $submsg;
+            }
+        ?><br/>
         <a href="./index.php"><button class="warningbutton">Home</button></a>
         </div>
         </div>

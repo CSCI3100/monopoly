@@ -6,54 +6,50 @@ class User{
 	public function __construct($database) {
 	    $this->db = $database;
 	}
-	 public function duplicate_uname($username, $fbId) {
-		$query = $this->db->prepare("SELECT COUNT(uid) FROM user WHERE name= ?");
-		$query->bindValue(1, $username);
+	public function duplicate_uname($username, $fbId, $displayname) {
+		$sql = "SELECT COUNT(*) FROM user WHERE name= :name";
+		if($fbId != NULL) $sql .= " OR fbId= :fbId";
+		if($displayname != NULL) $sql .= " OR displayName= :displayName";
+
+		$query = $this->db->prepare($sql);
+		$query->bindValue(":name", $username);
+		if($fbId != NULL){
+			$query->bindValue(":fbId", $fbId);
+		}
+		if($displayname != NULL) {
+			$query->bindValue(":displayName", $displayname);
+		}
+
 		try{
 			$query->execute();
 			$rows = $query->fetchColumn();
 			if($rows >= 1){
 				return true;
 			}else{
-				if($fbId != NULL){
-					$query = $this->db->prepare("SELECT COUNT(*) FROM user WHERE fbId= ?");
-					$query->bindValue(1, $fbId);
-					try{
-						$query->execute();
-						$rows = $query->fetchColumn();
-						if($rows >= 1){
-							return true;
-						}else{
-							return false;
-						}
-					} catch (PDOException $e){
-						die($e->getMessage());
-					}
-				}else{
-					return false;
-				}
+				return false;
 			}
 		} catch (PDOException $e){
 			die($e->getMessage());
 		}
 	}
-	public function register($username, $password, $email, $dob, $phone, $mphone, $pDesc, $referLink, $fbId){
+	public function register($username, $password, $email, $dob, $phone, $mphone, $pDesc, $referLink, $fbId, $displayname, $aid){
 		$password   = sha1($password);
-		$query 	= $this->db->prepare("INSERT INTO user (name,password,email,dateOfBirth,phone,mobilePhone,personalDesc,referLink, fbId) VALUES (?,?,?,?,?,?,?,?,?)");
-		$query->bindValue(1, $username);
-		$query->bindValue(2, $password);
-		$query->bindValue(3, $email);
-		$query->bindValue(4, $dob);
-		$query->bindValue(5, $phone);
-		$query->bindValue(6, $mphone);
-		$query->bindValue(7, $pDesc);
-		$query->bindValue(8, hash("sha256", $username));
+		$query 	= $this->db->prepare("INSERT INTO user (name,password,email,dateOfBirth,phone,mobilePhone,personalDesc,referLink, fbId, displayName) VALUES (:name,:password,:email,:dateOfBirth,:phone,:mobilePhone,:personalDesc,:referLink, :fbId, :displayName)");
+		$query->bindValue(":name", $username);
+		$query->bindValue(":password", $password);
+		$query->bindValue(":email", $email);
+		$query->bindValue(":dateOfBirth", $dob);
+		$query->bindValue(":phone", $phone);
+		$query->bindValue(":mobilePhone", $mphone);
+		$query->bindValue(":personalDesc", $pDesc);
+		$query->bindValue(":referLink", hash("sha256", $username));
+		$query->bindValue(":displayName", $displayname);
 		if($fbId != NULL){
-			$query->bindValue(9, $fbId);
+			$query->bindValue(":fbId", $fbId);
 		}else{
-			$query->bindValue(9, NULL);
+			$query->bindValue(":fbId", NULL);
 		}
-
+		
 		try{
 			$query->execute();
 			if($referLink != NULL){
@@ -73,6 +69,130 @@ class User{
 				$this->referralBonus($uid, 1);
 				$this->referralBonus($referreruid, 1);
 			}
+			$query 	= $this->db->prepare("DELETE FROM `authentication` WHERE `aid` = ?");
+			$query->bindValue(1, $aid);
+			$query->execute();
+			return true;
+		}catch(PDOException $e){
+			die($e->getMessage());
+			return false;
+		}
+	}
+
+	public function postRegister($aid, $password){
+		$query 	= $this->db->prepare("SELECT * FROM `authentication` WHERE `aid` = ?");
+		$query->bindValue(1, $aid);
+		try{
+			$query->execute();
+			if($query->rowCount() > 0){
+				$data = $query->fetch();
+				if($this->register(
+					$data['name'], 
+					$password, 
+					$data['email'], 
+					$data['dateOfBirth'], 
+					$data['phone'], 
+					$data['mobilePhone'], 
+					$data['personalDesc'], 
+					$data['referLink'], 
+					$data['fbId'], 
+					$data['displayName'],
+					$aid)){
+					if($data['fbId']!=""){
+						require 'facebook-sdk/src/facebook.php';
+						$config = array(
+						    'appId' => '303832676434874',
+						    'secret' => '297e537374bdeb5e50aeb51b21a36341',
+						    'fileUpload' => false, // optional
+						    'allowSignedRequest' => false, // optional, but should be set to false for non-canvas apps
+						);
+						$facebook = new Facebook($config);
+						$user = $facebook->getUser();
+						$user_pic = $facebook->api(
+					        "/me/picture",
+					        "GET",
+					        array (
+					            'redirect' => false,
+					            'height' => '640',
+					            'type' => 'normal',
+					            'width' => '640',
+					        )
+					    );
+					    $path = './data/'.$data['name'].'.png';
+				        $ch = curl_init($user_pic['data']['url']);
+				        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				        $data = curl_exec($ch);
+				        curl_close($ch);
+				        file_put_contents($path, $data);
+					}
+					return true;
+				}else{
+					return false;
+				}
+
+			}else{
+				return false;
+			}
+		}catch(PDOException $e){
+			die($e->getMessage());
+			return false;
+		}
+	}
+
+	public function getPreData($aid){
+		$query 	= $this->db->prepare("SELECT * FROM `authentication` WHERE `aid` = ?");
+		$query->bindValue(1, $aid);
+		try{
+			$query->execute();
+			if($query->rowCount() <= 0){
+				return NULL;
+			}else{
+				return $query->fetch();
+			}
+		}catch(PDOException $e){
+			die($e->getMessage());
+			return NULL;
+		}
+	}
+
+	public function preRegister($username, $email, $dob, $phone, $mphone, $pDesc, $referLink, $fbId, $displayname){
+		//$password   = sha1($password);
+		$query 	= $this->db->prepare("INSERT INTO authentication (name,email,dateOfBirth,phone,mobilePhone,personalDesc,aid, fbId, displayName, referLink) VALUES (:name,:email,:dateOfBirth,:phone,:mobilePhone,:personalDesc,:aid,:fbId, :displayName, :referLink)");
+		$query->bindValue(":name", $username);
+		$query->bindValue(":email", $email);
+		$query->bindValue(":dateOfBirth", $dob);
+		$query->bindValue(":phone", $phone);
+		$query->bindValue(":mobilePhone", $mphone);
+		$query->bindValue(":personalDesc", $pDesc);
+		$query->bindValue(":aid", hash("sha256", $username));
+		$query->bindValue(":displayName", $displayname);
+		$query->bindValue(":referLink", $referLink);
+		if($fbId != NULL){
+			$query->bindValue(":fbId", $fbId);
+		}else{
+			$query->bindValue(":fbId", NULL);
+		}
+
+		try{
+			$query->execute();
+			$from = "Do Not Reply";
+			$fromemail = "admin@b5.hk";
+
+			$subject = "Wealthy Family Monopoly - Confirmation of registration";
+
+			$body = "Wealthy Family Monopoly - Confirm your account!\n\nDear $displayname,\n\n";
+			$body .= "Thanks for playing Wealthy Family Monopoly. Please click the following link to activate your account and setup password.\n\n";
+			$body .= "http://".$_SERVER['SERVER_NAME']."/mono/register.php?authentication=".hash("sha256", $username)."\n\n";
+			$body .= "\n\nRegards,\nTeam Monopoly\nCUHK";
+
+			// send code, do not edit unless you know what your doing
+			$header = "Reply-To: Support <$fromemail>\r\n"; 
+		    $header .= "Return-Path: Support <$fromemail>\r\n"; 
+		    $header .= "From: $from <$fromemail>\r\n"; 
+		    $header .= "Organization: Team Monopoly\r\n"; 
+		    $header .= "Content-Type: text/plain\r\n"; 
+
+		    mail("$email", "$subject", "$body", $header);
 		}catch(PDOException $e){
 			die($e->getMessage());
 		}

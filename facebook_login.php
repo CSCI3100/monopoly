@@ -13,7 +13,7 @@ $config = array(
     'allowSignedRequest' => false, // optional, but should be set to false for non-canvas apps
 );
 $facebook = new Facebook($config);
-
+$msg = "";
 /*
 if(!isset($_GET['login'])){
 
@@ -34,18 +34,23 @@ if ($user) {
   try {
     // Proceed knowing you have a logged in user who's authenticated.
     $fbUser = new User($db);
-    $query = $db->prepare("SELECT `uid`,`name` FROM `user` WHERE `fbId` = ?");
+    $query = $db->prepare("SELECT `uid`,`name`,`displayName` FROM `user` WHERE `fbId` = ?");
     $query->bindValue(1, $user);
     try{
         $query->execute();
-        $fbUser_data = $query->fetch();
-        if($fbUser_data['uid'] || isset($_SESSION['uid'])){
-            if(!isset($_SESSION['uid'])){
-                $_SESSION['uid']=$fbUser_data['uid'];
-                $_SESSION['name']=$fbUser_data['name'];
+        if($query->rowCount() <= 0){
+            $msg = "Account not exist";
+        }else{
+            $fbUser_data = $query->fetch();
+            if($fbUser_data['uid'] || isset($_SESSION['uid'])){
+                if(!isset($_SESSION['uid'])){
+                    $_SESSION['uid']=$fbUser_data['uid'];
+                    $_SESSION['name']=$fbUser_data['name'];
+                    $_SESSION['dname']=$fbUser_data['displayName'];
+                }
             }
+            header("Location: http://".$_SERVER['SERVER_NAME']."/mono/roomlist.php");
         }
-        header("Location: http://".$_SERVER['SERVER_NAME']."/mono/roomlist.php");
     }catch(PDOException $e){
         die($e->getMessage());
     }

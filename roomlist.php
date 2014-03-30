@@ -20,12 +20,14 @@
         <script src="html5uploader.js"></script>
 		<?php
 		$toname="";
+        $dname="";
 		require './database.php';
 		require './config.php';
 		session_start();
 		if(isset($_POST['username']) && !empty($_POST['username'])){
 			$user=new User($db);
 			$uid=$user->login($_POST['username'], $_POST['password']);
+            $uinfo = $user->userinfo($uid);
 		}else{
 			$uid=0;
 		}
@@ -33,9 +35,12 @@
 			if(!isset($_SESSION['uid'])){
 				$_SESSION['uid']=$uid;
 				$_SESSION['name']=$_POST['username'];
+                $_SESSION['dname']=$uinfo['displayName'];
 				$toname = $_SESSION['name'];
+                $dname = $_SESSION['dname'];
 			}
 			$toname = $_SESSION['name'];
+            $dname = $_SESSION['dname'];
 		?>
     </head>
 
@@ -65,7 +70,7 @@
 <div class="three_col">
         <div class="left">
             <div class="left_header">
-            <?=$_SESSION['name'];?>
+            <?=$_SESSION['dname'];?>
             </div>
             <div class="left_content">
 <?php
