@@ -47,7 +47,7 @@ session_destroy();
 			</svg>
 
 <div class="bg1">
-    <div class="login_form">
+    <div class="login_form i_fixed">
         <div class="login_header">
             Portal
         </div>

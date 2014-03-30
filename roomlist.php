@@ -4,6 +4,20 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Monopoly - Room List</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        </style>
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/new.css">
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="html5uploader.js"></script>
 		<?php
 		$toname="";
 		require './database.php';
@@ -23,20 +37,6 @@
 			}
 			$toname = $_SESSION['name'];
 		?>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Monopoly - Room List</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        </style>
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/new.css">
-
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        <script src="html5uploader.js"></script>
     </head>
 
 <body onload="new uploader('drop', 'status', 'uploader.php', 'list', '<?php echo $toname;?>');">
@@ -131,19 +131,17 @@
               </div>
         </div>
 </div>
-    <div class="payroom">
+    <div class="rechargewin">
 	<div class="passwordroom_header">
 	Recharge
 	</div>
 	<div class="create_room_content">
 <form action='paypal/checkout.php' METHOD='POST'>
 <input type="text" name="amount" id="amount" placeholder="The amount to recharge">
-<input type="submit" name="paypal_submit" id="paypal_submit" style="width: 70px;height:30px;padding-top: 5px;padding-bottom: 5px;padding-left: 15px;padding-right: 15px;border-bottom-width: 0px; background-color:#b0c4de;">
+<input type="submit" value="Recharge" name="paypal_submit" id="paypal_submit" style="background:#2ecc71;color:#eee;width: 90px;height:30px;padding-top: 5px;padding-bottom: 5px;padding-left: 15px;padding-right: 15px;border-bottom-width: 0px;">
 <input class="cancel_button" type="button" value="Cancel" autocomplete="off" style="width: 70px;height:30px;padding-top: 5px;padding-bottom: 5px;padding-left: 15px;padding-right: 15px;border-bottom-width: 0px; 
     background-color: #e74c3c; color: #FFF">
 </form>
-
-
 	</div>
 	</div>
     <div class="create_room">
@@ -209,23 +207,24 @@ $msg="Incorrect password";
 				$('svg').fadeOut(500);
 				$('.bg1').fadeIn(300);
                 if($(window).height()>750){
-				    $('.left').height($(window).height());
-				    $('.middle').height($(window).height());
-				    $('.right').height($(window).height());
-				    $('.chat_box').height($(window).height()-70-70-48-300-60);
+				    $('.left').height($(window).height()-70);
+				    $('.middle').height($(window).height()-70);
+				    $('.right').height($(window).height()-70);
+				    $('.chat_box').height($(window).height()-70-70-38-300-70);
                 }
 				$( window ).resize(function() {
                     if($(window).height()>750){
-                       $('.left').height($(window).height());
-                       $('.middle').height($(window).height());
-                       $('.right').height($(window).height());
-				       $('.chat_box').height($(window).height()-70-70-48-300-60);
+				    $('.left').height($(window).height()-70);
+				    $('.middle').height($(window).height()-70);
+				    $('.right').height($(window).height()-70);
+				       $('.chat_box').height($(window).height()-70-70-38-300-70);
                     }
 				});
-            	SetupWebSocket();
+            	
 <?php
 if(isset($_SESSION['name'])){
 ?>
+				SetupWebSocket();
                 $('.avatar>img').click(function(){
                     $('.cancel_button').click();
                     $('.changeavatar').show();
@@ -295,7 +294,9 @@ if(isset($_SESSION['name'])){
                 $('.pageno').click(function(){
                 	//alert($(this).val());
                 	var msg = {};
+					<?php if(isset($_SESSION['name'])){ ?>
                     msg.uname = '<?= $_SESSION['name'];?>';
+					<?php } ?>
                 	msg.act="getroomlist";
                 	msg.page=$(this).val();
                 	socket.send(JSON.stringify(msg));
@@ -305,9 +306,9 @@ if(isset($_SESSION['name'])){
                 	$('.create_room').show();
                 });
 				$('.function_button.bluebg').click(function(){
-					$('.payroom').show();
+					$('.rechargewin').show();
 	                $('.cancel_button').click(function(){
-	                	$('.payroom').hide();
+	                	$('.rechargewin').hide();
 
 	                });
 				});

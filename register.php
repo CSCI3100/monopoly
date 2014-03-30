@@ -195,11 +195,13 @@ if($newuser->duplicate_uname($_POST['username'], $_POST['fbId'])){
                 $('#profiles').click(function(){
                     if($(this).val() == 0){
                         console.log("0");
+						$('.login_form').css("height","880");
                         $('#profiles').css("background","#e74c3c");
                         $('#profileOption').css("display","block");
                         $(this).val('1');
                     }else{
                         console.log("1");
+						$('.login_form').css("height","600");
                         $(this).css("background","#BAC2C0");
                         $('#profileOption').css("display","none");
                         $(this).val('0');

@@ -1,7 +1,7 @@
 <?php 
 $config = array(
 	'host'		=> '127.0.0.1',
-	'username'	=> 'monopoly',
+	'username'	=> 'root',
 	'password'	=> '',
 	'dbname' 	=> 'mono'
 );
