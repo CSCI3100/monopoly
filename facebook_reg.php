@@ -2,8 +2,9 @@
 require 'database.php';
 require 'class/user.php';
 session_start();
- error_reporting(E_ALL);
- ini_set('display_errors', 1);
+$cont = false;
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 require 'facebook-sdk/src/facebook.php';
 $config = array(
     'appId' => '303832676434874',
@@ -13,6 +14,7 @@ $config = array(
 );
 $facebook = new Facebook($config);
 
+/*
 if(!isset($_GET['login'])){
 
     $params = array(
@@ -24,6 +26,7 @@ if(!isset($_GET['login'])){
     header("Location: " . $loginUrl);
 
 }
+*/
 
 $user = $facebook->getUser();
 
@@ -31,10 +34,6 @@ if ($user) {
   try {
     // Proceed knowing you have a logged in user who's authenticated.
     $user_profile = $facebook->api('/me');
-    //echo '<hr/>';
-    //echo "email: ".$user_profile['email']."<br/>";
-    //echo "birthday: ".$user_profile['birthday']."<br/>";
-    //echo "bio: ".$user_profile['bio']."<br/>";
     $user_pic = $facebook->api(
         "/me/picture",
         "GET",
@@ -45,34 +44,25 @@ if ($user) {
             'width' => '640',
         )
     );
-    //echo "pic: <img src='".$user_pic['data']['url']."'/><br/>";
-  } catch (FacebookApiException $e) {
-    error_log($e);
-    $user = null;
-  }
-  
-}
-
-if(isset($_GET['login'])){
-    $user = $facebook->getUser();
-    if($user) {
     $fbUser = new User($db);
     if($fbUser->duplicate_uname($user_profile['email'], $user)){
-        $msg= "Account exist.";
+        $msg= "Account exist";
     }else{
         if(isset($_POST['referLink'])){
             $refer = $_POST['referLink'];
         }else{
             $refer = NULL;
         }
+        $myDateTime = DateTime::createFromFormat('m/d/Y', $user_profile['birthday']);
+        $newDateString = $myDateTime->format('Y-m-d');
         $fbUser->register(
             $user_profile['email'],
             $user_profile['email'],
             $user_profile['email'],
-            $user_profile['birthday'],
+            $newDateString,
             "",
             "",
-            $user_profile['bio'], 
+            (isset($user_profile['bio'])?$user_profile['bio']:""), 
             $refer, 
             $user);
 
@@ -84,7 +74,25 @@ if(isset($_GET['login'])){
         file_put_contents($path, $data);
         $msg= "Successful registration";
     }
+  } catch (FacebookApiException $e) {
+    $user = null;
+    $params = array(
+      'scope' => 'read_stream, user_birthday, user_friends, user_status, user_about_me, user_photos, email',
+      'redirect_uri' => 'http://b5.hk/mono/facebook_reg.php?login=1'
+    );
+
+    $loginUrl = $facebook->getLoginUrl($params);
+    header("Location: " . $loginUrl);
   }
+}else{
+    $user = null;
+    $params = array(
+      'scope' => 'read_stream, user_birthday, user_friends, user_status, user_about_me, user_photos, email',
+      'redirect_uri' => 'http://b5.hk/mono/facebook_reg.php?login=1'
+    );
+
+    $loginUrl = $facebook->getLoginUrl($params);
+    header("Location: " . $loginUrl);
 }
 
 ?>
