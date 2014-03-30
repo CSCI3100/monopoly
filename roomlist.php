@@ -247,6 +247,7 @@ if(isset($_SESSION['name'])){
 						msg.act = "sendmsg";
 						msg.rid = 0; //global message
 						msg.uname = '<?= $_SESSION['name'];?>';
+						msg.dname = '<?=$dname;?>';
 						msg.sendcontent=$('#send_content').val();
 						socket.send(JSON.stringify(msg));
 						$('#send_content').val('');
@@ -305,6 +306,7 @@ if(isset($_SESSION['name'])){
                 	var msg = {};
 					<?php if(isset($_SESSION['name'])){ ?>
                     msg.uname = '<?= $_SESSION['name'];?>';
+					msg.dname = '<?=$dname;?>';
 					<?php } ?>
                 	msg.act="getroomlist";
                 	msg.page=$(this).val();
@@ -341,13 +343,14 @@ if(isset($_SESSION['name'])){
         {
             var host = 'ws://<?=$SERVER_ADDR?>:9876/mono/server.php';
             socket = new WebSocket(host);
-        socket.onopen = function(e) {
-        var msg = {};
-        msg.uname = '<?= $_SESSION['name'];?>';
-        msg.act = "getroomlist";
-        msg.page = 1;
-        socket.send(JSON.stringify(msg));
-        };
+			socket.onopen = function(e) {
+				var msg = {};
+				msg.uname = '<?= $_SESSION['name'];?>';
+				msg.dname = '<?=$dname;?>';
+				msg.act = "getroomlist";
+				msg.page = 1;
+				socket.send(JSON.stringify(msg));
+			};
         socket.onmessage = function(e) {
             var retData=$.parseJSON(e.data);
             console.log(retData);
@@ -366,13 +369,13 @@ if(isset($_SESSION['name'])){
         }else if(retData["act"]=="transferroom"){
             window.location.href = './room.php?rid='+retData["rid"];
         }else if(retData["act"]=="chatroommsg"){
-            $('.chat_box').append(retData["uname"]+" : "+retData["sendcontent"]+" ["+retData["stime"]+"]<br />");
+            $('.chat_box').append(retData["dname"]+" : "+retData["sendcontent"]+" ["+retData["stime"]+"]<br />");
         $('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
         }else if(retData["act"]=="userinfo"){
             $('.middle_content>ul').html("");
             for(i=0;i<retData["players"].length;i++){
                 var tempUser = retData["players"][i];
-                $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["name"]+'<i class="fa fa-plus addfd"></i></div></li>');
+                $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["dname"]+'<i class="fa fa-plus addfd"></i></div></li>');
             }
         }
         };

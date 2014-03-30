@@ -86,11 +86,8 @@ while(true)
 					case "getroomlist":
 					console(var_dump($val));
 					$room = new Room($db);
-					foreach ($users as $u) {
-						if($u->id == $user->id){
-							$u->name = $val['uname'];
-						}
-					}
+					$user->name = $val['uname'];
+					$user->dname = $val['dname'];
 					foreach ($users as $u) {
 						if($u->name == $val['uname']){
 							if($u->rid>0){
@@ -126,11 +123,8 @@ while(true)
 					break;
 					case "enterroom":
 					console(var_dump($val));
-					foreach ($users as $u) {
-						if($u->id == $user->id){
-							$u->name = $val['uname'];
-						}
-					}
+					$user->name = $val['uname'];
+					$user->dname = $val['dname'];
 					$room = new Room($db);
 					foreach ($users as $u) {
 						if($u->name == $user->name && $u->id != $user->id){
@@ -237,6 +231,7 @@ while(true)
 					$send_packet=array();
 					$send_packet["act"]="chatroommsg";
 					$send_packet["uname"]=$val['uname'];
+					$send_packet["dname"]=$val['dname'];
 					$send_packet["stime"]= date('H:i');
 					$send_packet["sendcontent"]=htmlspecialchars($val['sendcontent']);
 					if($val['rid']>0){  //if rid>0, it is a room message
@@ -810,6 +805,7 @@ class socketUser
 	var $handshake;
 	var $online;
 	var $name;
+	var $dname;
 	var $rid=0;
 	var $state=0;
 	var $playerno;
@@ -823,6 +819,7 @@ class socketUser
 class tempUser {
 	var $id;
 	var $name;
+	var $dname;
 	var $rid=0;
 	var $state=0;
 	var $playerno;
@@ -831,6 +828,7 @@ class tempUser {
 	public function __construct($user){
 		$this->id=$user->id;
 		$this->name=$user->name;
+		$this->dname=$user->dname;
 		$this->rid=$user->rid;
 		$this->state=$user->state;
 		$this->playerno=$user->playerno;
