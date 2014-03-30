@@ -343,14 +343,14 @@ if(isset($_SESSION['name'])){
         {
             var host = 'ws://<?=$SERVER_ADDR?>:9876/mono/server.php';
             socket = new WebSocket(host);
-			socket.onopen = function(e) {
-				var msg = {};
-				msg.uname = '<?= $_SESSION['name'];?>';
+        socket.onopen = function(e) {
+        var msg = {};
+        msg.uname = '<?= $_SESSION['name'];?>';
 				msg.dname = '<?=$dname;?>';
-				msg.act = "getroomlist";
-				msg.page = 1;
-				socket.send(JSON.stringify(msg));
-			};
+        msg.act = "getroomlist";
+        msg.page = 1;
+        socket.send(JSON.stringify(msg));
+        };
         socket.onmessage = function(e) {
             var retData=$.parseJSON(e.data);
             console.log(retData);
