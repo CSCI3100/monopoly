@@ -72,7 +72,8 @@ if ($user) {
         $data = curl_exec($ch);
         curl_close($ch);
         file_put_contents($path, $data);
-        $msg= "Successful registration";
+
+        $msg= "Successful registration ";
     }
   } catch (FacebookApiException $e) {
     $user = null;
