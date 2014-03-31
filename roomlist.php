@@ -96,6 +96,7 @@
                 <li>Lose:<?=$userinfo['money']?></li>
                 <li>Money:<?=$userinfo['money']?></li>
                 <li><button class="function_button orangebg"><i class="fa fa-envelope"></i> Message</button></li>
+                <li><button class="function_button orangebg"><a href="./buytool.php"><i class="fa fa-sign-out"></i> buytools</button></a></li>
                 <li><button class="function_button bluebg"><i class="fa fa-credit-card"></i> Shop</button></a></li>
                 <li><a href="./index.php"><button class="function_button greenbg"><i class="fa fa-sign-out"></i> Logout</button></a></li>
             </ul>
