@@ -15,7 +15,8 @@
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/new.css">
-
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
         <script src="html5uploader.js"></script>
 		<?php
@@ -177,10 +178,54 @@
 	
     <div class="changeavatar">
         <div class="changeavatar_header">
-        Change avatar
+        Change Profile
         </div>
-        <div id="drop">Drag and drop the image(JPG) here</div>
-        <button class="cancel_button">Close</button>
+        <form action="#" class="changeprofile">
+			<script type="text/javascript">
+	    		$(document).ready(function(){
+	    			$('#saveProfile').click(function(){
+	    				var uid = $("#uid").val();
+	    				var displayname = $("#displayName").val();
+	    				var phone = $("#phone").val();
+	    				var mobilePhone = $("#mobilePhone").val();
+	    				var personalDesc = $("#personalDescr").val();
+	    				$.ajax({
+	    					url: './ajax.php',
+	    					type: 'POST',
+	    					data: 'function=updateProfile&uid='+uid+'&displayName='+displayname+'&phone='+phone+'&mobilePhone='+mobilePhone+'&personalDesc='+personalDesc,
+	    					async: false,
+	    					success: function(response){
+	    						switch(response){
+	    							case "200":
+	    								alert("Profile saved!");
+	    								break;
+	    							case "500":
+	    								alert("Database error!");
+	    								break;
+	    							case "304":
+	    								alert("Profile unchanged!");
+	    								break;
+	    							default:
+	    								alert("Missing operation!");
+	    								break;
+	    						}
+	    						$('.create_room').hide();
+								$('.passwordroom').hide();
+                    			$('.changeavatar').hide();
+	    					}
+	    				});
+	    			});
+	    		});
+	    	</script>
+        	<div id="drop">Drop new avatar here (PNG Format)</div>
+        	<input type="hidden" name="uid" id="uid" value="<?= $_SESSION['uid'] ?>"/>
+        	<input type="text" name="displayname" id="displayName" placeholder="Display Name: <?= $userinfo['displayName'] ?>" /><br/>
+        	<input type="text" name="phone" id="phone" placeholder="Phone: <?= $userinfo['phone'] ?>" /><br/>
+        	<input type="text" name="mobilePhone" id="mobilePhone" placeholder="Mobile: <?= $userinfo['mobilePhone'] ?>" /><br/>
+        	<textarea type="text" name="personalDesc" id="personalDescr" placeholder="Personal Description: <?= $userinfo['personalDesc'] ?>"></textarea><br/>
+        	<button class="save_button" id="saveProfile">Save</button> 
+        	<button class="cancel_button">Close</button>
+        </form>
     </div>
 	
     </div> <!-- /container -->

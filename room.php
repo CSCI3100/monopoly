@@ -24,7 +24,6 @@ $toname="";
 require './database.php';
 require './config.php';
 session_start();
-$dname = $_SESSION['dname'];
 $room = new Room($db);
 if(isset($_POST['username']) && !empty($_POST['username'])){
 	$user=new User($db);
@@ -224,7 +223,6 @@ $msg="Incorrect password";
         var msg = {};
         msg.act = "enterroom";
         msg.uname = '<?= $_SESSION['name'];?>';
-		msg.dname = '<?= $dname;?>';
         msg.rid = <?=$_GET['rid'];?>;
         socket.send(JSON.stringify(msg));
         };
@@ -248,7 +246,7 @@ $msg="Incorrect password";
                  var pstate="Ready";
                  var readybutton="";
             }
-                $('.right_room_list').append('<div class="right_rooms hf_fixed"><img src="./data/'+playerinfo['name']+'.png"><h4>'+playerinfo['dname']+'</h4>State:'+pstate+readybutton+'</div>')
+                $('.right_room_list').append('<div class="right_rooms hf_fixed"><img src="./data/'+playerinfo['name']+'.png"><h4>'+playerinfo['name']+'</h4>State:'+pstate+readybutton+'</div>')
             }
             console.log(retData);
             if(retData['totalnum'] == 4){

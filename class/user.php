@@ -180,7 +180,7 @@ class User{
 		try{
 			$query->execute();
 			$from = "Do Not Reply";
-			$fromemail = "admin@b5.hk";
+			$fromemail = "do-not-reply@b5.hk";
 
 			$subject = "Wealthy Family Monopoly - Confirmation of registration";
 
@@ -190,8 +190,8 @@ class User{
 			$body .= "\n\nRegards,\nTeam Monopoly\nCUHK";
 
 			// send code, do not edit unless you know what your doing
-			$header = "Reply-To: Support <$fromemail>\r\n"; 
-		    $header .= "Return-Path: Support <$fromemail>\r\n"; 
+			$header = "Reply-To: Administrator <admin@b5.hk>\r\n"; 
+		    $header .= "Return-Path: Administrator <admin@b5.hk>\r\n"; 
 		    $header .= "From: $from <$fromemail>\r\n"; 
 		    $header .= "Organization: Team Monopoly\r\n"; 
 		    $header .= "Content-Type: text/plain\r\n"; 
