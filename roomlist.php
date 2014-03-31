@@ -72,19 +72,26 @@
 <div class="three_col">
         <div class="left">
             <div class="left_header">
-            <?=$_SESSION['dname'];?>
+            Profile
             </div>
             <div class="left_content">
 <?php
     $user=new User($db);
 	$userinfo=$user->userinfo($_SESSION['uid']);
-?>
+?>          
             <ul>
                 <?php if(file_exists ( "./data/".$toname.".png")) { ?>
-                    <li class="avatar"><img id="toavatar" src="./data/<?=$toname;?>.png"></li>
+                    <li class="avatar">
+                        <img id="toavatar" src="./data/<?=$toname;?>.png"><br/><br/>
+                        <b><?=$_SESSION['dname'];?></b>
+                    </li>
                 <?php }else{ ?>
-                    <li class="avatar"><img id="toavatar" src="./data/default.png"></li>
+                    <li class="avatar">
+                        <img id="toavatar" src="./data/default.png"><br/><br/>
+                        <b><?=$_SESSION['dname'];?></b>
+                    </li>
                 <?php } ?>
+                
                 <li>Win:<?=$userinfo['money']?></li>
                 <li>Lose:<?=$userinfo['money']?></li>
                 <li>Money:<?=$userinfo['money']?></li>
