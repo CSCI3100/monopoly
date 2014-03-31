@@ -1,0 +1,3 @@
+<FilesMatch ".(jpg|png|gif)$">
+ErrorDocument 404 "/mono/data/default.png"
+</FilesMatch>
