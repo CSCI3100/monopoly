@@ -93,6 +93,7 @@ body{
 }
 .admin_panel_round img{
     border-radius:50%;
+    width:100px;
 }
 .admin_panel_round ul>li:nth-child(4n){
     border:1px solid #ddd;
@@ -107,11 +108,13 @@ body{
 .stats{
     height:140px !important;
 }
-.edit{
+.remove{
     background:orange;
     color:#fff;
-    font-size:20px;
-    width:100px;
+    font-size:15px;
+    height:30px;
+    line-height: 30px;
+    width:110px;
     border-radius:3px;
     border:0;
 }

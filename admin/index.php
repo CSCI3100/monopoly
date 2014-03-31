@@ -3,7 +3,7 @@ require '../database.php';
 foreach (glob("../class/*.php", GLOB_NOCHECK) as $filename) {
     require "$filename";
 }
-//$load = sys_getloadavg();
+$load = sys_getloadavg();
 $cpuUsage = $load[0];
 function get_server_memory_usage(){
     $free = shell_exec('free');

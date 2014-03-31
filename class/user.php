@@ -288,10 +288,20 @@ class User{
             $data = $query->fetchAll();
             $toBeReturn = "";
             foreach($data as $one){
-                $toBeReturn .= '<li><img src="../data/'.$one['name'].'.png"><br />'.$one['name'].'<br /><button class="edit">Edit</li>';
+                $toBeReturn .= '<li><img src="../data/'.$one['name'].'.png"><br />'.$one['displayName'].'<br /><a href="member.php?action=delete&uid='.$one['uid'].'"><button class="remove">Remove</button></a></li>';
             }
             return $toBeReturn;
 
+        }catch(PDOException $e){
+            die($e->getMessage());
+        }
+    }
+
+    public function delete_user($uid){
+    	$deletedQuery = $this->db->prepare("DELETE FROM user WHERE uid=?");
+    	$deletedQuery->bindValue(1, $uid);
+        try{
+            $deletedQuery->execute();
         }catch(PDOException $e){
             die($e->getMessage());
         }
