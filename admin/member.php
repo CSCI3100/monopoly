@@ -4,8 +4,10 @@ foreach (glob("../class/*.php", GLOB_NOCHECK) as $filename) {
     require "$filename";
 }
 $user = new User($db);
-if($_GET['action'] == "delete"){
-    $user->delete_user($_GET['uid']);
+if(isset($_GET['action'])){
+    if($_GET['action'] == "delete"){
+        $user->delete_user($_GET['uid']);
+    }
 }
 ?>
 <!DOCTYPE html>
