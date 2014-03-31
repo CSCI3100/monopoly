@@ -184,51 +184,97 @@
         <form action="#" class="changeprofile">
 			<script type="text/javascript">
 	    		$(document).ready(function(){
+                    $('#changePasswd').hide();
+                    $('#changePassword').click(function(){
+                        $('#profileEdit').hide();
+                        $('#changePasswd').show();
+                        $('#function').val('changePasswd');
+                        $('#formReset').click();
+                        return false;
+                    });
+                    $('#changeProf').click(function(){
+                        $('#changePasswd').hide();
+                        $('#profileEdit').show();
+                        $('#function').val('updateProfile');
+                        $('#formReset').click();
+                        return false;
+                    });
                     $('#toavatar').click(function(){
                         $('.create_room').hide();
                         $('.passwordroom').hide();
                         $('#profile').show();
+                        $('#formReset').click();
+                        return false;
                     });
 	    			$('#saveProfile').click(function(){
+                        var functCode = $('#function').val();
 	    				var uid = $("#uid").val();
 	    				var displayname = $("#displayName").val();
 	    				var phone = $("#phone").val();
 	    				var mobilePhone = $("#mobilePhone").val();
 	    				var personalDesc = $("#personalDescr").val();
+                        var pw = $("#pw").val();
+                        var pw1 = $("#pw1").val();
 	    				$.ajax({
 	    					url: './ajax.php',
 	    					type: 'POST',
-	    					data: 'function=updateProfile&uid='+uid+'&displayName='+displayname+'&phone='+phone+'&mobilePhone='+mobilePhone+'&personalDesc='+personalDesc,
+	    					data: 'function='+functCode+
+                                '&uid='+uid+
+                                '&displayName='+displayname+
+                                '&phone='+phone+
+                                '&mobilePhone='+mobilePhone+
+                                '&personalDesc='+personalDesc+
+                                '&pw1='+pw+
+                                '&pw2='+pw1,
 	    					async: false,
 	    					success: function(response){
 	    						switch(response){
 	    							case "200":
-	    								alert("Profile saved!\nRefreshing the page");
+	    								alert("Saved!");
+                                        location.reload();
 	    								break;
 	    							case "500":
 	    								alert("Database error!");
 	    								break;
+                                    case "401":
+                                        alert("Password doesn't match!");
+                                        break;
+                                    case "404":
+                                        alert("Please don't type empty password!");
+                                        break;
 	    							case "304":
 	    								alert("Profile unchanged!");
 	    								break;
 	    							default:
-	    								alert("Missing operation!");
+	    								alert("Unknown operation! " + response);
 	    								break;
 	    						}
                     			$('.changeavatar').hide();
 	    					}
 	    				});
+                        $('#formReset').click();
+                        return false;
 	    			});
 	    		});
 	    	</script>
         	<div id="drop">Drop new avatar here (PNG Format)</div>
         	<input type="hidden" name="uid" id="uid" value="<?= $_SESSION['uid'] ?>"/>
-        	<input type="text" name="displayname" id="displayName" placeholder="Display Name: <?= $userinfo['displayName'] ?>" /><br/>
-        	<input type="text" name="phone" id="phone" placeholder="Phone: <?= $userinfo['phone'] ?>" /><br/>
-        	<input type="text" name="mobilePhone" id="mobilePhone" placeholder="Mobile: <?= $userinfo['mobilePhone'] ?>" /><br/>
-        	<textarea type="text" name="personalDesc" id="personalDescr" placeholder="Personal Description: <?= $userinfo['personalDesc'] ?>"></textarea><br/>
-        	<button class="save_button" id="saveProfile">Save</button> 
+            <input type="hidden" name="function" id="function" value="updateProfile"/>
+            <div id="profileEdit">
+        	   <input type="text" name="displayname" id="displayName" placeholder="Display Name: <?= $userinfo['displayName'] ?>" /><br/>
+        	   <input type="text" name="phone" id="phone" placeholder="Phone: <?= $userinfo['phone'] ?>" /><br/>
+        	   <input type="text" name="mobilePhone" id="mobilePhone" placeholder="Mobile: <?= $userinfo['mobilePhone'] ?>" /><br/>
+        	   <textarea type="text" name="personalDesc" id="personalDescr" placeholder="Personal Description: <?= $userinfo['personalDesc'] ?>"></textarea><br/>
+        	   <button class="password_button" id="changePassword">Change Password</button><br/>
+            </div>
+            <div id="changePasswd">
+               <input type="password" name="password" id="pw" placeholder="New Password" /><br/>
+               <input type="password" name="password2" id="pw1" placeholder="Confirm New Password" /><br/>
+               <button class="password_button" id="changeProf">Edit Profile</button><br/>
+            </div>
+            <button class="save_button" id="saveProfile">Save</button> 
         	<button class="cancel_button">Close</button>
+            <input type="reset" id="formReset" style="visibility:hidden" />
         </form>
     </div>
 	
@@ -347,6 +393,7 @@ if(isset($_SESSION['name'])){
 						socket.send(JSON.stringify(msg));
 						$('#send_content').val('');
 					}
+                    return false;
 				});
 <?php
 }
@@ -371,6 +418,7 @@ if(isset($_SESSION['name'])){
 							alert('Wrong password');
 						}
 					}
+                    return false;
 				});
                 $('.create_room_button').click(function(){
                     if($('#roomname').val()==""){
@@ -395,6 +443,7 @@ if(isset($_SESSION['name'])){
                 	$('.create_room').hide();
 					$('.passwordroom').hide();
                     $('.changeavatar').hide();
+                    return false;
                 });
                 $('.pageno').click(function(){
                 	//alert($(this).val());
@@ -406,17 +455,20 @@ if(isset($_SESSION['name'])){
                 	msg.act="getroomlist";
                 	msg.page=$(this).val();
                 	socket.send(JSON.stringify(msg));
+                    return false;
                 });
                 $('.no_createroom').click(function(){
                     $('.cancel_button').click();
                 	$('.create_room').show();
+                    return false;
                 });
 				$('.function_button.bluebg').click(function(){
 					$('.rechargewin').show();
 	                $('.cancel_button').click(function(){
 	                	$('.rechargewin').hide();
-
+                        return false;
 	                });
+                    return false;
 				});
                 $(document.body).on( "click", '.enter', function() {
             $('.cancel_button').click();

@@ -38,7 +38,34 @@ switch ($func) {
 			break;
 		}
 		break;
-	
+	case 'changePasswd':
+		require './database.php';
+		$uid = 		$_POST['uid'];
+		$pw1 = 		$_POST['pw1'];
+		$pw2 = 		$_POST['pw2'];
+
+		if($pw1 == "" or $pw2 == ""){
+			echo "404"; // Empty
+			break;
+		}
+		if($pw1 != $pw2){
+			echo "401 "; // Not equal
+			break;
+		}
+
+		$sql = "UPDATE `user` SET `password` = :password WHERE `uid` = :uid";
+		$query = $db->prepare($sql);
+		$query->bindValue(":uid", $uid);
+		$query->bindValue(":password", sha1($pw1));
+		try {
+			$query->execute();
+			echo "200"; // Success
+		} catch (PDOException $e) {
+			echo "500"; // DB Error
+			break;
+		}
+		break;
+		break;
 	default:
 		echo "No function";
 		break;

@@ -154,6 +154,19 @@ html, body {
 .ready:hover{
 	background: orange;
 }
+.password_button{
+	background:#5293C2;
+	padding:5px 5px;
+	color:#fff;
+	font-size:13px;
+	border:0;
+	margin-top:5px;
+	margin-bottom:5px;
+	-webkit-transition: all 500ms ease-out 0s;
+   -moz-transition: all 500ms ease-out 0s;
+    -o-transition: all 500ms ease-out 0s;
+   transition: all 500ms ease-out 0s;
+}
 .pageno, .no_createroom{
 	background:#5293C2;
 	padding:5px 0;
