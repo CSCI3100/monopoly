@@ -5,13 +5,13 @@ $func = $_POST['function'];
 switch ($func) {
 	case 'updateProfile':
 		require './database.php';
-		$uid = 				(isset($_POST['uid'])?$_POST['uid']:NULL);
-		$displayname = 		(isset($_POST['displayName'])?$_POST['displayName']:NULL);
-		$phone = 			(isset($_POST['phone'])?$_POST['phone']:NULL);
-		$mphone = 			(isset($_POST['mobilePhone'])?$_POST['mobilePhone']:NULL);
-		$personalDesc = 	(isset($_POST['personalDesc'])?$_POST['personalDesc']:NULL);
+		$uid = 				($_POST['uid']!=""?$_POST['uid']:NULL);
+		$displayname = 		($_POST['displayName']!=""?$_POST['displayName']:NULL);
+		$phone = 			($_POST['phone']!=""?$_POST['phone']:NULL);
+		$mphone = 			($_POST['mobilePhone']!=""?$_POST['mobilePhone']:NULL);
+		$personalDesc = 	($_POST['personalDesc']!=""?$_POST['personalDesc']:NULL);
 
-		if(!($uid or $displayname or $phone or $mphone or $personalDesc)){
+		if(!($displayname or $phone or $mphone or $personalDesc)){
 			echo "304"; // NOT MODIFIED
 			break;
 		}

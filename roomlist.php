@@ -68,6 +68,7 @@
 					 M188.482,131.649c14.352-8.286,19.266-26.633,10.982-40.982c-8.285-14.348-26.631-19.264-40.982-10.98
 					c-14.346,8.285-19.264,26.633-10.98,40.982C155.787,135.017,174.137,139.932,188.482,131.649z"/>
 			</svg>
+<div id="fb-root"></div>
 <div class="three_col">
         <div class="left">
             <div class="left_header">
@@ -176,13 +177,18 @@
     	</div>
     </div>
 	
-    <div class="changeavatar">
+    <div class="changeavatar" id="profile">
         <div class="changeavatar_header">
         Change Profile
         </div>
         <form action="#" class="changeprofile">
 			<script type="text/javascript">
 	    		$(document).ready(function(){
+                    $('#toavatar').click(function(){
+                        $('.create_room').hide();
+                        $('.passwordroom').hide();
+                        $('#profile').show();
+                    });
 	    			$('#saveProfile').click(function(){
 	    				var uid = $("#uid").val();
 	    				var displayname = $("#displayName").val();
@@ -197,7 +203,7 @@
 	    					success: function(response){
 	    						switch(response){
 	    							case "200":
-	    								alert("Profile saved!");
+	    								alert("Profile saved!\nRefreshing the page");
 	    								break;
 	    							case "500":
 	    								alert("Database error!");
@@ -209,8 +215,6 @@
 	    								alert("Missing operation!");
 	    								break;
 	    						}
-	    						$('.create_room').hide();
-								$('.passwordroom').hide();
                     			$('.changeavatar').hide();
 	    					}
 	    				});
@@ -278,12 +282,58 @@ $msg="Incorrect password";
 <?php
 if(isset($_SESSION['name'])){
 ?>
+        function SetupWebSocket()
+        {
+            var host = 'ws://<?=$SERVER_ADDR?>:9876/mono/server.php';
+            socket = new WebSocket(host);
+            socket.onopen = function(e) {
+                var msg = {};
+                msg.uname = '<?= $_SESSION['name'];?>';
+                msg.dname = '<?=$dname;?>';
+                msg.act = "getroomlist";
+                msg.page = 1;
+                socket.send(JSON.stringify(msg));
+            };
+            socket.onmessage = function(e) {
+                var retData=$.parseJSON(e.data);
+                console.log(retData);
+                if(retData["act"]=="roomlist"){
+                    $('.right_room_list').html("");
+                    var i;
+                    for(i=0;i<retData["roomlist"].length;i++){
+                        var temproom=retData["roomlist"][i];
+                        console.log(temproom);
+                        var keyicon='';
+                        if(temproom['password'] != "da39a3ee5e6b4b0d3255bfef95601890afd80709"){
+                            keyicon='&nbsp;<i class="fa fa-lock"></i><input type="hidden" value='+temproom['password']+'>';
+                        }
+                        $('.right_room_list').append('<div class="right_rooms"><h3>'+temproom["name"]+'</h3>Player:'+temproom['playercount']+'/4'+keyicon+'<br /><button class="enter" value='+temproom['rid']+'>Enter</button></div>');
+                    }
+                    }else if(retData["act"]=="transferroom"){
+                        window.location.href = './room.php?rid='+retData["rid"];
+                    }else if(retData["act"]=="chatroommsg"){
+                        $('.chat_box').append(retData["dname"]+" : "+retData["sendcontent"]+" ["+retData["stime"]+"]<br />");
+                    $('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
+                }else if(retData["act"]=="userinfo"){
+                    $('.middle_content>ul').html("");
+                    for(i=0;i<retData["players"].length;i++){
+                        var tempUser = retData["players"][i];
+                        $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["dname"]+'<i class="fa fa-plus addfd"></i></div></li>');
+                    }
+                }
+            };
+            socket.onclose = function(e) {
+                socket.close();
+                alert('Disconnected - status ' + this.readyState);
+            };
+        }
 				SetupWebSocket();
+                /*
                 $('.avatar>img').click(function(){
                     $('.cancel_button').click();
                     $('.changeavatar').show();
 
-                })
+                })*/
 				$('#send_content_submit').click(function(){
 					if($('#send_content').val()==''){
 						//$('#send_content').focus();
@@ -381,57 +431,6 @@ if(isset($_SESSION['name'])){
 				  }
 				});
             });
-<?php
-if(isset($_SESSION['name'])){
-?>
-        function SetupWebSocket()
-        {
-            var host = 'ws://<?=$SERVER_ADDR?>:9876/mono/server.php';
-            socket = new WebSocket(host);
-        socket.onopen = function(e) {
-        var msg = {};
-        msg.uname = '<?= $_SESSION['name'];?>';
-				msg.dname = '<?=$dname;?>';
-        msg.act = "getroomlist";
-        msg.page = 1;
-        socket.send(JSON.stringify(msg));
-        };
-        socket.onmessage = function(e) {
-            var retData=$.parseJSON(e.data);
-            console.log(retData);
-        if(retData["act"]=="roomlist"){
-        $('.right_room_list').html("");
-            var i;
-        for(i=0;i<retData["roomlist"].length;i++){
-            var temproom=retData["roomlist"][i];
-            console.log(temproom);
-            var keyicon='';
-        if(temproom['password'] != "da39a3ee5e6b4b0d3255bfef95601890afd80709"){
-            keyicon='&nbsp;<i class="fa fa-lock"></i><input type="hidden" value='+temproom['password']+'>';
-        }
-            $('.right_room_list').append('<div class="right_rooms"><h3>'+temproom["name"]+'</h3>Player:'+temproom['playercount']+'/4'+keyicon+'<br /><button class="enter" value='+temproom['rid']+'>Enter</button></div>');
-        }
-        }else if(retData["act"]=="transferroom"){
-            window.location.href = './room.php?rid='+retData["rid"];
-        }else if(retData["act"]=="chatroommsg"){
-            $('.chat_box').append(retData["dname"]+" : "+retData["sendcontent"]+" ["+retData["stime"]+"]<br />");
-        $('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
-        }else if(retData["act"]=="userinfo"){
-            $('.middle_content>ul').html("");
-            for(i=0;i<retData["players"].length;i++){
-                var tempUser = retData["players"][i];
-                $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["dname"]+'<i class="fa fa-plus addfd"></i></div></li>');
-            }
-        }
-        };
-        socket.onclose = function(e) {
-            alert('Disconnected - status ' + this.readyState);
-        };
-    }
-
-<?php
-}
-?>
         </script>
 		<script src='https://www.paypalobjects.com/js/external/dg.js' type='text/javascript'></script>
 
