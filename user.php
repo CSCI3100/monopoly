@@ -239,11 +239,44 @@ class User{
 		try{
 			
 			$query->execute();
+			if($query->rowCount() <= 0){
+				return NULL;
+			}
 			$data = $query->fetch();
 			return $data;
 	 
 		}catch(PDOException $e){
 			die($e->getMessage());
+		}
+	}
+
+	public function userinfoByName($name){
+		$query = $this->db->prepare("SELECT * FROM user WHERE name = ?");
+		$query->bindValue(1, $name);
+		try{
+			
+			$query->execute();
+			if($query->rowCount() <= 0){
+				return NULL;
+			}
+			$data = $query->fetch();
+			return $data;
+	 
+		}catch(PDOException $e){
+			die($e->getMessage());
+		}
+	}
+
+	public function forceSetUserAttr($attr, $val, $uid){
+		$query = $this->db->prepare("UPDATE user SET `".$attr."` = :val WHERE `uid` = :uid");
+		$query->bindValue(":val", $val);
+		$query->bindValue(":uid", $uid);
+		try{
+			$query->execute();
+			return $true;
+	 
+		}catch(PDOException $e){
+			die("FSUA: ".$e->getMessage());
 		}
 	}
 
@@ -255,10 +288,21 @@ class User{
             $data = $query->fetchAll();
             $toBeReturn = "";
             foreach($data as $one){
-                $toBeReturn .= '<li><img src="../data/'.$one['name'].'.png"><br />'.$one['name'].'<br /><button class="edit">Edit</li>';
+            	$path = (file_exists('../data/'.$one['name'].'.png')?'../data/'.$one['name'].'.png':'../data/default.png');
+                $toBeReturn .= '<li><img src="'.$path.'"/><br />'.$one['displayName'].'<br /><a href="member.php?action=delete&uid='.$one['uid'].'"><button class="remove">Remove</button></a></li>';
             }
             return $toBeReturn;
 
+        }catch(PDOException $e){
+            die($e->getMessage());
+        }
+    }
+
+    public function delete_user($uid){
+    	$deletedQuery = $this->db->prepare("DELETE FROM user WHERE uid=?");
+    	$deletedQuery->bindValue(1, $uid);
+        try{
+            $deletedQuery->execute();
         }catch(PDOException $e){
             die($e->getMessage());
         }

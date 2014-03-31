@@ -288,7 +288,8 @@ class User{
             $data = $query->fetchAll();
             $toBeReturn = "";
             foreach($data as $one){
-                $toBeReturn .= '<li><img src="../data/'.$one['name'].'.png"><br />'.$one['displayName'].'<br /><a href="member.php?action=delete&uid='.$one['uid'].'"><button class="remove">Remove</button></a></li>';
+            	$path = (file_exists('../data/'.$one['name'].'.png')?'../data/'.$one['name'].'.png':'../data/default.png');
+                $toBeReturn .= '<li><img src="'.$path.'"/><br />'.$one['displayName'].'<br /><a href="member.php?action=delete&uid='.$one['uid'].'"><button class="remove">Remove</button></a></li>';
             }
             return $toBeReturn;
 
