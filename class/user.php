@@ -6,6 +6,15 @@ class User{
 	public function __construct($database) {
 	    $this->db = $database;
 	}
+	public function buy($t1,$t2,$t3,$uid){
+		$total=$t1*1+$t2*3+$t3*2;
+		$query = $this->db->prepare("UPDATE user SET money = money-".$total.", t1 = t1+".$t1.", t2 = t2+".$t2.", t3 = t3 +".$t3." WHERE uid = ".$uid);
+		$query->execute();
+		}
+	public function upmoney($uid, $money){
+		$query = $this->db->prepare("UPDATE user SET money = money+".$money." WHERE uid = ".$uid);
+		$query->execute();
+		}
 	public function duplicate_uname($username, $fbId, $displayname) {
 		$sql = "SELECT COUNT(*) FROM user WHERE name= :name";
 		if($fbId != NULL) $sql .= " OR fbId= :fbId";
