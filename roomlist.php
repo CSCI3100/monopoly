@@ -177,9 +177,8 @@
     <div class="create_room_content">
 <form action='paypal/checkout.php' METHOD='POST'>
 <input type="text" name="amount" id="amount" placeholder="The amount to recharge">
-<input type="submit" value="Recharge" name="paypal_submit" id="paypal_submit" style="background:#2ecc71;color:#eee;width: 90px;height:30px;padding-top: 5px;padding-bottom: 5px;padding-left: 15px;padding-right: 15px;border-bottom-width: 0px;">
-<input class="cancel_button" type="button" value="Cancel" autocomplete="off" style="width: 70px;height:30px;padding-top: 5px;padding-bottom: 5px;padding-left: 15px;padding-right: 15px;border-bottom-width: 0px; 
-    background-color: #e74c3c; color: #FFF">
+<button class="save_button" type="submit" name="paypal_submit" id="paypal_submit">Recharge</button>
+<button class="cancel_button" type="button" value="Cancel" autocomplete="off">Cancel</button>
 </form>
     </div>
     </div>
