@@ -792,7 +792,18 @@ if(isset($_SESSION['name'])){
 
 							if(updateTime == 0){
 								//event to be sent
-								pDice();
+								if(payrent == 0){
+									var msg = {};
+									msg.act = "payrent";
+									msg.payto = payto;
+									msg.rid = <?=$_GET['rid'];?>;
+									msg.rent = parseInt($('.building_rent').html());
+									socket.send(JSON.stringify(msg));
+								}
+								//TODO: if jail, reduce money, and if money < 0, then he/she loses
+								if(movable != 0){
+									pDice();
+								}
 								readyToFinish = 1; //stop the count down
 								finishRound();
 								$("b[id=show-time]").html(<?=$settings["round_time"];?>);
