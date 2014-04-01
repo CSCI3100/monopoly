@@ -285,7 +285,15 @@
             <input type="reset" id="formReset" style="visibility:hidden" />
         </form>
     </div>
-	
+    <div class="beinvited">
+        <div class="changeavatar_header">
+        Invitation
+        </div>
+        <br />
+        You are invited to join a game<br /><br />
+        <button class="accept_button">Accept</button>
+        <button class="cancel_button">Reject</button>
+    </div>
     </div> <!-- /container -->
 <?php
 }else{
@@ -313,6 +321,7 @@ $msg="Incorrect password";
         <script src="js/main.js"></script>
 
         <script>
+            var toRid;
 			var pwrid;
 			var pwsha1;
             $(document).ready(function(){
@@ -374,6 +383,11 @@ if(isset($_SESSION['name'])){
                         var tempUser = retData["players"][i];
                         $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["dname"]+'<i class="fa fa-plus addfd"></i></div></li>');
                     }
+                }else if(retData["act"] == "invite"){
+                    console.log(retData);
+                    //alert('hi');
+                    toRid = retData['rid'];
+                    $('.beinvited').show();
                 }
             };
             socket.onclose = function(e) {
@@ -451,6 +465,7 @@ if(isset($_SESSION['name'])){
                 	$('.create_room').hide();
 					$('.passwordroom').hide();
                     $('.changeavatar').hide();
+                    $('.beinvited').hide();
                     return false;
                 });
                 $('.pageno').click(function(){
@@ -490,6 +505,9 @@ if(isset($_SESSION['name'])){
 					window.location.href = './room.php?rid='+$(this).val();
 				  }
 				});
+            });
+            $(document.body).on( "click", '.accept_button', function() {
+                window.location.href = './room.php?rid='+toRid;
             });
         </script>
 		<script src='https://www.paypalobjects.com/js/external/dg.js' type='text/javascript'></script>

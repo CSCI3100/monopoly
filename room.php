@@ -24,6 +24,7 @@ $toname="";
 require './database.php';
 require './config.php';
 session_start();
+$dname = $_SESSION['dname'];
 $room = new Room($db);
 if(isset($_POST['username']) && !empty($_POST['username'])){
 	$user=new User($db);
@@ -167,9 +168,10 @@ $msg="Incorrect password";
 
         <script src="js/main.js"></script>
 
-                                                                                                                                                                                                                                                                                                                                                                            <script>
-                                                                                                                                                                                                                                                                                                                                                                            $(document).ready(function(){
-            $('svg').fadeOut(500);
+        <script>
+        var toRid;
+        $(document).ready(function(){
+        $('svg').fadeOut(500);
         $('.bg1').fadeIn(300);
         SetupWebSocket();
         <?php
@@ -197,6 +199,15 @@ $msg="Incorrect password";
             $('#send_content_submit').click();
         }
         });
+
+        $(document.body).on( "click", '.addfd', function() {
+            var msg = {};
+            msg.act = "invite";
+            msg.uid = $(this).attr('attr');
+            msg.rid = <?=$_GET['rid'];?>;
+            socket.send(JSON.stringify(msg));
+            //alert($(this).attr('attr'));
+        });
         $(document.body).on( "click", '.ready', function() {
         var msg = {};
         msg.act = "getready";
@@ -223,6 +234,7 @@ $msg="Incorrect password";
         var msg = {};
         msg.act = "enterroom";
         msg.uname = '<?= $_SESSION['name'];?>';
+        msg.dname = '<?= $_SESSION['dname'];?>';
         msg.rid = <?=$_GET['rid'];?>;
         socket.send(JSON.stringify(msg));
         };
@@ -248,15 +260,26 @@ $msg="Incorrect password";
             }
                 $('.right_room_list').append('<div class="right_rooms hf_fixed"><img src="./data/'+playerinfo['name']+'.png"><h4>'+playerinfo['name']+'</h4>State:'+pstate+readybutton+'</div>')
             }
-            console.log(retData);
+            //console.log(retData);
             if(retData['totalnum'] == 4){
                 window.location.href = './play.php?rid='+playerinfo["rid"];
             }
         }else if(retData["act"]=="chatroommsg"){
             $('.chat_box').append(retData["uname"]+" : "+retData["sendcontent"]+" ["+retData["stime"]+"]<br />");
             $('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
+        }else if(retData["act"] == "userinfo"){
+                $('.middle_content>ul').html("");
+                for(i=0;i<retData["players"].length;i++){
+                var tempUser = retData["players"][i];
+                $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["dname"]+'<i attr="'+tempUser["name"]+'" class="fa fa-plus addfd"></i></div></li>');
+           }
+        }else if(retData["act"] == "invite"){
+            console.log(retData);
+            //alert('hi');
+            toRid = retData['rid'];
+            $('.beinvited').show();
         }
-        //console.log(retData);
+        console.log(retData);
         };
             socket.onclose = function(e) {
                 alert('Disconnected - status ' + this.readyState);

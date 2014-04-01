@@ -165,6 +165,8 @@ while(true)
 					$send_packet["act"]="roomlist";
 					$send_packet["roomlist"]=$room->getroomlist(1);
 					global_msg(json_encode($send_packet));
+					console("GET THE PLAYER LIST");
+					update_player_list();
 					break;
 					case "getready":
                         console(var_dump($val));
@@ -225,6 +227,17 @@ while(true)
 					$send_packet["act"]="roomlist";
 					$send_packet["roomlist"]=$room->getroomlist(1);
 					global_msg(json_encode($send_packet));
+					break;
+					case "invite":
+					console(var_dump($val));
+					$send_packet=array();
+					$send_packet["act"]="invite";
+					$send_packet["rid"]=$val['rid'];
+					foreach($users as $u){
+						if($u->name == $val['uid']){
+							send($u->socket,json_encode($send_packet));
+						}
+					}
 					break;
 					case "sendmsg":
 					console(var_dump($val));
@@ -483,6 +496,7 @@ while(true)
 //---------------------------------------------------------------
 
 function update_player_list(){
+	//console("GET OK");
     global $users;
     $allusers = array();
     foreach($users as $u){
@@ -494,9 +508,7 @@ function update_player_list(){
     $send_packet['act'] = "userinfo";
     $msg = json_encode($send_packet);
     foreach ($users as $u) {
-        if($u->rid == 0){
-            send($u->socket,$msg);
-        }
+		send($u->socket,$msg);
     }
     $logfile = date("Y-m-d").".log";
     $handle = fopen("./log/".$logfile, 'a') or die('Cannot open file:  '.$logfile);
