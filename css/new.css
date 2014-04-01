@@ -52,6 +52,9 @@
 .changeavatar{
     height:500px;
 }
+.shopDiv{
+    height:350px;
+}
 #drop{
     width:100%;
     height:150px;
@@ -227,6 +230,12 @@
 }
 .orangebg{
     background:orange;
+}
+.redbg{
+    background:red;
+}
+.magentabg{
+    background:magenta;
 }
 
 .right_rooms > img{

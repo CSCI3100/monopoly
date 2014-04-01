@@ -344,7 +344,7 @@ box-shadow:inset -16px 0 0 0 #FFAD0A;
 	text-decoration:none;
 	color:#eee;
 }
-.create_room, .passwordroom, .ingamepopup, .changeavatar, .rechargewin, .beinvited{
+.create_room, .passwordroom, .ingamepopup, .changeavatar, .rechargewin, .beinvited, .shopDiv{
 	display: none;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight:700;
@@ -413,11 +413,14 @@ box-shadow:inset -16px 0 0 0 #FFAD0A;
 	border:0;
 	border-bottom:3px solid #7D8281;
 }
-.create_room_button, .passwordbutton, .drawbutton, .buybutton, .paybutton, .save_button, .accept_button{
+.create_room_button, .passwordbutton, .drawbutton, .buybutton, .paybutton, .save_button, .accept_button, .fb_button{
 	border:0;
 	color:#fff;
 	background: #2ecc71;
 	padding:5px 15px;
+}
+.fb_button{
+	background: #4c66a4 !important;
 }
 .cancel_button{
 	border:0;

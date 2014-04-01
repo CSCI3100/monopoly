@@ -1,36 +1,31 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Untitled Document</title>
-</head>
-
-<body>
 <?php
+require '../database.php';
+require '../class/user.php';
+
+	session_start();
+	$user=new User($db);
+	$data = $user->userinfo($_SESSION['uid']);
 	$email = $_POST['email'];
-	
+
 	// edit below
-	$from = "Monopoly";
-	$fromemail = "zero_ykk@yahoo.com.hk";
-	$reply = "this is the email that receives the replies";
-	
-	$subject = "Monopoly Referral Email";
-	$body = "Referral Link - Get more Friends and Premium Tools!\n\n
-			Thank you to invite your friends to join Monopoly!
-			In order to invite your friends, please click here:\n
-			www.google.com";
+	$from = "Do Not Reply";
+	$fromemail = "do-not-reply@b5.hk";
+
+	$subject = "Wealthy Family Monopoly - Invitation";
+	$body = "Play Monopoly Together!\n\n";
+	$body .= "Your friend " . $_SESSION['dname'] ." is playing Wealthy Family Monopoly. Come and join us!\n";
+	$body .= "Click the link below and register. You and your friend will get great bonus!\n\n";
+	$body .= "http://".$_SERVER['SERVER_NAME']."/mono/register.php?referLink=".$data['referLink'];
+	$body .= "\n\nRegards,\nTeam Monopoly\nCUHK";
 	
 	
 	// send code, do not edit unless you know what your doing
-	$header .= "Reply-To: Support <$reply>\r\n"; 
-    $header .= "Return-Path: Support <$reply>\r\n"; 
+	$header = "Reply-To: Administrator <admin@b5.hk>\r\n"; 
+    $header .= "Return-Path: Administrator <admin@b5.hk>\r\n"; 
     $header .= "From: $from <$fromemail>\r\n"; 
-    $header .= "Organization: getFreexBoxLiveCodes\r\n"; 
+    $header .= "Organization: Team Monopoly\r\n"; 
     $header .= "Content-Type: text/plain\r\n"; 
  
     mail("$email", "$subject", "$body", $header);
-	echo "Monopoly Referral Email has sent";
+	echo "Invitation Email has sent";
 ?>
-
-</body>
-</html>

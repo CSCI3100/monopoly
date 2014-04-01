@@ -46,6 +46,24 @@
     </head>
 
 <body onload="new uploader('drop', 'status', 'uploader.php', 'list', '<?php echo $toname;?>');">
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '303832676434874',
+      status     : true,
+      xfbml      : true
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
 				<path id="loading-12-icon" d="M291,82.219c0,16.568-13.432,30-30,30s-30-13.432-30-30s13.432-30,30-30S291,65.65,291,82.219z
@@ -95,9 +113,10 @@
                 <li>Win:<?=$userinfo['money']?></li>
                 <li>Lose:<?=$userinfo['money']?></li>
                 <li>Money:<?=$userinfo['money']?></li>
+                <li><button class="function_button magentabg" id="invite"><i class="fa fa-user"></i> Invite</button></li>
                 <li><button class="function_button orangebg"><i class="fa fa-envelope"></i> Message</button></li>
-                <li><button class="function_button orangebg"><a href="./buytool.php"><i class="fa fa-sign-out"></i> buytools</button></a></li>
-                <li><button class="function_button bluebg"><i class="fa fa-credit-card"></i> Shop</button></a></li>
+                <li><button class="function_button redbg" id="shop"><i class="fa fa-shopping-cart"></i> Shop</button></li>
+                <li><button class="function_button bluebg" id="rechargeBtn"><i class="fa fa-btc"></i> Recharge</button></a></li>
                 <li><a href="./index.php"><button class="function_button greenbg"><i class="fa fa-sign-out"></i> Logout</button></a></li>
             </ul>
             </div>
@@ -150,19 +169,50 @@
               </div>
         </div>
 </div>
-    <div class="rechargewin">
-	<div class="passwordroom_header">
-	Recharge
-	</div>
-	<div class="create_room_content">
+
+    <div class="rechargewin" id="rechargePopup">
+    <div class="passwordroom_header">
+    Recharge
+    </div>
+    <div class="create_room_content">
 <form action='paypal/checkout.php' METHOD='POST'>
 <input type="text" name="amount" id="amount" placeholder="The amount to recharge">
 <input type="submit" value="Recharge" name="paypal_submit" id="paypal_submit" style="background:#2ecc71;color:#eee;width: 90px;height:30px;padding-top: 5px;padding-bottom: 5px;padding-left: 15px;padding-right: 15px;border-bottom-width: 0px;">
 <input class="cancel_button" type="button" value="Cancel" autocomplete="off" style="width: 70px;height:30px;padding-top: 5px;padding-bottom: 5px;padding-left: 15px;padding-right: 15px;border-bottom-width: 0px; 
     background-color: #e74c3c; color: #FFF">
 </form>
-	</div>
-	</div>
+    </div>
+    </div>
+
+    <div class="create_room" id="invitePopup">
+        <div class="changeavatar_header">
+        Invite friend
+        </div>
+         <form action="#" class="changeprofile">
+         <br/>
+        <input type="email" name="inviteEmail" id="inviteEmail" placeholder="Enter your friend's email address, separated by COMMA[,]">
+        <button class="save_button" id="sendInvite">Invite</button>
+        <button class="fb_button" id="postFb">Post to Facebook</button>
+        <button class="cancel_button">Close</button>
+        </form>
+    </div>
+
+    <div class="shopDiv" id="shopPopup">
+        <div class="changeavatar_header">
+        Shop
+        </div>
+         <form action="#" class="changeprofile">
+         <br/>
+        Enter the amount you want to purchase
+        <br/><br/>
+        <input type="number" min="0" name="stopCard" id="stopCard" placeholder="PAUSE CARD ($1) : Pause target player for 1 round">
+        <input type="number" min="0" name="doubleRentCard" id="doubleRentCard" placeholder="RENT CARD ($3) : Get double rent">
+        <input type="number" min="0" name="cashCard" id="cashCard" placeholder="INSTANT CASH ($2) : Get $10000 cash">
+        <button class="save_button" id="purchaseItem">Purchase</button> 
+        <button class="cancel_button">Close</button>
+        </form>
+    </div>
+
     <div class="create_room">
     	<div class="create_room_header">
     	Create a room
@@ -212,6 +262,68 @@
                         $('.passwordroom').hide();
                         $('#profile').show();
                         $('#formReset').click();
+                        return false;
+                    });
+                    $('.cancel_button').click(function(){
+                        $('form input').val("");
+                        return false;
+                    });
+                    $('#purchaseItem').click(function(){
+                        var stopC = $('#stopCard').val();
+                        var doubleC = $('#doubleRentCard').val();
+                        var cash = $('#cashCard').val();
+                        if (stopC == "") stopC = 0;
+                        if (doubleC == "") doubleC = 0;
+                        if (cash == "") cash = 0;
+                        $.ajax({
+                            url: './proc.php',
+                            type: 'POST',
+                            async: false,
+                            data: 'one='+stopC+
+                                '&double='+doubleC+
+                                '&cash='+cash,
+                            success: function(response){
+                                alert(response);
+                            }
+                        });
+                        $('.cancel_button').click();
+                        return false;
+                    });
+                    $('#sendInvite').click(function(){
+                        var email = $('#inviteEmail').val();
+                        if (email == "") {
+                            $('.cancel_button').click();
+                        }
+                        $.ajax({
+                            url: './referral/send.php',
+                            type: 'POST',
+                            async: false,
+                            data: 'email='+email,
+                            success: function(response){
+                                alert(response);
+                            }
+                        });
+                        $('.cancel_button').click();
+                        return false;
+                    });
+                    $('#postFb').click(function(){
+                        FB.ui(
+                        {
+                            method: 'feed',
+                            name: '冚家富貴! Click the link and get bonus!',
+                            link: 'http://b5.hk/mono/register.php?referLink=<?=$userinfo['referLink']?>',
+                            picture: 'http://b5.hk/mono/img/big/shaw.png',
+                            description: 'Let\'s play Wealthy Family Monopoly. \nClick this link to get bonus!'
+                        },
+                        function(response) {
+                            if (response && response.post_id) {
+                              alert('Post was published.');
+                            } else {
+                              alert('Post was not published.');
+                            }
+                          }
+                        );
+                        $('.cancel_button').click();
                         return false;
                     });
 	    			$('#saveProfile').click(function(){
@@ -464,6 +576,7 @@ if(isset($_SESSION['name'])){
                 $('.cancel_button').click(function(){
                 	$('.create_room').hide();
 					$('.passwordroom').hide();
+                    $('#shopPopup').hide();
                     $('.changeavatar').hide();
                     $('.beinvited').hide();
                     return false;
@@ -485,14 +598,27 @@ if(isset($_SESSION['name'])){
                 	$('.create_room').show();
                     return false;
                 });
-				$('.function_button.bluebg').click(function(){
-					$('.rechargewin').show();
+				$('#rechargeBtn').click(function(){
+					$('#rechargePopup').show();
 	                $('.cancel_button').click(function(){
 	                	$('.rechargewin').hide();
-                        return false;
 	                });
                     return false;
 				});
+                $('#shop').click(function(){
+                    $('#shopPopup').show();
+                    $('.cancel_button').click(function(){
+                        $('#shopPopup').hide();
+                    });
+                    return false;
+                });
+                $('#invite').click(function(){
+                    $('#invitePopup').show();
+                    $('.cancel_button').click(function(){
+                        $('#invitePopup').hide();
+                    });
+                    return false;
+                });
                 $(document.body).on( "click", '.enter', function() {
             $('.cancel_button').click();
 				  //alert($(this).val());
