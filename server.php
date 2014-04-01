@@ -263,6 +263,7 @@ while(true)
 					$send_packet["money"] = $user->money;
 					$send_packet["playerno"] = $val["playerno"];
 					room_msg($val['rid'],json_encode($send_packet));
+					case "finishround":
 					$send_packet = array();
 					$send_packet["act"] = "nextmovable";
 					if($val['playerno']<4){
@@ -271,6 +272,7 @@ while(true)
 						$send_packet['nextplayerno'] = 1;
 					}
 					room_msg($val['rid'],json_encode($send_packet));
+					break;
 					break;
 					case "getplayerno":
 					$user->rid = $val['rid'];

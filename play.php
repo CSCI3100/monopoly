@@ -19,10 +19,11 @@
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
 <?php
-$toname="";
+$toname = "";
 require './database.php';
 require './config.php';
 session_start();
+$dname = $_SESSION['dname'];
 $room = new Room($db);
 if(isset($_POST['username']) && !empty($_POST['username'])){
 	$user=new User($db);
@@ -56,7 +57,7 @@ if($uid || isset($_SESSION['uid'])){
 						<li><button id="dicebutton" onclick="pDice()" class="function_button orangebg"><i class="fa fa-envelope"></i> Dice</button></li>
                 <li><button onclick="cDice()" class="function_button orangebg"><i class="fa fa-envelope"></i> Dice</button></li>
                 <li><button onclick="checkProp()" class="function_button bluebg"><i class="fa fa-credit-card"></i> Property</button></li>
-                <li>You still have <b id="show-time"><?=$settings["round_time"];?></b> seconds<br /><button class="function_button greenbg"><i class="fa fa-sign-out"></i> Finish this round</button></li>
+                <li>You still have <b id="show-time"><?=$settings["round_time"];?></b> seconds<br /><button onclick="finishRound()" id="finishbutton" class="function_button greenbg"><i class="fa fa-sign-out"></i> Finish this round</button></li>
             </ul>
             </div>
         </div>
@@ -233,6 +234,7 @@ $msg="Incorrect password";
 var socket;		// WebSocket
 var gamenotice;
 var payto;
+var readyToFinish;
 var myPlayerNo;
 var MY_MAPTYPE_ID = 'custom_style';
 var gameStopName = new Array();
@@ -651,6 +653,30 @@ function cDice(){
         socket.send(JSON.stringify(msg));
 }
 
+
+//finish this round
+function finishRound() {
+	if(movable == 0 && payrent==1 && readyToFinish == 1){
+		var msg = {};
+		msg.rid = <?=$_GET['rid'];?>;
+		msg.act = "finishround";
+		msg.playerno=myPlayerNo;
+		socket.send(JSON.stringify(msg));
+		$('#finishbutton').prop('disabled', true);
+	}else{
+		if(movable == 1){
+			gameshowmsg('You did not dice!');
+		}else{
+			if(payrent!=1){
+				gameshowmsg('You did not pay rent!');
+			}else{
+				alert('It is not your turn now');
+			}
+		}
+	}
+}
+
+//dice
 function pDice(){
 	if(movable == 1 && payrent==1){
 		var msg = {};
@@ -662,7 +688,8 @@ function pDice(){
 		msg.step = random;
 		msg.playerno=myPlayerNo;
 		socket.send(JSON.stringify(msg));
-		movable=0;
+		movable = 0;
+		readyToFinish = 1;
 		$('#dicebutton').prop('disabled', true);
 		$('.ingamepopup').hide();
 	}else{
@@ -674,6 +701,7 @@ function pDice(){
 	}
 }
 
+//for animation of circle in the googlem ap
 function animateCircle(playerNo) {
     window.setInterval(function() {
       playerOffset[playerNo]=playerOffset[playerNo]%100;
@@ -757,14 +785,16 @@ if(isset($_SESSION['name'])){
 				$(function(){
 						window.setInterval(function() {
 							var timeCounter = $("b[id=show-time]").html();
-							if(movable){
+							if(!readyToFinish && movable){
 								var updateTime = eval(timeCounter)- eval(1);
 							}
 							$("b[id=show-time]").html(updateTime);
 
 							if(updateTime == 0){
 								//event to be sent
-								movable=0; //stop the count down
+								pDice();
+								readyToFinish = 1; //stop the count down
+								finishRound();
 								$("b[id=show-time]").html(<?=$settings["round_time"];?>);
 							}
 						}, 1000);
