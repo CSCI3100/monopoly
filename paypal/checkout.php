@@ -45,7 +45,7 @@ if ( $PaymentOption == "PayPal")
         //'
         //' This is set to the value entered on the Integration Assistant 
         //'------------------------------------
-        $returnURL = curPageURL()."/monopoly/paypal/orderconfirm.php";
+        $returnURL = curPageURL()."/mono/paypal/orderconfirm.php";
 
         //'------------------------------------
         //' The cancelURL is the location buyers are sent to when they hit the
@@ -53,7 +53,7 @@ if ( $PaymentOption == "PayPal")
         //'
         //' This is set to the value entered on the Integration Assistant 
         //'------------------------------------
-        $cancelURL = curPageURL()."/monopoly/paypal/cancel.php";
+        $cancelURL = curPageURL()."/mono/paypal/cancel.php";
 
         //'------------------------------------
         //' Calls the SetExpressCheckout API call
