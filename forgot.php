@@ -23,10 +23,9 @@ require 'class/user.php';
         <script src="js/main.js"></script>
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
         <script type="text/javascript">
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src='//www.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
+            function submitfor() {
+				$('#forgotpw').submit();
+			}
             $(document).ready(function(){
                 $('svg').fadeOut(500);
                 $('.bg1').fadeIn(300);
@@ -65,7 +64,6 @@ require 'class/user.php';
             Forgot Password
         </div>
 <?php
-
 if($_POST['username']){
 	$forgot = new User($db);
 	$userinfo = $forgot->userinfoByName($_POST['username']);
@@ -112,10 +110,10 @@ if($_POST['username']){
 ?>
 	    <div id="usernameBlock">
 	    <h2 class="msg"></h2>
-	    <form action="forgot.php" method="POST">
+	    <form id="forgotpw" action="forgot.php" method="POST">
 	    	<input type="text" name="username" id="username" placeholder="Please enter your login name"/><br/>
-	    	<button type="submit" class="warningbutton">Send</button> <a href="./index.php"><button class="warningbutton">Home</button></a>
 	    </form>
+		<button onclick="submitfor()" type="submit" class="warningbutton">Send</button> <a href="./index.php"><button class="warningbutton">Home</button>
 	    </div>
 <?php
 }
