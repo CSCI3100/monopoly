@@ -1,6 +1,16 @@
 <?php
 require_once ("paypalfunctions.php");
-
+function curPageURL() {
+ $pageURL = 'http';
+ if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+ $pageURL .= "://";
+ if ($_SERVER["SERVER_PORT"] != "80") {
+  $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"];//.$_SERVER["REQUEST_URI"];
+ } else {
+  $pageURL .= $_SERVER["SERVER_NAME"];//.$_SERVER["REQUEST_URI"];
+ }
+ return $pageURL;
+}
 $PaymentOption = "PayPal";
 if ( $PaymentOption == "PayPal")
 {
@@ -35,7 +45,7 @@ if ( $PaymentOption == "PayPal")
         //'
         //' This is set to the value entered on the Integration Assistant 
         //'------------------------------------
-        $returnURL = "http://localhost/monopoly/paypal/orderconfirm.php";
+        $returnURL = curPageURL()."/monopoly/paypal/orderconfirm.php";
 
         //'------------------------------------
         //' The cancelURL is the location buyers are sent to when they hit the
@@ -43,7 +53,7 @@ if ( $PaymentOption == "PayPal")
         //'
         //' This is set to the value entered on the Integration Assistant 
         //'------------------------------------
-        $cancelURL = "http://localhost/monopoly/paypal/cancel.php";
+        $cancelURL = curPageURL()."/monopoly/paypal/cancel.php";
 
         //'------------------------------------
         //' Calls the SetExpressCheckout API call
