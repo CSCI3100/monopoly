@@ -285,7 +285,9 @@
                                 alert(response);
                             }
                         });
-                        $('.cancel_button').click();
+                        $('.cancel_button').click(function(){
+                        location.reload();
+                        });
                         return false;
                     });
                     $('#sendInvite').click(function(){
@@ -603,6 +605,7 @@ if(isset($_SESSION['name'])){
 					$('#rechargePopup').show();
 	                $('.cancel_button').click(function(){
 	                	$('.rechargewin').hide();
+	                	location.reload();
 	                });
                     return false;
 				});
