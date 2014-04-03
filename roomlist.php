@@ -492,7 +492,9 @@ if(isset($_SESSION['name'])){
                     $('.middle_content>ul').html("");
                     for(i=0;i<retData["players"].length;i++){
                         var tempUser = retData["players"][i];
-                        $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["dname"]+'<i class="fa fa-plus addfd"></i></div></li>');
+                        if(tempUser["dname"] != null){
+                            $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["dname"]+'</div></li>');
+                        }
                     }
                 }else if(retData["act"] == "invite"){
                     console.log(retData);

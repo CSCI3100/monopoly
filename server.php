@@ -83,6 +83,28 @@ while(true)
 					}
 					console("[GLOBAL MESSAGE] User ".$user->name." logged in!<br/>");
 					break;
+					case "monitor":
+					$thisroom = "";
+					console(var_dump($val));
+					foreach($playroom as $pr){
+						if($pr->rid == $val['rid']){
+							console("THIS RID IS:". $pr->rid);
+							$thisroom = $pr;
+							break;
+						}
+					}
+					$playerinfo = array();
+					if(isset($thisroom)){
+						foreach($thisroom->players as $player){
+							$tempplayer = new tempUser($player);
+							array_push($playerinfo, $tempplayer);
+						}
+					}
+					$send_packet=array();
+					$send_packet["act"] = "updateplayers";
+					$send_packet["players"] = $playerinfo;
+					send($user->socket,json_encode($send_packet));
+					break;
 					case "getroomlist":
 					console(var_dump($val));
 					$room = new Room($db);

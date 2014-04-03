@@ -228,8 +228,8 @@ $msg="Incorrect password";
         function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
         function SetupWebSocket()
         {
-            var host = 'ws://<?=$SERVER_ADDR?>:9876/mono/server.php';
-            socket = new WebSocket(host);
+        var host = 'ws://<?=$SERVER_ADDR?>:9876/mono/server.php';
+        socket = new WebSocket(host);
         socket.onopen = function(e) {
         var msg = {};
         msg.act = "enterroom";
@@ -271,7 +271,9 @@ $msg="Incorrect password";
                 $('.middle_content>ul').html("");
                 for(i=0;i<retData["players"].length;i++){
                 var tempUser = retData["players"][i];
-                $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["dname"]+'<i attr="'+tempUser["name"]+'" class="fa fa-plus addfd"></i></div></li>');
+                if(tempUser["name"] != null){
+                    $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["dname"]+'<i attr="'+tempUser["name"]+'" class="fa fa-plus addfd"></i></div></li>');
+                }
            }
         }else if(retData["act"] == "invite"){
             console.log(retData);

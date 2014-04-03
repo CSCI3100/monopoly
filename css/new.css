@@ -97,6 +97,7 @@
 }
 .room_players_other_indiv > img {
 	width: 100px;
+    height: 100px;
 	border-radius:50%;
 	float:left;
 	margin-right:5px;

@@ -79,5 +79,21 @@ class Room{
 			die($e->getMessage());
 		}
 	}
+
+	//below are admin function
+	public function getallroom(){
+		$query = $this->db->prepare("SELECT * FROM room WHERE playercount>0 and playercount<4 ORDER BY rid DESC");
+		try{
+			$query->execute();
+			$data = $query->fetchAll();
+		}catch(PDOException $e){
+			die($e->getMessage());
+		}
+        $toBeReturn = "";
+        foreach($data as $one){
+            $toBeReturn .= '<li><img src="../img/room.png"/><br />'.$one['name'].'<br /><a href="roommonitor.php?action=monitor&rid='.$one['rid'].'"><button class="remove">Check</button></a></li>';
+        }
+        return $toBeReturn;
+	}
 }
 ?>
