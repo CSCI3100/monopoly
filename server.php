@@ -84,7 +84,8 @@ while(true)
 					console("[GLOBAL MESSAGE] User ".$user->name." logged in!<br/>");
 					break;
 					case "monitor":
-					$thisroom = "";
+					$user->name = "admin"; //HARDCODE THE ADMIN NAME
+					$thisroom = NULL;//Initialize the variable
 					console(var_dump($val));
 					foreach($playroom as $pr){
 						if($pr->rid == $val['rid']){
@@ -94,10 +95,10 @@ while(true)
 						}
 					}
 					$playerinfo = array();
-					if(isset($thisroom)){
+					if(isset($thisroom)){ //When $thisroom is defined
 						foreach($thisroom->players as $player){
 							$tempplayer = new tempUser($player);
-							array_push($playerinfo, $tempplayer);
+							array_push($playerinfo, $tempplayer); //Push all player information into the array
 						}
 					}
 					$send_packet=array();
@@ -106,11 +107,11 @@ while(true)
 					send($user->socket,json_encode($send_packet));
 					break;
 					case "getroomlist":
-					console(var_dump($val));
+					//console(var_dump($val));
 					$room = new Room($db);
-					$user->name = $val['uname'];
-					$user->dname = $val['dname'];
-					foreach ($users as $u) {
+					$user->name = $val['uname']; //Set the username
+					$user->dname = $val['dname']; //Set the displayName
+					foreach ($users as $u) { //Anti double login mechanism
 						if($u->name == $val['uname']){
 							if($u->rid>0){
 								$room->leaveroom($u->rid);
@@ -120,7 +121,7 @@ while(true)
 					}
 					$send_packet=array();
 					$send_packet["act"]="roomlist";
-					foreach ($users as $u) {
+					foreach ($users as $u) { //Anti double login mechanism
 						if($u->id == $user->id){
 							if($u->rid>0){
 								$room->leaveroom($u->rid);
@@ -134,28 +135,28 @@ while(true)
                     update_player_list();
 					break;
 					case "createroom":
-					console(var_dump($val));
+					//console(var_dump($val));
 					$room = new Room($db);
-					$lastroomID=$room->createroom($val['roomname'],$val['password']);
-					$send_packet=array();
-					$send_packet["act"]="transferroom";
-					$send_packet["rid"]=$lastroomID;
-					console(var_dump($send_packet));
+					$lastroomID = $room->createroom($val['roomname'],$val['password']); //Get the last created room ID
+					$send_packet = array();
+					$send_packet["act"] = "transferroom";
+					$send_packet["rid"] = $lastroomID;
+					//console(var_dump($send_packet));
 					send($user->socket,json_encode($send_packet));
 					break;
 					case "enterroom":
-					console(var_dump($val));
-					$user->name = $val['uname'];
-					$user->dname = $val['dname'];
+					//console(var_dump($val));
+					$user->name = $val['uname']; //set username
+					$user->dname = $val['dname']; //ser displayName
 					$room = new Room($db);
-					foreach ($users as $u) {
+					foreach ($users as $u) { //Anti double-login mechanism
 						if($u->name == $user->name && $u->id != $user->id){
 							if($u->rid>0){
 								$room->leaveroom($u->rid);
 								$u->rid = 0; //should not be in any room
 							}
 						}
-						if($u->id == $user->id){
+						if($u->id == $user->id){ //Anti double-login mechanism
 							if($u->rid>0){
 								$room->leaveroom($u->rid);
 								$u->rid = 0; //should not be in any room
@@ -169,14 +170,14 @@ while(true)
 						}
 					}
 					$room_player = array();
-					foreach ($users as $u) { //retrieve a list of player in the room
+					foreach ($users as $u) { //retrieve a list of players in the room
 						if($u->rid == $val['rid']){
 							$tempuser = new tempUser($u);
 							array_push($room_player,$tempuser);
 							$tempuser = null;
 						}
 					}
-					console(var_dump($room_player));
+					//console(var_dump($room_player));
 					$send_packet=array();
 					$send_packet["act"]="roomplayer";
 					$send_packet["players"]=$room_player;
@@ -207,12 +208,12 @@ while(true)
                                 $checktotal++;
                                 $tempuser = new tempUser($u);
                                 array_push($room_player,$tempuser);
-                                $tempuser = null;
+                                $tempuser = NULL;
                             }
                         }
-                        $send_packet=array();
-                        $send_packet["act"]="roomplayer";
-                        $send_packet["players"]=$room_player;
+                        $send_packet = array();
+                        $send_packet["act"] = "roomplayer";
+                        $send_packet["players"] = $room_player;
                         $send_packet["totalnum"] = $checktotal;
                         room_msg($val['rid'],json_encode($send_packet));
                         //global_msg(json_encode($send_packet));//needed to be modified to send to specific people in that room
@@ -239,22 +240,22 @@ while(true)
 						}
 					}
 					//console(var_dump($user));
-					$send_packet=array();
-					$send_packet["act"]="roomplayer";
-					$send_packet["players"]=$room_player;
+					$send_packet = array();
+					$send_packet["act"] = "roomplayer";
+					$send_packet["players"] = $room_player;
 					console("The room id is".$temprid);
 					console(var_dump($room_player));
 					room_msg($temprid,json_encode($send_packet));
-					$send_packet=array();//another packet for all users
-					$send_packet["act"]="roomlist";
-					$send_packet["roomlist"]=$room->getroomlist(1);
+					$send_packet = array();//another packet for all users
+					$send_packet["act"] = "roomlist";
+					$send_packet["roomlist"] = $room->getroomlist(1);
 					global_msg(json_encode($send_packet));
 					break;
 					case "invite":
 					console(var_dump($val));
-					$send_packet=array();
-					$send_packet["act"]="invite";
-					$send_packet["rid"]=$val['rid'];
+					$send_packet = array();
+					$send_packet["act"] = "invite";
+					$send_packet["rid"] = $val['rid'];
 					foreach($users as $u){
 						if($u->name == $val['uid']){
 							send($u->socket,json_encode($send_packet));
@@ -263,13 +264,13 @@ while(true)
 					break;
 					case "sendmsg":
 					console(var_dump($val));
-					$send_packet=array();
-					$send_packet["act"]="chatroommsg";
-					$send_packet["uname"]=$val['uname'];
-					$send_packet["dname"]=$val['dname'];
-					$send_packet["stime"]= date('H:i');
-					$send_packet["sendcontent"]=htmlspecialchars($val['sendcontent']);
-					if($val['rid']>0){  //if rid>0, it is a room message
+					$send_packet = array();
+					$send_packet["act"] = "chatroommsg";
+					$send_packet["uname"] = $val['uname'];
+					$send_packet["dname"] = $val['dname'];
+					$send_packet["stime"] = date('H:i');
+					$send_packet["sendcontent"] = htmlspecialchars($val['sendcontent']);
+					if($val['rid'] > 0){  //if rid>0, it is a room message
 						room_msg($val['rid'],json_encode($send_packet));
 					}else{
 						global_msg(json_encode($send_packet));
@@ -288,7 +289,7 @@ while(true)
 					case "finishround":
 					$send_packet = array();
 					$send_packet["act"] = "nextmovable";
-					if($val['playerno']<4){
+					if($val['playerno'] < 4){
 						$send_packet['nextplayerno'] = $val['playerno']+1;
 					}else{
 						$send_packet['nextplayerno'] = 1;
@@ -501,7 +502,6 @@ while(true)
                         $mybuilding = array();
                         foreach($user->room->relations as $relation){
                             if($relation->playerno == $user->playerno){
-                                //var_dump($relation);
                                 array_push($mybuilding, $relation);
                             }
                         }
