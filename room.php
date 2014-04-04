@@ -261,7 +261,9 @@ $msg="Incorrect password";
                              var pstate="Ready";
                              var readybutton="";
                         }
+                        
                         $('.right_room_list').append('<div class="right_rooms hf_fixed"><img src="./data/'+playerinfo['name']+'.png"><h4>'+playerinfo['dname']+'</h4>State:'+pstate+readybutton+'</div>')
+                        
                     }
                     //console.log(retData);
                     if(retData['totalnum'] == 4){
@@ -278,7 +280,7 @@ $msg="Incorrect password";
                     $('.middle_content>ul').html("");
                     for(i=0;i<retData["players"].length;i++){
                         var tempUser = retData["players"][i];
-                        if(tempUser["name"] != null){
+                        if(tempUser["name"] != null && tempUser["name"] != '<?= $_SESSION['name'];?>'){
                             $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["dname"]+'<i attr="'+tempUser["name"]+'" class="fa fa-plus addfd"></i></div></li>');
                         }
                     }

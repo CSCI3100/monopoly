@@ -46,6 +46,9 @@
     </head>
 
 <body onload="new uploader('drop', 'status', 'uploader.php', 'list', '<?php echo $toname;?>');">
+<audio id="fbsound">
+    <source src="fb.mp3" type="audio/mpeg">
+</audio>
 <div id="fb-root"></div>
 <script>
   window.fbAsyncInit = function() {
@@ -505,13 +508,17 @@ if(isset($_SESSION['name'])){
                     }else if(retData["act"]=="transferroom"){
                         window.location.href = './room.php?rid='+retData["rid"];
                     }else if(retData["act"]=="chatroommsg"){
-                        $('.chat_box').append(retData["dname"]+" : "+retData["sendcontent"]+" ["+retData["stime"]+"]<br />");
+                    if(retData["uname"] != '<?= $_SESSION['dname'];?>'){
+                        document.getElementById("fbsound").currentTime = 0;
+                        document.getElementById("fbsound").play();
+                    }
+                    $('.chat_box').append(retData["uname"]+" : "+retData["sendcontent"]+" ["+retData["stime"]+"]<br />");
                     $('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
                 }else if(retData["act"]=="userinfo"){
                     $('.middle_content>ul').html("");
                     for(i=0;i<retData["players"].length;i++){
                         var tempUser = retData["players"][i];
-                        if(tempUser["dname"] != null){
+                        if(tempUser["dname"] != null && tempUser["name"] != '<?= $_SESSION['name'];?>'){
                             $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["dname"]+'</div></li>');
                         }
                     }
