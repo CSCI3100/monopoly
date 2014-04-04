@@ -46,6 +46,9 @@
     </head>
 
 <body onload="new uploader('drop', 'status', 'uploader.php', 'list', '<?php echo $toname;?>');">
+<audio loop autoplay="true">
+    <source src="haunted.mp3" type="audio/mpeg">
+</audio>
 <audio id="fbsound">
     <source src="fb.mp3" type="audio/mpeg">
 </audio>

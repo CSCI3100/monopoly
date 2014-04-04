@@ -3986,3 +3986,7 @@ Sat Apr 5 4:30:17 HKT 2014
 {"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"04:30","sendcontent":"ff"}
 Sat Apr 5 4:30:22 HKT 2014
 {"act":"chatroommsg","uname":"bbb2","dname":"bbb2","stime":"04:30","sendcontent":"ff"}
+Sat Apr 5 4:41:18 HKT 2014
+{"players":[{"id":"533f165702420","name":"aaa","dname":"aaa1","rid":0,"state":0,"playerno":null,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 4:41:19 HKT 2014
+{"players":[{"id":"533f165702420","name":"aaa","dname":"aaa1","rid":0,"state":0,"playerno":null,"money":1500,"offset":0},{"id":"533f18ef57917","name":"bbb","dname":"bbb2","rid":0,"state":0,"playerno":null,"money":1500,"offset":0}],"act":"userinfo"}
