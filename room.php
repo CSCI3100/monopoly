@@ -171,118 +171,117 @@ $msg="Incorrect password";
         <script>
         var toRid;
         $(document).ready(function(){
-        $('svg').fadeOut(500);
-        $('.bg1').fadeIn(300);
-        SetupWebSocket();
+            $('svg').fadeOut(500);
+            $('.bg1').fadeIn(300);
+            SetupWebSocket();
+            <?php
+            if(isset($_SESSION['name'])){
+            ?>
+            $('#send_content_submit').click(function(){
+                if($('#send_content').val()==''){
+                    alert('Your message is empty!');
+                    $('#send_content').focus();
+                }else{
+                    var msg = {};
+                    msg.act = "sendmsg";
+                    msg.rid = <?=$_GET['rid'];?>; //global message
+                                                    msg.uname = '<?= $_SESSION['name'];?>';
+                    msg.sendcontent=$('#send_content').val();
+                    socket.send(JSON.stringify(msg));
+                    $('#send_content').val('');
+                }
+            });
         <?php
-        if(isset($_SESSION['name'])){
+            }
         ?>
-        $('#send_content_submit').click(function(){
-        if($('#send_content').val()==''){
-        alert('Your message is empty!');
-            $('#send_content').focus();
-        }else{
-        var msg = {};
-        msg.act = "sendmsg";
-        msg.rid = <?=$_GET['rid'];?>; //global message
-                                        msg.uname = '<?= $_SESSION['name'];?>';
-        msg.sendcontent=$('#send_content').val();
-        socket.send(JSON.stringify(msg));
-        $('#send_content').val('');
-        }
-        });
-        <?php
-        }
-        ?>
-        $('#send_content').bind('keydown', function(e) {
-        if(e.keyCode==13){
-            $('#send_content_submit').click();
-        }
-        });
+            $('#send_content').bind('keydown', function(e) {
+                if(e.keyCode==13){
+                    $('#send_content_submit').click();
+                }
+            });
 
-        $(document.body).on( "click", '.addfd', function() {
-            var msg = {};
-            msg.act = "invite";
-            msg.uid = $(this).attr('attr');
-            msg.rid = <?=$_GET['rid'];?>;
-            socket.send(JSON.stringify(msg));
-            //alert($(this).attr('attr'));
-        });
-        $(document.body).on( "click", '.ready', function() {
-        var msg = {};
-        msg.act = "getready";
-        msg.uid = <?=$_SESSION['uid'];?>;
-        msg.rid = <?=$_GET['rid'];?>;
-        //console.log(msg);
-        socket.send(JSON.stringify(msg));
-        });
-        $(window).on('beforeunload', function(){
-        var msg = {};
-        msg.act="leaveroom";
-        msg.uname = '<?= $_SESSION['name'];?>';
-        msg.rid = <?=$_GET['rid'];?>;
-        socket.send(JSON.stringify(msg));
-        });
-        $(document).on("keydown", disableF5);
+            $(document.body).on( "click", '.addfd', function() {
+                var msg = {};
+                msg.act = "invite";
+                msg.uid = $(this).attr('attr');
+                msg.rid = <?=$_GET['rid'];?>;
+                socket.send(JSON.stringify(msg));
+                //alert($(this).attr('attr'));
+            });
+            $(document.body).on( "click", '.ready', function() {
+                var msg = {};
+                msg.act = "getready";
+                msg.uid = <?=$_SESSION['uid'];?>;
+                msg.rid = <?=$_GET['rid'];?>;
+                //console.log(msg);
+                socket.send(JSON.stringify(msg));
+            });
+            $(window).on('beforeunload', function(){
+                var msg = {};
+                msg.act="leaveroom";
+                msg.uname = '<?= $_SESSION['name'];?>';
+                msg.rid = <?=$_GET['rid'];?>;
+                socket.send(JSON.stringify(msg));
+            });
+            $(document).on("keydown", disableF5);
         });
         function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
-        function SetupWebSocket()
-        {
-        var host = 'ws://<?=$SERVER_ADDR?>:9876/mono/server.php';
-        socket = new WebSocket(host);
-        socket.onopen = function(e) {
-        var msg = {};
-        msg.act = "enterroom";
-        msg.uname = '<?= $_SESSION['name'];?>';
-        msg.dname = '<?= $_SESSION['dname'];?>';
-        msg.rid = <?=$_GET['rid'];?>;
-        socket.send(JSON.stringify(msg));
-        };
-        socket.onmessage = function(e) {
-            var retData=$.parseJSON(e.data);
-        //console.log(retData["roomlist"].length);
-        if(retData['act']=='roomplayer'){
-            $('.right_room_list').html('');
-            var i=0;
-            for(i=0;i<retData['players'].length;i++){
-            var playerinfo = retData['players'][i];
-            console.log(playerinfo);
-            if(playerinfo['state']==0){
-            var pstate="Not ready";
-                if(playerinfo['name']=='<?= $_SESSION['name'];?>'){
-                    var readybutton='<br /><button class="ready">Ready</button>';
-                }else{
-                    var readybutton='';
+        function SetupWebSocket(){
+            var host = 'ws://<?=$SERVER_ADDR?>:9876/mono/server.php';
+            socket = new WebSocket(host);
+            socket.onopen = function(e) {
+                var msg = {};
+                msg.act = "enterroom";
+                msg.uname = '<?= $_SESSION['name'];?>';
+                msg.dname = '<?= $_SESSION['dname'];?>';
+                msg.rid = <?=$_GET['rid'];?>;
+                socket.send(JSON.stringify(msg));
+            };
+            socket.onmessage = function(e) {
+                var retData=$.parseJSON(e.data);
+                //console.log(retData["roomlist"].length);
+                if(retData['act']=='roomplayer'){
+                    $('.right_room_list').html('');
+                    var i=0;
+                    for(i=0;i<retData['players'].length;i++){
+                        var playerinfo = retData['players'][i];
+                        console.log(playerinfo);
+                        if(playerinfo['state']==0){
+                            var pstate="Not ready";
+                            if(playerinfo['name']=='<?= $_SESSION['name'];?>'){
+                                var readybutton='<br /><button class="ready">Ready</button>';
+                            }else{
+                                var readybutton='';
+                            }
+                        }else{
+                             var pstate="Ready";
+                             var readybutton="";
+                        }
+                        $('.right_room_list').append('<div class="right_rooms hf_fixed"><img src="./data/'+playerinfo['name']+'.png"><h4>'+playerinfo['dname']+'</h4>State:'+pstate+readybutton+'</div>')
+                    }
+                    //console.log(retData);
+                    if(retData['totalnum'] == 4){
+                        window.location.href = './play.php?rid='+playerinfo["rid"];
+                    }
+                }else if(retData["act"]=="chatroommsg"){
+                    $('.chat_box').append(retData["uname"]+" : "+retData["sendcontent"]+" ["+retData["stime"]+"]<br />");
+                    $('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
+                }else if(retData["act"] == "userinfo"){
+                    $('.middle_content>ul').html("");
+                    for(i=0;i<retData["players"].length;i++){
+                        var tempUser = retData["players"][i];
+                        if(tempUser["name"] != null){
+                            $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["dname"]+'<i attr="'+tempUser["name"]+'" class="fa fa-plus addfd"></i></div></li>');
+                        }
+                    }
+                }else if(retData["act"] == "invite"){
+                    console.log(retData);
+                    //alert('hi');
+                    toRid = retData['rid'];
+                    $('.beinvited').show();
                 }
-            }else{
-                 var pstate="Ready";
-                 var readybutton="";
-            }
-                $('.right_room_list').append('<div class="right_rooms hf_fixed"><img src="./data/'+playerinfo['name']+'.png"><h4>'+playerinfo['name']+'</h4>State:'+pstate+readybutton+'</div>')
-            }
-            //console.log(retData);
-            if(retData['totalnum'] == 4){
-                window.location.href = './play.php?rid='+playerinfo["rid"];
-            }
-        }else if(retData["act"]=="chatroommsg"){
-            $('.chat_box').append(retData["uname"]+" : "+retData["sendcontent"]+" ["+retData["stime"]+"]<br />");
-            $('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
-        }else if(retData["act"] == "userinfo"){
-                $('.middle_content>ul').html("");
-                for(i=0;i<retData["players"].length;i++){
-                var tempUser = retData["players"][i];
-                if(tempUser["name"] != null){
-                    $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["dname"]+'<i attr="'+tempUser["name"]+'" class="fa fa-plus addfd"></i></div></li>');
-                }
-           }
-        }else if(retData["act"] == "invite"){
-            console.log(retData);
-            //alert('hi');
-            toRid = retData['rid'];
-            $('.beinvited').show();
-        }
-        console.log(retData);
-        };
+                console.log(retData);
+            };
             socket.onclose = function(e) {
                 alert('Disconnected - status ' + this.readyState);
             };
