@@ -65,6 +65,13 @@ switch ($func) {
 			break;
 		}
 		break;
+	case 'getItem':
+		session_start();
+		require './database.php';
+		require './class/user.php';
+		$ui = new User($db);
+		$uin = $ui->userinfo($_SESSION['uid']);
+		echo json_encode(array('stop' => $uin['t1'], 'doub' => $uin['t2'], 'cash' => $uin['t3']));
 		break;
 	default:
 		echo "No function";

@@ -115,6 +115,7 @@
                 <li>Money:<?=$userinfo['money']?></li>
                 <li><button class="function_button magentabg" id="invite"><i class="fa fa-user"></i> Invite</button></li>
                 <li><button class="function_button orangebg"><i class="fa fa-envelope"></i> Message</button></li>
+                <li><button class="function_button brownbg" id="item"><i class="fa fa-medkit"></i> Item</button></li>
                 <li><button class="function_button redbg" id="shop"><i class="fa fa-shopping-cart"></i> Shop</button></li>
                 <li><button class="function_button bluebg" id="rechargeBtn"><i class="fa fa-btc"></i> Recharge</button></a></li>
                 <li><a href="./index.php"><button class="function_button greenbg"><i class="fa fa-sign-out"></i> Logout</button></a></li>
@@ -192,6 +193,22 @@
         <input type="email" name="inviteEmail" id="inviteEmail" placeholder="Enter your friend's email address, separated by COMMA[,]">
         <button class="save_button" id="sendInvite">Invite</button>
         <button class="fb_button" id="postFb">Post to Facebook</button>
+        <button class="cancel_button">Close</button>
+        </form>
+    </div>
+
+    <div class="shopDiv" id="itemPopup">
+        <div class="changeavatar_header">
+        Item
+        </div>
+         <form action="#" class="changeprofile">
+         <br/>
+        You own the following items
+        <br/><br/>
+        <img src="img/stop.png" class="items" alt="Stop Card" /><span class="ItemNo">x<span id="itemStop"></span></span><br/>
+        <img src="img/rent.png" class="items" alt="Double Rent Card" /><span class="ItemNo">x<span id="itemDoub"></span></span><br/>
+        <img src="img/cash.png" class="items" alt="Instant Cash Card" /><span class="ItemNo">x<span id="itemCash"></span></span><br/>
+        <br/>
         <button class="cancel_button">Close</button>
         </form>
     </div>
@@ -613,6 +630,24 @@ if(isset($_SESSION['name'])){
                     $('#shopPopup').show();
                     $('.cancel_button').click(function(){
                         $('#shopPopup').hide();
+                    });
+                    return false;
+                });
+                $('#item').click(function(){
+                    $.ajax({
+                        url: 'ajax.php',
+                        type: 'POST',
+                        data: 'function=getItem',
+                        success: function(response){
+                            var data = $.parseJSON(response, true);
+                            $('#itemStop').html(data['stop']);
+                            $('#itemDoub').html(data['doub']);
+                            $('#itemCash').html(data['cash']);
+                        }
+                    });
+                    $('#itemPopup').show();
+                    $('.cancel_button').click(function(){
+                        $('#itemPopup').hide();
                     });
                     return false;
                 });
