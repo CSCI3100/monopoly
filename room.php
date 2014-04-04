@@ -69,7 +69,7 @@ if($uid || isset($_SESSION['uid'])){
 <div class="three_col">
         <div class="left">
             <div class="left_header">
-            <?=$_SESSION['name'];?>
+            Profile
             </div>
             <div class="left_content">
 <?php
@@ -77,13 +77,12 @@ if($uid || isset($_SESSION['uid'])){
 	$userinfo=$user->userinfo($_SESSION['uid']);
 ?>
             <ul>
-                <li class="avatar"><img id="toavatar" src="./data/<?=$toname;?>.png"></li>
+                <li class="avatar"><img id="toavatar" src="./data/<?=$toname;?>.png"><br/><br/>
+                        <b><?=$_SESSION['dname'];?></b></li>
                 <li>Win:<?=$userinfo['money']?></li>
                 <li>Lose:<?=$userinfo['money']?></li>
                 <li>Money:<?=$userinfo['money']?></li>
-                <li><button class="function_button orangebg"><i class="fa fa-envelope"></i> Message</button></li>
-                <li><button class="function_button bluebg"><i class="fa fa-credit-card"></i> Shop</button></li>
-                <li><a href="./index.php"><button class="function_button greenbg"><i class="fa fa-sign-out"></i> Logout</button></a></li>
+                <li><a href="./roomlist.php"><button class="function_button greenbg"><i class="fa fa-sign-out"></i> Lobby</button></a></li>
             </ul>
             </div>
         </div>
