@@ -1,0 +1,26 @@
+Sat Apr 5 0:51:10 HKT 2014
+{"act":"initinfo","players":[{"id":"533ee2feb7a32","name":"aaa","dname":null,"rid":35,"state":0,"playerno":1,"money":1500,"offset":0}]}
+Sat Apr 5 0:51:12 HKT 2014
+{"act":"initinfo","players":[{"id":"533ee2feb7a32","name":"aaa","dname":null,"rid":35,"state":0,"playerno":1,"money":1500,"offset":0},{"id":"533ee300d0095","name":"bbb","dname":null,"rid":35,"state":0,"playerno":2,"money":1500,"offset":0}]}
+Sat Apr 5 0:51:15 HKT 2014
+{"act":"transfer","uname":"aaa","offset":20,"money":1500,"playerno":1}
+Sat Apr 5 0:51:15 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":20,"bname":"Shaw College","money":1,"img":"shaw.png"}
+Sat Apr 5 0:51:16 HKT 2014
+{"act":"notice","playerno":1,"money":1499,"sendcontent":"aaa has purchased Shaw College","bought":1}
+Sat Apr 5 0:51:23 HKT 2014
+{"act":"transfer","uname":"bbb","offset":20,"money":1500,"playerno":2}
+Sat Apr 5 0:51:24 HKT 2014
+{"playerno":2,"otherplayerno":1,"othermoney":1514,"act":"payrentsucceed","money":1485}
+Sat Apr 5 0:51:29 HKT 2014
+{"act":"transfer","uname":"bbb","offset":40,"money":1485,"playerno":2}
+Sat Apr 5 0:51:29 HKT 2014
+{"act":"notice","playerno":2,"money":1685}
+Sat Apr 5 0:51:29 HKT 2014
+{"playerno":2,"act":"recordstopno","marker":13,"bname":"NA Tower","money":1,"img":"natower.png"}
+Sat Apr 5 0:51:30 HKT 2014
+{"act":"notice","playerno":2,"money":1684,"sendcontent":"bbb has purchased NA Tower","bought":1}
+Sat Apr 5 0:51:36 HKT 2014
+{"act":"transfer","uname":"aaa","offset":40,"money":1514,"playerno":1}
+Sat Apr 5 0:51:36 HKT 2014
+{"act":"notice","playerno":1,"money":1714}

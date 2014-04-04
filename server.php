@@ -288,6 +288,7 @@ while(true)
 					$send_packet["money"] = $user->money;
 					$send_packet["playerno"] = $val["playerno"];
 					room_msg($val['rid'],json_encode($send_packet));
+					break;
 					case "finishround":
 					$send_packet = array();
 					$send_packet["act"] = "nextmovable";
@@ -297,7 +298,6 @@ while(true)
 						$send_packet['nextplayerno'] = 1;
 					}
 					room_msg($val['rid'],json_encode($send_packet));
-					break;
 					break;
 					case "getplayerno":
 					$user->rid = $val['rid'];
@@ -402,17 +402,17 @@ while(true)
 									if($building->stopNo == $relation->stopno){
 										$foundbuilding = $relation;
 										$soldout = 1;
+										break;
 									}else{
 										$soldout = 0;
 									}
-									break;
 								}
 								if($soldout == 0){
-									$send_packet=array();
-									$send_packet['playerno']=$user->playerno;
-									$send_packet['act']="recordstopno";
-									$send_packet['marker']=$building->stopNo;
-									$send_packet['bname']=$building->rname;
+									$send_packet = array();
+									$send_packet['playerno'] = $user->playerno;
+									$send_packet['act'] = "recordstopno";
+									$send_packet['marker'] = $building->stopNo;
+									$send_packet['bname'] = $building->rname;
 									$send_packet['money'] = $building->price;
 									$send_packet['img'] = $building->img;
 									room_msg($val['rid'],json_encode($send_packet));
