@@ -1,264 +1,426 @@
-Sat Apr 5 2:23:34 HKT 2014
-{"players":[{"id":"533ef8a6c5c37","name":"aaa","dname":"aaa1","rid":0,"state":0,"playerno":null,"money":1500,"offset":0}],"act":"userinfo"}
-Sat Apr 5 2:23:38 HKT 2014
+Sat Apr 5 3:34:15 HKT 2014
+{"act":"roomplayer","players":[{"id":"533f09373331c","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":7,"money":1500,"offset":0}]}
+Sat Apr 5 3:34:15 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:34:15 HKT 2014
+{"players":[{"id":"533f09373331c","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":7,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 3:34:16 HKT 2014
+{"act":"chatroommsg","uname":null,"dname":null,"stime":"03:34","sendcontent":"dg"}
+Sat Apr 5 3:35:03 HKT 2014
+{"act":"roomplayer","players":[]}
+Sat Apr 5 3:35:03 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:35:03 HKT 2014
 {"players":[],"act":"userinfo"}
-Sat Apr 5 2:23:38 HKT 2014
-{"act":"initinfo","players":[{"id":"533ef8aa70e85","name":"aaa","dname":null,"rid":35,"state":0,"playerno":1,"money":1500,"offset":0}]}
-Sat Apr 5 2:23:40 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1,"money":1500,"playerno":1}
-Sat Apr 5 2:23:42 HKT 2014
-{"act":"transfer","uname":"aaa","offset":21,"money":1500,"playerno":1}
-Sat Apr 5 2:23:43 HKT 2014
-{"act":"transfer","uname":"aaa","offset":41,"money":1500,"playerno":1}
-Sat Apr 5 2:23:43 HKT 2014
-{"act":"notice","playerno":1,"money":1700}
-Sat Apr 5 2:23:44 HKT 2014
-{"act":"transfer","uname":"aaa","offset":61,"money":1700,"playerno":1}
-Sat Apr 5 2:23:44 HKT 2014
-{"act":"notice","playerno":1,"money":1900}
-Sat Apr 5 2:23:45 HKT 2014
-{"act":"transfer","uname":"aaa","offset":81,"money":1900,"playerno":1}
-Sat Apr 5 2:23:45 HKT 2014
-{"act":"notice","playerno":1,"money":2100}
-Sat Apr 5 2:23:45 HKT 2014
-{"playerno":1,"act":"recordstopno","marker":0,"bname":"University Station","money":2000,"img":"station.png"}
-Sat Apr 5 2:23:45 HKT 2014
-{"act":"transfer","uname":"aaa","offset":101,"money":2100,"playerno":1}
-Sat Apr 5 2:23:45 HKT 2014
-{"playerno":1,"act":"recordstopno","marker":20,"bname":"Shaw College","money":1,"img":"shaw.png"}
-Sat Apr 5 2:23:45 HKT 2014
-{"act":"transfer","uname":"aaa","offset":121,"money":2100,"playerno":1}
-Sat Apr 5 2:23:45 HKT 2014
-{"act":"notice","playerno":1,"money":2300}
-Sat Apr 5 2:23:45 HKT 2014
-{"playerno":1,"act":"recordstopno","marker":13,"bname":"NA Tower","money":1,"img":"natower.png"}
-Sat Apr 5 2:23:45 HKT 2014
-{"act":"transfer","uname":"aaa","offset":141,"money":2300,"playerno":1}
-Sat Apr 5 2:23:45 HKT 2014
-{"act":"notice","playerno":1,"money":2500}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"transfer","uname":"aaa","offset":161,"money":2500,"playerno":1}
-Sat Apr 5 2:23:46 HKT 2014
-{"playerno":1,"act":"recordstopno","marker":26,"bname":"YIA","money":10000,"img":"yia.png"}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"transfer","uname":"aaa","offset":181,"money":2500,"playerno":1}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"notice","playerno":1,"money":2700}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"transfer","uname":"aaa","offset":201,"money":2700,"playerno":1}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"notice","playerno":1,"money":2900}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"transfer","uname":"aaa","offset":221,"money":2900,"playerno":1}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"notice","playerno":1,"money":3100}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"transfer","uname":"aaa","offset":241,"money":3100,"playerno":1}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"transfer","uname":"aaa","offset":261,"money":3100,"playerno":1}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"notice","playerno":1,"money":3300}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"transfer","uname":"aaa","offset":281,"money":3300,"playerno":1}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"notice","playerno":1,"money":3500}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"transfer","uname":"aaa","offset":301,"money":3500,"playerno":1}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"notice","playerno":1,"money":3700}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"transfer","uname":"aaa","offset":321,"money":3700,"playerno":1}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"transfer","uname":"aaa","offset":341,"money":3700,"playerno":1}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"notice","playerno":1,"money":3900}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"transfer","uname":"aaa","offset":361,"money":3900,"playerno":1}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"notice","playerno":1,"money":4100}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"transfer","uname":"aaa","offset":381,"money":4100,"playerno":1}
-Sat Apr 5 2:23:46 HKT 2014
-{"act":"notice","playerno":1,"money":4300}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"transfer","uname":"aaa","offset":401,"money":4300,"playerno":1}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"transfer","uname":"aaa","offset":421,"money":4300,"playerno":1}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"notice","playerno":1,"money":4500}
-Sat Apr 5 2:23:47 HKT 2014
-{"playerno":1,"act":"recordstopno","marker":16,"bname":"UC BALL","money":1,"img":"ucball.png"}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"transfer","uname":"aaa","offset":441,"money":4500,"playerno":1}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"notice","playerno":1,"money":4700}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"transfer","uname":"aaa","offset":461,"money":4700,"playerno":1}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"notice","playerno":1,"money":4900}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"transfer","uname":"aaa","offset":481,"money":4900,"playerno":1}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"transfer","uname":"aaa","offset":501,"money":4900,"playerno":1}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"notice","playerno":1,"money":5100}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"transfer","uname":"aaa","offset":521,"money":5100,"playerno":1}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"notice","playerno":1,"money":5300}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"transfer","uname":"aaa","offset":541,"money":5300,"playerno":1}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"notice","playerno":1,"money":5500}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"transfer","uname":"aaa","offset":561,"money":5500,"playerno":1}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"transfer","uname":"aaa","offset":581,"money":5500,"playerno":1}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"notice","playerno":1,"money":5700}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"transfer","uname":"aaa","offset":601,"money":5700,"playerno":1}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"notice","playerno":1,"money":5900}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"transfer","uname":"aaa","offset":621,"money":5900,"playerno":1}
-Sat Apr 5 2:23:47 HKT 2014
-{"act":"notice","playerno":1,"money":6100}
-Sat Apr 5 2:23:47 HKT 2014
-{"playerno":1,"act":"recordstopno","marker":0,"bname":"University Station","money":2000,"img":"station.png"}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"transfer","uname":"aaa","offset":641,"money":6100,"playerno":1}
-Sat Apr 5 2:23:48 HKT 2014
-{"playerno":1,"act":"recordstopno","marker":20,"bname":"Shaw College","money":1,"img":"shaw.png"}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"transfer","uname":"aaa","offset":661,"money":6100,"playerno":1}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"notice","playerno":1,"money":6300}
-Sat Apr 5 2:23:48 HKT 2014
-{"playerno":1,"act":"recordstopno","marker":13,"bname":"NA Tower","money":1,"img":"natower.png"}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"transfer","uname":"aaa","offset":681,"money":6300,"playerno":1}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"notice","playerno":1,"money":6500}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"transfer","uname":"aaa","offset":701,"money":6500,"playerno":1}
-Sat Apr 5 2:23:48 HKT 2014
-{"playerno":1,"act":"recordstopno","marker":26,"bname":"YIA","money":10000,"img":"yia.png"}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"transfer","uname":"aaa","offset":721,"money":6500,"playerno":1}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"notice","playerno":1,"money":6700}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"transfer","uname":"aaa","offset":741,"money":6700,"playerno":1}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"notice","playerno":1,"money":6900}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"transfer","uname":"aaa","offset":761,"money":6900,"playerno":1}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"notice","playerno":1,"money":7100}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"transfer","uname":"aaa","offset":781,"money":7100,"playerno":1}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"transfer","uname":"aaa","offset":801,"money":7100,"playerno":1}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"notice","playerno":1,"money":7300}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"transfer","uname":"aaa","offset":821,"money":7300,"playerno":1}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"notice","playerno":1,"money":7500}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"transfer","uname":"aaa","offset":841,"money":7500,"playerno":1}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"notice","playerno":1,"money":7700}
-Sat Apr 5 2:23:48 HKT 2014
-{"act":"transfer","uname":"aaa","offset":861,"money":7700,"playerno":1}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"transfer","uname":"aaa","offset":881,"money":7700,"playerno":1}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"notice","playerno":1,"money":7900}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"transfer","uname":"aaa","offset":901,"money":7900,"playerno":1}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"notice","playerno":1,"money":8100}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"transfer","uname":"aaa","offset":921,"money":8100,"playerno":1}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"notice","playerno":1,"money":8300}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"transfer","uname":"aaa","offset":941,"money":8300,"playerno":1}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"transfer","uname":"aaa","offset":961,"money":8300,"playerno":1}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"notice","playerno":1,"money":8500}
-Sat Apr 5 2:23:49 HKT 2014
-{"playerno":1,"act":"recordstopno","marker":16,"bname":"UC BALL","money":1,"img":"ucball.png"}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"transfer","uname":"aaa","offset":981,"money":8500,"playerno":1}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"notice","playerno":1,"money":8700}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1001,"money":8700,"playerno":1}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"notice","playerno":1,"money":8900}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1021,"money":8900,"playerno":1}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1041,"money":8900,"playerno":1}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"notice","playerno":1,"money":9100}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1061,"money":9100,"playerno":1}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"notice","playerno":1,"money":9300}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1081,"money":9300,"playerno":1}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"notice","playerno":1,"money":9500}
-Sat Apr 5 2:23:49 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1101,"money":9500,"playerno":1}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1121,"money":9500,"playerno":1}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"notice","playerno":1,"money":9700}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1141,"money":9700,"playerno":1}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"notice","playerno":1,"money":9900}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1161,"money":9900,"playerno":1}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"notice","playerno":1,"money":10100}
-Sat Apr 5 2:23:50 HKT 2014
-{"playerno":1,"act":"recordstopno","marker":0,"bname":"University Station","money":2000,"img":"station.png"}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1181,"money":10100,"playerno":1}
-Sat Apr 5 2:23:50 HKT 2014
-{"playerno":1,"act":"recordstopno","marker":20,"bname":"Shaw College","money":1,"img":"shaw.png"}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1201,"money":10100,"playerno":1}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"notice","playerno":1,"money":10300}
-Sat Apr 5 2:23:50 HKT 2014
-{"playerno":1,"act":"recordstopno","marker":13,"bname":"NA Tower","money":1,"img":"natower.png"}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1221,"money":10300,"playerno":1}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"notice","playerno":1,"money":10500}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1241,"money":10500,"playerno":1}
-Sat Apr 5 2:23:50 HKT 2014
-{"playerno":1,"act":"recordstopno","marker":26,"bname":"YIA","money":10000,"img":"yia.png"}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1261,"money":10500,"playerno":1}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"notice","playerno":1,"money":10700}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1281,"money":10700,"playerno":1}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"notice","playerno":1,"money":10900}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"transfer","uname":"aaa","offset":1301,"money":10900,"playerno":1}
-Sat Apr 5 2:23:50 HKT 2014
-{"act":"notice","playerno":1,"money":11100}
-Sat Apr 5 2:23:55 HKT 2014
-{"act":"nextmovable","nextplayerno":2}
+Sat Apr 5 3:35:18 HKT 2014
+{"act":"roomplayer","players":[{"id":"533f0976ba369","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":7,"money":1500,"offset":0}]}
+Sat Apr 5 3:35:18 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:35:18 HKT 2014
+{"players":[{"id":"533f0976ba369","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":7,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 3:35:24 HKT 2014
+{"act":"roomplayer","players":[]}
+Sat Apr 5 3:35:24 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:35:25 HKT 2014
+{"players":[],"act":"userinfo"}
+Sat Apr 5 3:35:25 HKT 2014
+{"act":"roomplayer","players":[{"id":"533f097d5be04","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":7,"money":1500,"offset":0}]}
+Sat Apr 5 3:35:25 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:35:25 HKT 2014
+{"players":[{"id":"533f097d5be04","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":7,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 3:35:27 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:35","sendcontent":"sadf"}
+Sat Apr 5 3:35:28 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:35","sendcontent":"asdf"}
+Sat Apr 5 3:35:30 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:35","sendcontent":"df"}
+Sat Apr 5 3:35:32 HKT 2014
+{"act":"roomplayer","players":[{"id":"533f097d5be04","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":7,"money":1500,"offset":0},{"id":"533f0984b6a50","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}]}
+Sat Apr 5 3:35:32 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:35:32 HKT 2014
+{"players":[{"id":"533f097d5be04","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":7,"money":1500,"offset":0},{"id":"533f0984b6a50","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 3:35:34 HKT 2014
+{"act":"chatroommsg","uname":"bbb1","dname":"bbb1","stime":"03:35","sendcontent":"ff"}
+Sat Apr 5 3:35:37 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:35","sendcontent":"f"}
+Sat Apr 5 3:35:38 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:35","sendcontent":"sdf"}
+Sat Apr 5 3:35:39 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:35","sendcontent":"ds"}
+Sat Apr 5 3:35:40 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:35","sendcontent":"s"}
+Sat Apr 5 3:35:41 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:35","sendcontent":"ddfg"}
+Sat Apr 5 3:35:42 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:35","sendcontent":"sdf"}
+Sat Apr 5 3:35:56 HKT 2014
+{"act":"roomplayer","players":[{"id":"533f0984b6a50","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}]}
+Sat Apr 5 3:35:56 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:35:56 HKT 2014
+{"players":[{"id":"533f0984b6a50","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 3:35:57 HKT 2014
+{"act":"roomplayer","players":[{"id":"533f0984b6a50","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0},{"id":"533f099cd39a8","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}]}
+Sat Apr 5 3:35:57 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:35:57 HKT 2014
+{"players":[{"id":"533f0984b6a50","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0},{"id":"533f099cd39a8","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 3:35:58 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:35","sendcontent":"dfg"}
+Sat Apr 5 3:36:05 HKT 2014
+{"act":"roomplayer","players":[{"id":"533f099cd39a8","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}]}
+Sat Apr 5 3:36:05 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:36:05 HKT 2014
+{"players":[{"id":"533f099cd39a8","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 3:36:05 HKT 2014
+{"act":"roomplayer","players":[{"id":"533f09a5a24aa","name":"bbb","dname":"bbb1","rid":32,"state":0,"playerno":7,"money":1500,"offset":0}]}
+Sat Apr 5 3:36:05 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:36:05 HKT 2014
+{"players":[{"id":"533f099cd39a8","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0},{"id":"533f09a5a24aa","name":"bbb","dname":"bbb1","rid":32,"state":0,"playerno":7,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 3:36:07 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:36","sendcontent":"sdf"}
+Sat Apr 5 3:36:08 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:36","sendcontent":"sdf"}
+Sat Apr 5 3:36:09 HKT 2014
+{"act":"roomplayer","players":[]}
+Sat Apr 5 3:36:09 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:36:09 HKT 2014
+{"players":[{"id":"533f099cd39a8","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 3:36:09 HKT 2014
+{"act":"roomplayer","players":[{"id":"533f099cd39a8","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0},{"id":"533f09a9a7a91","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}]}
+Sat Apr 5 3:36:09 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:36:09 HKT 2014
+{"players":[{"id":"533f099cd39a8","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0},{"id":"533f09a9a7a91","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 3:36:11 HKT 2014
+{"act":"chatroommsg","uname":"bbb1","dname":"bbb1","stime":"03:36","sendcontent":"saf"}
+Sat Apr 5 3:36:11 HKT 2014
+{"act":"chatroommsg","uname":"bbb1","dname":"bbb1","stime":"03:36","sendcontent":"aer"}
+Sat Apr 5 3:36:13 HKT 2014
+{"act":"chatroommsg","uname":"bbb1","dname":"bbb1","stime":"03:36","sendcontent":"asd"}
+Sat Apr 5 3:36:14 HKT 2014
+{"act":"chatroommsg","uname":"bbb1","dname":"bbb1","stime":"03:36","sendcontent":"ert"}
+Sat Apr 5 3:36:16 HKT 2014
+{"act":"chatroommsg","uname":"bbb1","dname":"bbb1","stime":"03:36","sendcontent":"1323234"}
+Sat Apr 5 3:36:17 HKT 2014
+{"act":"chatroommsg","uname":"bbb1","dname":"bbb1","stime":"03:36","sendcontent":"wer"}
+Sat Apr 5 3:36:18 HKT 2014
+{"act":"chatroommsg","uname":"bbb1","dname":"bbb1","stime":"03:36","sendcontent":"wefwe"}
+Sat Apr 5 3:38:13 HKT 2014
+{"act":"roomplayer","players":[{"id":"533f09a9a7a91","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}]}
+Sat Apr 5 3:38:13 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:38:13 HKT 2014
+{"players":[{"id":"533f09a9a7a91","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 3:38:13 HKT 2014
+{"act":"roomplayer","players":[{"id":"533f09a9a7a91","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0},{"id":"533f0a2582ed5","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}]}
+Sat Apr 5 3:38:13 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:38:13 HKT 2014
+{"players":[{"id":"533f09a9a7a91","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0},{"id":"533f0a2582ed5","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 3:38:15 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"dfg"}
+Sat Apr 5 3:38:15 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"df"}
+Sat Apr 5 3:38:15 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"g"}
+Sat Apr 5 3:38:15 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"dfg"}
+Sat Apr 5 3:38:15 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"df"}
+Sat Apr 5 3:38:16 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"g"}
+Sat Apr 5 3:38:16 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"d"}
+Sat Apr 5 3:38:16 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"fg"}
+Sat Apr 5 3:38:16 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"df"}
+Sat Apr 5 3:38:16 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"g"}
+Sat Apr 5 3:38:18 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"dsf"}
+Sat Apr 5 3:38:19 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"s"}
+Sat Apr 5 3:38:19 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"s"}
+Sat Apr 5 3:38:20 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"s"}
+Sat Apr 5 3:38:20 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"s"}
+Sat Apr 5 3:38:20 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"s"}
+Sat Apr 5 3:38:21 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"s"}
+Sat Apr 5 3:38:21 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"s"}
+Sat Apr 5 3:38:21 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"s"}
+Sat Apr 5 3:38:21 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"s"}
+Sat Apr 5 3:38:22 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"s"}
+Sat Apr 5 3:38:22 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"s"}
+Sat Apr 5 3:38:22 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"s"}
+Sat Apr 5 3:38:22 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"s"}
+Sat Apr 5 3:38:23 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"s"}
+Sat Apr 5 3:38:24 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"e"}
+Sat Apr 5 3:38:25 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"e"}
+Sat Apr 5 3:38:26 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"e"}
+Sat Apr 5 3:38:26 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"e"}
+Sat Apr 5 3:38:34 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"q"}
+Sat Apr 5 3:38:36 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"w"}
+Sat Apr 5 3:38:39 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"q"}
+Sat Apr 5 3:38:42 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"w"}
+Sat Apr 5 3:38:43 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"q"}
+Sat Apr 5 3:38:44 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"q"}
+Sat Apr 5 3:38:47 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"q"}
+Sat Apr 5 3:38:48 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"q"}
+Sat Apr 5 3:38:49 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:38","sendcontent":"q"}
+Sat Apr 5 3:39:48 HKT 2014
+{"act":"roomplayer","players":[{"id":"533f09a9a7a91","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}]}
+Sat Apr 5 3:39:48 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:39:48 HKT 2014
+{"players":[{"id":"533f09a9a7a91","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 3:39:48 HKT 2014
+{"act":"roomplayer","players":[{"id":"533f09a9a7a91","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0},{"id":"533f0a84b4309","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}]}
+Sat Apr 5 3:39:48 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:39:48 HKT 2014
+{"players":[{"id":"533f09a9a7a91","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0},{"id":"533f0a84b4309","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 3:39:56 HKT 2014
+{"act":"roomplayer","players":[{"id":"533f0a84b4309","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}]}
+Sat Apr 5 3:39:56 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:39:56 HKT 2014
+{"players":[{"id":"533f0a84b4309","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 3:39:56 HKT 2014
+{"act":"roomplayer","players":[{"id":"533f0a84b4309","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0},{"id":"533f0a8c785d2","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}]}
+Sat Apr 5 3:39:56 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"36","0":"36","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"34","0":"34","name":"eqweqwe","1":"eqweqwe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 3:39:56 HKT 2014
+{"players":[{"id":"533f0a84b4309","name":"aaa","dname":"aaa1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0},{"id":"533f0a8c785d2","name":"bbb","dname":"bbb1","rid":33,"state":0,"playerno":8,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 3:39:58 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:39","sendcontent":"dsfg"}
+Sat Apr 5 3:39:58 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:39","sendcontent":"df"}
+Sat Apr 5 3:39:59 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:39","sendcontent":"g"}
+Sat Apr 5 3:39:59 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:39","sendcontent":"df"}
+Sat Apr 5 3:39:59 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:39","sendcontent":"g"}
+Sat Apr 5 3:39:59 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:39","sendcontent":"g"}
+Sat Apr 5 3:39:59 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:39","sendcontent":"g"}
+Sat Apr 5 3:39:59 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:39","sendcontent":"g"}
+Sat Apr 5 3:40:00 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"er"}
+Sat Apr 5 3:40:00 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"tert"}
+Sat Apr 5 3:40:01 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ewt"}
+Sat Apr 5 3:40:01 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ert"}
+Sat Apr 5 3:40:02 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"erterty"}
+Sat Apr 5 3:40:02 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ert"}
+Sat Apr 5 3:40:03 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"wert"}
+Sat Apr 5 3:40:03 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ert"}
+Sat Apr 5 3:40:04 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ert"}
+Sat Apr 5 3:40:04 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ert"}
+Sat Apr 5 3:40:04 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"wetewr"}
+Sat Apr 5 3:40:05 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"tewrt"}
+Sat Apr 5 3:40:05 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ert"}
+Sat Apr 5 3:40:05 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ewrt"}
+Sat Apr 5 3:40:06 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"wet"}
+Sat Apr 5 3:40:06 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"erte"}
+Sat Apr 5 3:40:06 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"t"}
+Sat Apr 5 3:40:07 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"eer"}
+Sat Apr 5 3:40:07 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"er"}
+Sat Apr 5 3:40:13 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"df"}
+Sat Apr 5 3:40:13 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"g"}
+Sat Apr 5 3:40:13 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"dfg"}
+Sat Apr 5 3:40:14 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"f"}
+Sat Apr 5 3:40:14 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"df"}
+Sat Apr 5 3:40:14 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"d"}
+Sat Apr 5 3:40:14 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"drr"}
+Sat Apr 5 3:40:15 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"er"}
+Sat Apr 5 3:40:15 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"r"}
+Sat Apr 5 3:40:15 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"er"}
+Sat Apr 5 3:40:16 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ter"}
+Sat Apr 5 3:40:16 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"t"}
+Sat Apr 5 3:40:17 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ert"}
+Sat Apr 5 3:40:17 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"t"}
+Sat Apr 5 3:40:17 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"t"}
+Sat Apr 5 3:40:18 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"r"}
+Sat Apr 5 3:40:18 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"r"}
+Sat Apr 5 3:40:18 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"e"}
+Sat Apr 5 3:40:19 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ert"}
+Sat Apr 5 3:40:19 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ert"}
+Sat Apr 5 3:40:19 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ee"}
+Sat Apr 5 3:40:20 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"tet"}
+Sat Apr 5 3:40:20 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"er"}
+Sat Apr 5 3:40:21 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ert"}
+Sat Apr 5 3:40:21 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ewrt"}
+Sat Apr 5 3:40:21 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"etw"}
+Sat Apr 5 3:40:22 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ert"}
+Sat Apr 5 3:40:22 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ertw"}
+Sat Apr 5 3:40:23 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ert"}
+Sat Apr 5 3:40:23 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"te"}
+Sat Apr 5 3:40:23 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ert"}
+Sat Apr 5 3:40:24 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"eert"}
+Sat Apr 5 3:40:25 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ertr"}
+Sat Apr 5 3:40:25 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"tr"}
+Sat Apr 5 3:40:26 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"r"}
+Sat Apr 5 3:40:26 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"r"}
+Sat Apr 5 3:40:26 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"r"}
+Sat Apr 5 3:40:27 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"r"}
+Sat Apr 5 3:40:27 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"r"}
+Sat Apr 5 3:40:28 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"tert"}
+Sat Apr 5 3:40:28 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ewrt"}
+Sat Apr 5 3:40:28 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"d"}
+Sat Apr 5 3:40:29 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"g"}
+Sat Apr 5 3:40:29 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"gdf"}
+Sat Apr 5 3:40:29 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"g"}
+Sat Apr 5 3:40:29 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"dfg"}
+Sat Apr 5 3:40:30 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"d"}
+Sat Apr 5 3:40:30 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"gd"}
+Sat Apr 5 3:40:30 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"g"}
+Sat Apr 5 3:40:30 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"dfg"}
+Sat Apr 5 3:40:31 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"dfg"}
+Sat Apr 5 3:40:31 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:40","sendcontent":"ewr"}
+Sat Apr 5 3:46:20 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"dfg"}
+Sat Apr 5 3:46:21 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"dfg"}
+Sat Apr 5 3:46:21 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"ert"}
+Sat Apr 5 3:46:35 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"gbfd"}
+Sat Apr 5 3:46:36 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"dfg"}
+Sat Apr 5 3:46:37 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"dfg"}
+Sat Apr 5 3:46:38 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"ert"}
+Sat Apr 5 3:46:39 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"re"}
+Sat Apr 5 3:46:40 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"r"}
+Sat Apr 5 3:46:41 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"r"}
+Sat Apr 5 3:46:42 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"r"}
+Sat Apr 5 3:46:43 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"r"}
+Sat Apr 5 3:46:43 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"r"}
+Sat Apr 5 3:46:43 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"r"}
+Sat Apr 5 3:46:44 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"r"}
+Sat Apr 5 3:46:44 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"r"}
+Sat Apr 5 3:46:44 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"r"}
+Sat Apr 5 3:46:45 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"r"}
+Sat Apr 5 3:46:45 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"e"}
+Sat Apr 5 3:46:46 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"reert"}
+Sat Apr 5 3:46:46 HKT 2014
+{"act":"chatroommsg","uname":"aaa1","dname":"aaa1","stime":"03:46","sendcontent":"ert"}

@@ -43,7 +43,7 @@ if($uid || isset($_SESSION['uid'])){
 <div class="three_col">
         <div class="left">
             <div class="left_header">
-            <?=$_SESSION['name'];?>
+            Profile
             </div>
             <div class="left_content">
 <?php
@@ -51,7 +51,8 @@ if($uid || isset($_SESSION['uid'])){
 	$userinfo=$user->userinfo($_SESSION['uid']);
 ?>
             <ul>
-                <li class="avatar"><img id="toavatar" src="./data/<?=$toname;?>.png"></li>
+                <li class="avatar"><img id="toavatar" src="./data/<?=$toname;?>.png"><br/><br/>
+                        <b><?=$_SESSION['dname'];?></b></li>
                 <li>You are in:<b id="p_stop"></b></li>
                 <li>Money:<b id="p_money"><?=$settings['start_money']?></b></li>
 						<li><button id="dicebutton" onclick="pDice()" class="function_button orangebg"><i class="fa fa-envelope"></i> Dice</button></li>
@@ -484,7 +485,8 @@ function cDice(){
 
 //finish this round
 function finishRound() {
-	if(movable == 0 && payrent==1 && readyToFinish == 1){
+	if(movable == 0 && payrent==1){
+        readyToFinish = 1;
 		var msg = {};
 		msg.rid = <?=$_GET['rid'];?>;
 		msg.act = "finishround";
@@ -518,7 +520,6 @@ function pDice(){
 		msg.playerno=myPlayerNo;
 		socket.send(JSON.stringify(msg));
 		movable = 0;
-		readyToFinish = 1;
 		$('#dicebutton').prop('disabled', true);
 		$('.ingamepopup').hide();
 	}else{
@@ -588,6 +589,7 @@ if(isset($_SESSION['name'])){
 						msg.act = "sendmsg";
 						msg.rid = <?=$_GET['rid'];?>;
 						msg.uname = '<?= $_SESSION['name'];?>';
+                        msg.dname = '<?= $_SESSION['dname'];?>';
 						msg.sendcontent=$('#send_content').val();
 						socket.send(JSON.stringify(msg));
 						$('#send_content').val('');
@@ -620,7 +622,7 @@ if(isset($_SESSION['name'])){
 				$(function(){
 						window.setInterval(function() {
 							var timeCounter = $("b[id=show-time]").html();
-							if(!readyToFinish && movable){
+							if(readyToFinish == 0){
 								var updateTime = eval(timeCounter)- eval(1);
 							}
 							$("b[id=show-time]").html(updateTime);
@@ -681,6 +683,7 @@ if(isset($_SESSION['name'])){
 					var msg = {};
 					msg.act = "getplayerno";
 					msg.uname = '<?= $_SESSION['name'];?>';
+                    msg.dname = '<?= $_SESSION['dname'];?>';
 					msg.rid = <?=$_GET['rid'];?>;
 					socket.send(JSON.stringify(msg));
 				};
@@ -704,7 +707,7 @@ if(isset($_SESSION['name'])){
 							if(tempplayer['playerno'] != myPlayerNo){
 								$('.room_players_other_indiv:eq('+tempplayerno+')').html('');
 								$('.room_players_other_indiv:eq('+tempplayerno+')').addClass(''+tempplayer["playerno"]+'');
-								$('.room_players_other_indiv:eq('+tempplayerno+')').html('<img src="./data/'+tempplayer['name']+'.png">'+tempplayer['name']+'<br />Money: <b class="opmoney">'+tempplayer['money']+'</b> <button value="'+ tempplayer['playerno'] +'"class="checkprop">Property</button>');
+								$('.room_players_other_indiv:eq('+tempplayerno+')').html('<img src="./data/'+tempplayer['name']+'.png">'+tempplayer['dname']+'<br />Money: <b class="opmoney">'+tempplayer['money']+'</b> <button value="'+ tempplayer['playerno'] +'"class="checkprop">Property</button>');
 								tempplayerno++;
 							}
 						}
