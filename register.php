@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/new.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -70,7 +71,8 @@
                     Registration
                 </div>
                 <h1 class="title">Monopoly</h1>
-                Confirming: <?php echo $adata['displayName']; ?>
+                Confirming: <?php echo $adata['displayName']; ?><br/>
+                Your Login ID: <b class="registerPromptLoginID"><?php echo $adata['name']; ?></b>
                 <form id="reg-form" name="input" action="register.php" method="post">
                   <input type="hidden" name="authentication" value="<?= $_GET['authentication'] ?>">
                   <input type="password" id="password" name="password" placeholder="Password"><br />
@@ -154,6 +156,7 @@ if(isset($_POST['authentication'])){
     $result = $newuser->postRegister($_POST['authentication'], $_POST['password']);
     if($result){
         $msg = "Successful Confirmation";
+        $submsg = "Facebook users: You may login via Facebook Login Button or E-mail Address + Password.";
     }else{
         $msg = "Error occurs";
     }
@@ -173,7 +176,7 @@ if(isset($_POST['authentication'])){
         }else{
             $fbId = NULL;
         }
-        if($newuser->preRegister($_POST['username'],$_POST['email'],$_POST['birthdate'],$_POST['phone'],$_POST['mobile'],$_POST['personalDesc'], $refer, $fbId, $_POST['displayname'])){
+        if($newuser->preRegister($_POST['username'],$_POST['email'],$_POST['birthdate'],$_POST['phone'],$_POST['mobile'],$_POST['personalDesc'], $refer, $fbId, $_POST['displayname'], true)){
             $msg= "Registration successful";
             $submsg = "Please check your mailbox for further instruction.";
         }else{

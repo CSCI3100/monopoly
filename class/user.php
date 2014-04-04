@@ -163,7 +163,7 @@ class User{
 		}
 	}
 
-	public function preRegister($username, $email, $dob, $phone, $mphone, $pDesc, $referLink, $fbId, $displayname){
+	public function preRegister($username, $email, $dob, $phone, $mphone, $pDesc, $referLink, $fbId, $displayname, $sendEmail){
 		//$password   = sha1($password);
 		$query 	= $this->db->prepare("SELECT * FROM authentication WHERE aid = ?");
 		$query->bindValue(1, hash("sha256", $username));
@@ -205,7 +205,7 @@ class User{
 		    $header .= "Organization: Team Monopoly\r\n"; 
 		    $header .= "Content-Type: text/plain\r\n"; 
 
-		    mail("$email", "$subject", "$body", $header);
+		    if($sendEmail) mail("$email", "$subject", "$body", $header);
 		    return true;
 		}catch(PDOException $e){
 			die($e->getMessage());

@@ -1,26 +1,26 @@
-Sat Apr 5 0:51:10 HKT 2014
-{"act":"initinfo","players":[{"id":"533ee2feb7a32","name":"aaa","dname":null,"rid":35,"state":0,"playerno":1,"money":1500,"offset":0}]}
-Sat Apr 5 0:51:12 HKT 2014
-{"act":"initinfo","players":[{"id":"533ee2feb7a32","name":"aaa","dname":null,"rid":35,"state":0,"playerno":1,"money":1500,"offset":0},{"id":"533ee300d0095","name":"bbb","dname":null,"rid":35,"state":0,"playerno":2,"money":1500,"offset":0}]}
-Sat Apr 5 0:51:15 HKT 2014
-{"act":"transfer","uname":"aaa","offset":20,"money":1500,"playerno":1}
-Sat Apr 5 0:51:15 HKT 2014
-{"playerno":1,"act":"recordstopno","marker":20,"bname":"Shaw College","money":1,"img":"shaw.png"}
-Sat Apr 5 0:51:16 HKT 2014
-{"act":"notice","playerno":1,"money":1499,"sendcontent":"aaa has purchased Shaw College","bought":1}
-Sat Apr 5 0:51:23 HKT 2014
-{"act":"transfer","uname":"bbb","offset":20,"money":1500,"playerno":2}
-Sat Apr 5 0:51:24 HKT 2014
-{"playerno":2,"otherplayerno":1,"othermoney":1514,"act":"payrentsucceed","money":1485}
-Sat Apr 5 0:51:29 HKT 2014
-{"act":"transfer","uname":"bbb","offset":40,"money":1485,"playerno":2}
-Sat Apr 5 0:51:29 HKT 2014
-{"act":"notice","playerno":2,"money":1685}
-Sat Apr 5 0:51:29 HKT 2014
-{"playerno":2,"act":"recordstopno","marker":13,"bname":"NA Tower","money":1,"img":"natower.png"}
-Sat Apr 5 0:51:30 HKT 2014
-{"act":"notice","playerno":2,"money":1684,"sendcontent":"bbb has purchased NA Tower","bought":1}
-Sat Apr 5 0:51:36 HKT 2014
-{"act":"transfer","uname":"aaa","offset":40,"money":1514,"playerno":1}
-Sat Apr 5 0:51:36 HKT 2014
-{"act":"notice","playerno":1,"money":1714}
+Sat Apr 5 1:31:05 HKT 2014
+{"act":"initinfo","players":[{"id":"533eec5925693","name":"","dname":null,"rid":38,"state":0,"playerno":1,"money":1500,"offset":0}]}
+Sat Apr 5 1:31:06 HKT 2014
+{"act":"roomlist","roomlist":[{"rid":"31","0":"31","name":"qq","1":"qq","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"2","3":"2"},{"rid":"28","0":"28","name":"qeqeqe","1":"qeqeqe","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"24","0":"24","name":"12345","1":"12345","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"},{"rid":"4","0":"4","name":"fdgdfg","1":"fdgdfg","password":"da39a3ee5e6b4b0d3255bfef95601890afd80709","2":"da39a3ee5e6b4b0d3255bfef95601890afd80709","playercount":"3","3":"3"}]}
+Sat Apr 5 1:31:06 HKT 2014
+{"players":[],"act":"userinfo"}
+Sat Apr 5 1:31:41 HKT 2014
+{"players":[{"id":"533eec7d984c6","name":"zero_ykk@yahoo.com.hk","dname":"Kevin bb","rid":0,"state":0,"playerno":null,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 1:31:58 HKT 2014
+{"players":[],"act":"userinfo"}
+Sat Apr 5 1:31:58 HKT 2014
+{"players":[{"id":"533eec8ec147c","name":"zero_ykk@yahoo.com.hk","dname":"Kevin","rid":0,"state":0,"playerno":null,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 1:48:02 HKT 2014
+{"players":[],"act":"userinfo"}
+Sat Apr 5 1:48:03 HKT 2014
+{"players":[{"id":"533ef052c659e","name":"zero_ykk@yahoo.com.hk","dname":"Kevin","rid":0,"state":0,"playerno":null,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 2:00:49 HKT 2014
+{"players":[],"act":"userinfo"}
+Sat Apr 5 2:00:50 HKT 2014
+{"players":[{"id":"533ef35252685","name":"zero_ykk@yahoo.com.hk","dname":"Kevin","rid":0,"state":0,"playerno":null,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 2:01:25 HKT 2014
+{"players":[],"act":"userinfo"}
+Sat Apr 5 2:01:25 HKT 2014
+{"players":[{"id":"533ef375b6ce8","name":"zero_ykk@yahoo.com.hk","dname":"Kevin","rid":0,"state":0,"playerno":null,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 2:22:29 HKT 2014
+{"players":[{"id":"533ef375b6ce8","name":"zero_ykk@yahoo.com.hk","dname":"Kevin","rid":0,"state":0,"playerno":null,"money":1500,"offset":0},{"id":"533ef864d3471","name":"vodaben@b5.hk","dname":"Benjamin The Son","rid":0,"state":0,"playerno":null,"money":1500,"offset":0}],"act":"userinfo"}

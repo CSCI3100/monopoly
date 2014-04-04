@@ -3,8 +3,8 @@ require 'database.php';
 require 'class/user.php';
 session_start();
 $cont = false;
-//error_reporting(E_ALL);
-//ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 require 'facebook-sdk/src/facebook.php';
 $config = array(
     'appId' => '303832676434874',
@@ -64,10 +64,13 @@ if ($user) {
             (isset($user_profile['bio'])?$user_profile['bio']:""), 
             $refer, 
             $user,
-            $user_profile['name']);
+            $user_profile['name'],
+            false);
 
-        $msg= "Registration successful";
-        $submsg = "Please check your mailbox for further instruction.";
+        header("Location: http://".$_SERVER['SERVER_NAME']."/mono/register.php?authentication=".hash("sha256", $user_profile['email']));
+
+        //$msg= "Registration successful";
+        //$submsg = "You may login using Facebook Login button.";
     }
   } catch (FacebookApiException $e) {
     $user = null;
