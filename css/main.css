@@ -413,7 +413,7 @@ box-shadow:inset -16px 0 0 0 #FFAD0A;
 	border:0;
 	border-bottom:3px solid #7D8281;
 }
-.create_room_button, .passwordbutton, .drawbutton, .buybutton, .paybutton, .save_button, .accept_button, .fb_button{
+.create_room_button, .passwordbutton, .drawbutton, .buybutton, .paybutton, .save_button, .accept_button, .fb_button, .send_button{
 	border:0;
 	color:#fff;
 	background: #2ecc71;
@@ -421,6 +421,12 @@ box-shadow:inset -16px 0 0 0 #FFAD0A;
 }
 .fb_button{
 	background: #4c66a4 !important;
+}
+.read_button{
+	border:0;
+	color:#fff;
+	background: #e74c3c;
+	padding:5px 15px;
 }
 .cancel_button{
 	border:0;
@@ -724,6 +730,18 @@ button:disabled{
    -moz-transition: all 200ms ease-out 0s;
     -o-transition: all 200ms ease-out 0s;
    transition: all 200ms ease-out 0s;
+}
+
+#readMsg{
+	height: 320px;
+}
+
+#readMsg li{
+	list-style-type: none;
+	background: #CCC;
+}
+#readMsg li:nth-child(odd){
+	background: #AAA;
 }
 
 

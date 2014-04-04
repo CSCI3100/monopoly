@@ -120,7 +120,7 @@
                 <li>Lose:<?=$userinfo['money']?></li>
                 <li>Money:<?=$userinfo['money']?></li>
                 <li><button class="function_button magentabg" id="invite"><i class="fa fa-user"></i> Invite</button></li>
-                <li><button class="function_button orangebg"><i class="fa fa-envelope"></i> Message</button></li>
+                <li><button class="function_button orangebg" id="message"><i class="fa fa-envelope"></i> Message</button></li>
                 <li><button class="function_button brownbg" id="item"><i class="fa fa-medkit"></i> Item</button></li>
                 <li><button class="function_button redbg" id="shop"><i class="fa fa-shopping-cart"></i> Shop</button></li>
                 <li><button class="function_button bluebg" id="rechargeBtn"><i class="fa fa-btc"></i> Recharge</button></a></li>
@@ -256,6 +256,24 @@
 		<button class="cancel_button">Cancel</button>
     	</div>
     </div>
+
+    <div class="changeavatar" id="messagePopup">
+        <div class="passwordroom_header">
+        Message
+        </div>
+        <br/>
+        <button class="send_button">Send Message</button>
+        <button class="read_button">Read Message</button>
+        <br/><br/>
+        <div id="sendMsg"  class="changeprofile">
+            <input type="text" id="toUser" placeholder="Enter the login name you want to send a message"><br/>
+            <textarea id="msgText" placeholder="Enter your message"></textarea><br/>
+            <button class="send_button" id="send">Send Message</button>
+        </div>
+        <div id="readMsg"  class="changeprofile">
+        </div>
+        <button class="cancel_button">Cancel</button>
+    </div>
 	
     <div class="changeavatar" id="profile">
         <div class="changeavatar_header">
@@ -264,6 +282,7 @@
         <form action="#" class="changeprofile">
 			<script type="text/javascript">
 	    		$(document).ready(function(){
+                    $('#messagePopup').hide();
                     $('#changePasswd').hide();
                     $('#changePassword').click(function(){
                         $('#profileEdit').hide();
@@ -559,6 +578,7 @@ if(isset($_SESSION['name'])){
 					}
                     return false;
 				});
+                $('#readMsg').hide();
 <?php
 }
 ?>
@@ -609,6 +629,7 @@ if(isset($_SESSION['name'])){
                     $('#shopPopup').hide();
                     $('.changeavatar').hide();
                     $('.beinvited').hide();
+                    $('#messagePopup').hide();
                     return false;
                 });
                 $('.pageno').click(function(){
@@ -660,6 +681,74 @@ if(isset($_SESSION['name'])){
                         $('#itemPopup').hide();
                     });
                     return false;
+                });
+                $('#message').click(function(){
+                    $('#messagePopup').show();
+                    $('.cancel_button').click(function(){
+                        $('#messagePopup').hide();
+                    });
+                    return false;
+                });
+                $('.send_button').click(function(){
+                    $('#readMsg').hide();
+                    $('#sendMsg').show();
+                    return false;
+                });
+                $('.read_button').click(function(){
+                    $('#sendMsg').hide();
+                    $('#readMsg').html("");
+                    $.ajax({
+                        url: 'ajax.php',
+                        type: 'POST',
+                        data: 'function=readMsg',
+                        success: function(response){
+                            //alert(response);
+                            var data = $.parseJSON(response);
+                            //for(data in d){
+                            //    $('#readMsg').append('<li>From '+d['sender']+' @ '+d['timestamp']+'</li>');
+                            //}
+                            if(data.length == 0){
+                                $('#readMsg').append("You don't have any message!");
+                            }
+                            data.forEach(function(d){
+                                var text = '';
+                                if(d['r'] == '0') text += '<i class="fa fa-tag"></i>';
+                                $('#readMsg').append('<li><a href="#" class="msgLink" value="'+d['id']+'">'+text+'From '+d['sender']+' @ '+d['timestamp']+'</a></li>');
+                            });
+                        }
+                    });
+                    $('#readMsg').show();
+                    return false;
+                });
+                $(document.body).on( "click", '.msgLink', function() {
+                    var id = $(this).attr('value');
+                    $.ajax({
+                        url: 'ajax.php',
+                        type: 'POST',
+                        data: 'function=showMsg&id='+id,
+                        success: function(response){
+                            var data = $.parseJSON(response);
+                            $('#readMsg').html("");
+                            $('#readMsg').append("<p>Message from <b>"+data['sender']+"</b></p>");
+                            $('#readMsg').append("<p>"+data['msg']+"</p>");
+                            $('#readMsg').append("<p>On "+data['timestamp']+"</p>");
+                        }
+                    });
+                });
+                $('#send').click(function(){
+                    var to = $('#toUser').val();
+                    var msg = $('#msgText').val();
+                    $.ajax({
+                        url: 'ajax.php',
+                        type: 'POST',
+                        data: 'function=sendMsg&to='+to+'&msg='+msg,
+                        success: function(response){
+                            alert(response);
+                        }
+                    });
+                    $('#toUser').val("");
+                    $('#msgText').val("");
+                    $('.cancel_button').click();
                 });
                 $('#invite').click(function(){
                     $('#invitePopup').show();
