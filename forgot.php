@@ -64,7 +64,7 @@ require 'class/user.php';
             Forgot Password
         </div>
 <?php
-if($_POST['username']){
+if(isset($_POST['username'])){
 	$forgot = new User($db);
 	$userinfo = $forgot->userinfoByName($_POST['username']);
 	if($userinfo){

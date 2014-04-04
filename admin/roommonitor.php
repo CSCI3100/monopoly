@@ -69,15 +69,14 @@ $room = new Room($db);
     </div>
 </div>
 </body>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 <script>
 var host;
 var socket;
 $(document).ready(function(){
     SetupWebSocket();
-    var myVar=setInterval(function(){sendmonitor()},1000);
+    var keepMonitor=setInterval(function(){sendmonitor()},1000); //Update the information for every second
 });
 function sendmonitor(){
     var msg = {};
@@ -98,7 +97,7 @@ function SetupWebSocket(){
             var retData=$.parseJSON(e.data);
             console.log(retData);
             if(retData['act'] == "updateplayers"){
-                var i =0;
+                var i = 0;
                 for(i = 0;i < retData['players'].length; i++){
                     $('.admin_panel_player:eq('+i+')').html(retData['players'][i]['name']+'<br /><img src="../data/'+retData['players'][i]['name']+'.png"><br />Money:$'+retData['players'][i]['money']);
                 }

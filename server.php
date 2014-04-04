@@ -179,14 +179,14 @@ while(true)
 					}
 					//console(var_dump($room_player));
 					$send_packet=array();
-					$send_packet["act"]="roomplayer";
-					$send_packet["players"]=$room_player;
+					$send_packet["act"] = "roomplayer";
+					$send_packet["players"] = $room_player;
 					//console(json_encode($send_packet));
 					room_msg($val['rid'],json_encode($send_packet));
 					//console(var_dump($room_player));
 					$send_packet=array();//another packet for all users
-					$send_packet["act"]="roomlist";
-					$send_packet["roomlist"]=$room->getroomlist(1);
+					$send_packet["act"] = "roomlist";
+					$send_packet["roomlist"] = $room->getroomlist(1);
 					global_msg(json_encode($send_packet));
 					console("GET THE PLAYER LIST");
 					update_player_list();
@@ -205,7 +205,9 @@ while(true)
                         $room_player = array();
                         foreach ($users as $u) { //retrieve a list of player in the room
                             if($u->rid == $val['rid']){
-                                $checktotal++;
+                            	if($u->state>0){
+                                	$checktotal++;
+                            	}
                                 $tempuser = new tempUser($u);
                                 array_push($room_player,$tempuser);
                                 $tempuser = NULL;
