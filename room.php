@@ -41,6 +41,9 @@ if($uid || isset($_SESSION['uid'])){
 	}
 ?>
 <body onload="new uploader('drop', 'status', 'uploader.php', 'list', '<?php echo $toname;?>');">
+<audio id="fbsound">
+    <source src="fb.mp3" type="audio/mpeg">
+</audio>
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
 				<path id="loading-12-icon" d="M291,82.219c0,16.568-13.432,30-30,30s-30-13.432-30-30s13.432-30,30-30S291,65.65,291,82.219z
@@ -185,7 +188,8 @@ $msg="Incorrect password";
                     var msg = {};
                     msg.act = "sendmsg";
                     msg.rid = <?=$_GET['rid'];?>; //global message
-                                                    msg.uname = '<?= $_SESSION['name'];?>';
+                    msg.uname = '<?= $_SESSION['name'];?>';
+                    msg.dname = '<?= $_SESSION['dname'];?>';
                     msg.sendcontent=$('#send_content').val();
                     socket.send(JSON.stringify(msg));
                     $('#send_content').val('');
@@ -264,6 +268,10 @@ $msg="Incorrect password";
                         window.location.href = './play.php?rid='+playerinfo["rid"];
                     }
                 }else if(retData["act"]=="chatroommsg"){
+                    if(retData["uname"] != '<?= $_SESSION['dname'];?>'){
+                        document.getElementById("fbsound").currentTime = 0;
+                        document.getElementById("fbsound").play();
+                    }
                     $('.chat_box').append(retData["uname"]+" : "+retData["sendcontent"]+" ["+retData["stime"]+"]<br />");
                     $('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
                 }else if(retData["act"] == "userinfo"){

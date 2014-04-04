@@ -268,7 +268,7 @@ while(true)
 					console(var_dump($val));
 					$send_packet = array();
 					$send_packet["act"] = "chatroommsg";
-					$send_packet["uname"] = $val['uname'];
+					$send_packet["uname"] = $val['dname']; //be carefull!!!!
 					$send_packet["dname"] = $val['dname'];
 					$send_packet["stime"] = date('H:i');
 					$send_packet["sendcontent"] = htmlspecialchars($val['sendcontent']);
@@ -302,6 +302,7 @@ while(true)
 					case "getplayerno":
 					$user->rid = $val['rid'];
 					$user->name = $val['uname'];
+					$user->dname = $val['dname'];
 					$boolfindroom=0;
 					foreach($playroom as $pr){ //finding the corresponding room
 						if($pr->rid == $val['rid']){
