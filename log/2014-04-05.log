@@ -1,26 +1,264 @@
-Sat Apr 5 0:51:10 HKT 2014
-{"act":"initinfo","players":[{"id":"533ee2feb7a32","name":"aaa","dname":null,"rid":35,"state":0,"playerno":1,"money":1500,"offset":0}]}
-Sat Apr 5 0:51:12 HKT 2014
-{"act":"initinfo","players":[{"id":"533ee2feb7a32","name":"aaa","dname":null,"rid":35,"state":0,"playerno":1,"money":1500,"offset":0},{"id":"533ee300d0095","name":"bbb","dname":null,"rid":35,"state":0,"playerno":2,"money":1500,"offset":0}]}
-Sat Apr 5 0:51:15 HKT 2014
-{"act":"transfer","uname":"aaa","offset":20,"money":1500,"playerno":1}
-Sat Apr 5 0:51:15 HKT 2014
+Sat Apr 5 2:23:34 HKT 2014
+{"players":[{"id":"533ef8a6c5c37","name":"aaa","dname":"aaa1","rid":0,"state":0,"playerno":null,"money":1500,"offset":0}],"act":"userinfo"}
+Sat Apr 5 2:23:38 HKT 2014
+{"players":[],"act":"userinfo"}
+Sat Apr 5 2:23:38 HKT 2014
+{"act":"initinfo","players":[{"id":"533ef8aa70e85","name":"aaa","dname":null,"rid":35,"state":0,"playerno":1,"money":1500,"offset":0}]}
+Sat Apr 5 2:23:40 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1,"money":1500,"playerno":1}
+Sat Apr 5 2:23:42 HKT 2014
+{"act":"transfer","uname":"aaa","offset":21,"money":1500,"playerno":1}
+Sat Apr 5 2:23:43 HKT 2014
+{"act":"transfer","uname":"aaa","offset":41,"money":1500,"playerno":1}
+Sat Apr 5 2:23:43 HKT 2014
+{"act":"notice","playerno":1,"money":1700}
+Sat Apr 5 2:23:44 HKT 2014
+{"act":"transfer","uname":"aaa","offset":61,"money":1700,"playerno":1}
+Sat Apr 5 2:23:44 HKT 2014
+{"act":"notice","playerno":1,"money":1900}
+Sat Apr 5 2:23:45 HKT 2014
+{"act":"transfer","uname":"aaa","offset":81,"money":1900,"playerno":1}
+Sat Apr 5 2:23:45 HKT 2014
+{"act":"notice","playerno":1,"money":2100}
+Sat Apr 5 2:23:45 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":0,"bname":"University Station","money":2000,"img":"station.png"}
+Sat Apr 5 2:23:45 HKT 2014
+{"act":"transfer","uname":"aaa","offset":101,"money":2100,"playerno":1}
+Sat Apr 5 2:23:45 HKT 2014
 {"playerno":1,"act":"recordstopno","marker":20,"bname":"Shaw College","money":1,"img":"shaw.png"}
-Sat Apr 5 0:51:16 HKT 2014
-{"act":"notice","playerno":1,"money":1499,"sendcontent":"aaa has purchased Shaw College","bought":1}
-Sat Apr 5 0:51:23 HKT 2014
-{"act":"transfer","uname":"bbb","offset":20,"money":1500,"playerno":2}
-Sat Apr 5 0:51:24 HKT 2014
-{"playerno":2,"otherplayerno":1,"othermoney":1514,"act":"payrentsucceed","money":1485}
-Sat Apr 5 0:51:29 HKT 2014
-{"act":"transfer","uname":"bbb","offset":40,"money":1485,"playerno":2}
-Sat Apr 5 0:51:29 HKT 2014
-{"act":"notice","playerno":2,"money":1685}
-Sat Apr 5 0:51:29 HKT 2014
-{"playerno":2,"act":"recordstopno","marker":13,"bname":"NA Tower","money":1,"img":"natower.png"}
-Sat Apr 5 0:51:30 HKT 2014
-{"act":"notice","playerno":2,"money":1684,"sendcontent":"bbb has purchased NA Tower","bought":1}
-Sat Apr 5 0:51:36 HKT 2014
-{"act":"transfer","uname":"aaa","offset":40,"money":1514,"playerno":1}
-Sat Apr 5 0:51:36 HKT 2014
-{"act":"notice","playerno":1,"money":1714}
+Sat Apr 5 2:23:45 HKT 2014
+{"act":"transfer","uname":"aaa","offset":121,"money":2100,"playerno":1}
+Sat Apr 5 2:23:45 HKT 2014
+{"act":"notice","playerno":1,"money":2300}
+Sat Apr 5 2:23:45 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":13,"bname":"NA Tower","money":1,"img":"natower.png"}
+Sat Apr 5 2:23:45 HKT 2014
+{"act":"transfer","uname":"aaa","offset":141,"money":2300,"playerno":1}
+Sat Apr 5 2:23:45 HKT 2014
+{"act":"notice","playerno":1,"money":2500}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"transfer","uname":"aaa","offset":161,"money":2500,"playerno":1}
+Sat Apr 5 2:23:46 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":26,"bname":"YIA","money":10000,"img":"yia.png"}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"transfer","uname":"aaa","offset":181,"money":2500,"playerno":1}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"notice","playerno":1,"money":2700}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"transfer","uname":"aaa","offset":201,"money":2700,"playerno":1}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"notice","playerno":1,"money":2900}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"transfer","uname":"aaa","offset":221,"money":2900,"playerno":1}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"notice","playerno":1,"money":3100}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"transfer","uname":"aaa","offset":241,"money":3100,"playerno":1}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"transfer","uname":"aaa","offset":261,"money":3100,"playerno":1}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"notice","playerno":1,"money":3300}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"transfer","uname":"aaa","offset":281,"money":3300,"playerno":1}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"notice","playerno":1,"money":3500}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"transfer","uname":"aaa","offset":301,"money":3500,"playerno":1}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"notice","playerno":1,"money":3700}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"transfer","uname":"aaa","offset":321,"money":3700,"playerno":1}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"transfer","uname":"aaa","offset":341,"money":3700,"playerno":1}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"notice","playerno":1,"money":3900}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"transfer","uname":"aaa","offset":361,"money":3900,"playerno":1}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"notice","playerno":1,"money":4100}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"transfer","uname":"aaa","offset":381,"money":4100,"playerno":1}
+Sat Apr 5 2:23:46 HKT 2014
+{"act":"notice","playerno":1,"money":4300}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"transfer","uname":"aaa","offset":401,"money":4300,"playerno":1}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"transfer","uname":"aaa","offset":421,"money":4300,"playerno":1}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"notice","playerno":1,"money":4500}
+Sat Apr 5 2:23:47 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":16,"bname":"UC BALL","money":1,"img":"ucball.png"}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"transfer","uname":"aaa","offset":441,"money":4500,"playerno":1}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"notice","playerno":1,"money":4700}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"transfer","uname":"aaa","offset":461,"money":4700,"playerno":1}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"notice","playerno":1,"money":4900}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"transfer","uname":"aaa","offset":481,"money":4900,"playerno":1}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"transfer","uname":"aaa","offset":501,"money":4900,"playerno":1}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"notice","playerno":1,"money":5100}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"transfer","uname":"aaa","offset":521,"money":5100,"playerno":1}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"notice","playerno":1,"money":5300}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"transfer","uname":"aaa","offset":541,"money":5300,"playerno":1}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"notice","playerno":1,"money":5500}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"transfer","uname":"aaa","offset":561,"money":5500,"playerno":1}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"transfer","uname":"aaa","offset":581,"money":5500,"playerno":1}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"notice","playerno":1,"money":5700}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"transfer","uname":"aaa","offset":601,"money":5700,"playerno":1}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"notice","playerno":1,"money":5900}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"transfer","uname":"aaa","offset":621,"money":5900,"playerno":1}
+Sat Apr 5 2:23:47 HKT 2014
+{"act":"notice","playerno":1,"money":6100}
+Sat Apr 5 2:23:47 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":0,"bname":"University Station","money":2000,"img":"station.png"}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"transfer","uname":"aaa","offset":641,"money":6100,"playerno":1}
+Sat Apr 5 2:23:48 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":20,"bname":"Shaw College","money":1,"img":"shaw.png"}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"transfer","uname":"aaa","offset":661,"money":6100,"playerno":1}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"notice","playerno":1,"money":6300}
+Sat Apr 5 2:23:48 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":13,"bname":"NA Tower","money":1,"img":"natower.png"}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"transfer","uname":"aaa","offset":681,"money":6300,"playerno":1}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"notice","playerno":1,"money":6500}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"transfer","uname":"aaa","offset":701,"money":6500,"playerno":1}
+Sat Apr 5 2:23:48 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":26,"bname":"YIA","money":10000,"img":"yia.png"}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"transfer","uname":"aaa","offset":721,"money":6500,"playerno":1}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"notice","playerno":1,"money":6700}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"transfer","uname":"aaa","offset":741,"money":6700,"playerno":1}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"notice","playerno":1,"money":6900}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"transfer","uname":"aaa","offset":761,"money":6900,"playerno":1}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"notice","playerno":1,"money":7100}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"transfer","uname":"aaa","offset":781,"money":7100,"playerno":1}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"transfer","uname":"aaa","offset":801,"money":7100,"playerno":1}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"notice","playerno":1,"money":7300}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"transfer","uname":"aaa","offset":821,"money":7300,"playerno":1}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"notice","playerno":1,"money":7500}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"transfer","uname":"aaa","offset":841,"money":7500,"playerno":1}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"notice","playerno":1,"money":7700}
+Sat Apr 5 2:23:48 HKT 2014
+{"act":"transfer","uname":"aaa","offset":861,"money":7700,"playerno":1}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"transfer","uname":"aaa","offset":881,"money":7700,"playerno":1}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"notice","playerno":1,"money":7900}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"transfer","uname":"aaa","offset":901,"money":7900,"playerno":1}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"notice","playerno":1,"money":8100}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"transfer","uname":"aaa","offset":921,"money":8100,"playerno":1}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"notice","playerno":1,"money":8300}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"transfer","uname":"aaa","offset":941,"money":8300,"playerno":1}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"transfer","uname":"aaa","offset":961,"money":8300,"playerno":1}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"notice","playerno":1,"money":8500}
+Sat Apr 5 2:23:49 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":16,"bname":"UC BALL","money":1,"img":"ucball.png"}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"transfer","uname":"aaa","offset":981,"money":8500,"playerno":1}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"notice","playerno":1,"money":8700}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1001,"money":8700,"playerno":1}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"notice","playerno":1,"money":8900}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1021,"money":8900,"playerno":1}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1041,"money":8900,"playerno":1}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"notice","playerno":1,"money":9100}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1061,"money":9100,"playerno":1}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"notice","playerno":1,"money":9300}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1081,"money":9300,"playerno":1}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"notice","playerno":1,"money":9500}
+Sat Apr 5 2:23:49 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1101,"money":9500,"playerno":1}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1121,"money":9500,"playerno":1}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"notice","playerno":1,"money":9700}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1141,"money":9700,"playerno":1}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"notice","playerno":1,"money":9900}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1161,"money":9900,"playerno":1}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"notice","playerno":1,"money":10100}
+Sat Apr 5 2:23:50 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":0,"bname":"University Station","money":2000,"img":"station.png"}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1181,"money":10100,"playerno":1}
+Sat Apr 5 2:23:50 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":20,"bname":"Shaw College","money":1,"img":"shaw.png"}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1201,"money":10100,"playerno":1}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"notice","playerno":1,"money":10300}
+Sat Apr 5 2:23:50 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":13,"bname":"NA Tower","money":1,"img":"natower.png"}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1221,"money":10300,"playerno":1}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"notice","playerno":1,"money":10500}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1241,"money":10500,"playerno":1}
+Sat Apr 5 2:23:50 HKT 2014
+{"playerno":1,"act":"recordstopno","marker":26,"bname":"YIA","money":10000,"img":"yia.png"}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1261,"money":10500,"playerno":1}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"notice","playerno":1,"money":10700}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1281,"money":10700,"playerno":1}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"notice","playerno":1,"money":10900}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"transfer","uname":"aaa","offset":1301,"money":10900,"playerno":1}
+Sat Apr 5 2:23:50 HKT 2014
+{"act":"notice","playerno":1,"money":11100}
+Sat Apr 5 2:23:55 HKT 2014
+{"act":"nextmovable","nextplayerno":2}

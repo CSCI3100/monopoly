@@ -238,23 +238,23 @@ var readyToFinish;
 var myPlayerNo;
 var MY_MAPTYPE_ID = 'custom_style';
 var gameStopName = new Array();
-gameStopName[0]="Train Station";
-gameStopName[1]="Chung Chi Admin";//CC admin
-gameStopName[2]="Wong Fok Yuen";//王褔元
-gameStopName[3]=6;//陳國本
+gameStopName[0]="University Station";
+gameStopName[1]="Chung Chi Administration Building";//CC admin
+gameStopName[2]="Wong Fok Yuen Building";//王褔元
+gameStopName[3]="Chen Kou Bun Building";//陳國本
 gameStopName[4]="Sino building";//信和
 gameStopName[5]="CC staff hostel";//CC staff hostel
-gameStopName[6]="MMW";//new eng build
-gameStopName[7]="????";//教研樓
+gameStopName[6]="MMW Engineering Building";//new eng build
+gameStopName[7]="Academic Builidng";//教研樓
 gameStopName[8]="HSB";//HSB
 gameStopName[9]="Shaw Science building";//逸夫科學
-gameStopName[10]="BMSB";//BMSB
-gameStopName[11]="Sir Run Run";//sir run run
-gameStopName[12]="Pi Chu building"; //pi chu
+gameStopName[10]="Science Centre";//BMSB
+gameStopName[11]="Sir Run Run Shaw Hall";//sir run run
+gameStopName[12]="Pi Chiu Building"; //pi chu
 gameStopName[13]="NA College"; //NA tower
-gameStopName[14]=33;
-gameStopName[15]=36;
-gameStopName[16]=38;
+gameStopName[14]="Cheng Ming College";
+gameStopName[15]="UC Gym";
+gameStopName[16]="UC College";
 gameStopName[17]="Lee Shau Kee building";//lsk
 gameStopName[18]="Leung Kao Kui building";//lkk
 gameStopName[19]="WYS College";//wys
@@ -491,6 +491,7 @@ function finishRound() {
 		msg.playerno=myPlayerNo;
 		socket.send(JSON.stringify(msg));
 		$('#finishbutton').prop('disabled', true);
+        $("b[id=show-time]").html(<?=$settings["round_time"];?>);
 	}else{
 		if(movable == 1){
 			gameshowmsg('You did not dice!');
@@ -693,6 +694,7 @@ if(isset($_SESSION['name'])){
                         $('#dicebutton').prop('disabled', true);
 						if(retData['movable']){
 							$('#dicebutton').prop('disabled', false);
+                            readyToFinish = 0;
 							gameshowmsg('It is your turn now!');
 						}
 					}else if(retData['act'] == 'initinfo'){
