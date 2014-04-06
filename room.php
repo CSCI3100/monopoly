@@ -79,8 +79,8 @@ if($uid || isset($_SESSION['uid'])){
             <ul>
                 <li class="avatar"><img id="toavatar" src="./data/<?=$toname;?>.png"><br/><br/>
                         <b><?=$_SESSION['dname'];?></b></li>
-                <li>Win:<?=$userinfo['money']?></li>
-                <li>Lose:<?=$userinfo['money']?></li>
+                <li>Win:<?=$userinfo['win']?></li>
+                <li>Lose:<?=$userinfo['lose']?></li>
                 <li>Money:<?=$userinfo['money']?></li>
                 <li><a href="./roomlist.php"><button class="function_button greenbg"><i class="fa fa-sign-out"></i> Lobby</button></a></li>
             </ul>

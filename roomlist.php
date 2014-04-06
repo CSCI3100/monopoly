@@ -116,8 +116,8 @@
                     </li>
                 <?php } ?>
                 
-                <li>Win:<?=$userinfo['money']?></li>
-                <li>Lose:<?=$userinfo['money']?></li>
+                <li>Win:<?=$userinfo['win']?></li>
+                <li>Lose:<?=$userinfo['lose']?></li>
                 <li>Money:<?=$userinfo['money']?></li>
                 <li><button class="function_button magentabg" id="invite"><i class="fa fa-user"></i> Invite</button></li>
                 <li><button class="function_button orangebg" id="message"><i class="fa fa-envelope"></i> Message</button></li>
@@ -541,7 +541,7 @@ if(isset($_SESSION['name'])){
                     for(i=0;i<retData["players"].length;i++){
                         var tempUser = retData["players"][i];
                         if(tempUser["dname"] != null && tempUser["name"] != '<?= $_SESSION['name'];?>'){
-                            $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["dname"]+'</div></li>');
+                            $('.middle_content>ul').append('<li><div class="online_player"><i class="fa fa-user"></i>&nbsp;'+tempUser["dname"]+'<i attr="'+tempUser["name"]+'" class="fa fa-tag smallsendmsg"></i></div></li>');
                         }
                     }
                 }else if(retData["act"] == "invite"){
@@ -719,6 +719,10 @@ if(isset($_SESSION['name'])){
                     });
                     $('#readMsg').show();
                     return false;
+                });
+                $(document.body).on( "click", '.smallsendmsg', function() {
+                    $('#messagePopup').show();
+                    $('#toUser').val($(this).attr('attr'));
                 });
                 $(document.body).on( "click", '.msgLink', function() {
                     var id = $(this).attr('value');

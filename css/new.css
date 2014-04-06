@@ -294,7 +294,8 @@
     margin-left: 10px;
 }
 
-
-
-
-
+.smallsendmsg{
+    float: right;
+    margin-top: 4px;
+    cursor: pointer;
+}

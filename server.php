@@ -351,6 +351,13 @@ while(true)
 					console(var_dump($val));
 					$user->money+=$settings["round_money"]; //add money for passing one round
 					console(var_dump($user));
+					$user->room->round = 99999999; //set to max first
+					foreach($user->room->players as $player){
+						if($val['playround'] <= $user->room->round){
+							$user->room->round = $val['playround'];
+						}
+					}
+					console(var_dump($user->room));
 					$send_packet=array();
 					$send_packet['act'] = "notice";
 					$send_packet['playerno'] = $user->playerno;
@@ -498,7 +505,7 @@ while(true)
 							room_msg($val['rid'],json_encode($send_packet));
 						}else{
 							console("You do have enough money");
-							//TODO:implement not enough money for paying rent
+							lose($user); //this player loses
 						}
 					break;
 					case "checkprop": //check my property
@@ -513,6 +520,9 @@ while(true)
                         $send_packet['mybuilding'] = $mybuilding;
                         send($user->socket,json_encode($send_packet));
 					break;
+					case "endgame":
+						lose($user, $val['rid']);
+					break;
 				}
 			}
 		}
@@ -521,7 +531,29 @@ while(true)
 }
 
 //---------------------------------------------------------------
-
+function lose($user, $rid){ //triggered when someone's money is less than zero
+	$alluser = array();
+	foreach($user->room->players as $player){
+		$tempUser = new tempUser($player);
+		array_push($alluser, $tempUser);
+	}
+	for($i = 0; $i < count($alluser)-1; $i++){
+		for($j = 0; $j < (count($alluser)-1-$i); $j++){
+			if($alluser[$j]->money > $alluser[$j+1]->money){
+				$tempone = $alluser[$j];
+				$alluser[$j] = $alluser[$j+1];
+				$alluser[$j+1] = $tempone;
+			}
+		}
+	}
+	//TODO: count the ranking
+	//TODO: update win/lose attributes
+	$send_packet = array();
+	$send_packet['playerno'] = $user->playerno;
+	$send_packet['act'] = "endgame";
+	$send_packet['players'] = $alluser;
+	room_msg($rid, json_encode($send_packet));
+}
 function update_player_list(){
 	//console("GET OK");
     global $users;
@@ -574,8 +606,7 @@ function doTest($socket)
 	while(true) {
 		console("[doTest] " . $socket);
 		$sendText = date('Y-m-d H:i:s');
-		
-		// �p�G�e���ѴN����
+
 		if (!send($socket, $sendText)) {
 			echo "[doTest] Stop \n";
 			return;
@@ -586,7 +617,7 @@ function doTest($socket)
 
 function process($socket,$msg)
 {
-	// �T���ݭn�ѽX
+
 	$action = unmask($msg);
 	console("< " . $action);
 }
@@ -597,8 +628,7 @@ function process($socket,$msg)
  */
 function unmask($recvMsg) 
 {
-	// ord �^�� ascii code
-	// 127 �� 0x01111111
+
 	$length = ord($recvMsg[1]) & 127;
 	
 	if($length == 126) 
@@ -864,6 +894,7 @@ class tempUser {
 	var $playerno;
 	var $money=1500;
 	var $offset=0;
+	var $rank=1; // this is tricky
 	public function __construct($user){
 		$this->id=$user->id;
 		$this->name=$user->name;
@@ -880,10 +911,12 @@ class playRoom {
 	var $counter=1;
 	var $players;
 	var $relations;
+	var $round;
 	public function __construct($rid){
 		$this->rid = $rid;
 		$this->players = array();
 		$this->relations = array();
+		$this->round = 1;
 	}
 }
 ?>

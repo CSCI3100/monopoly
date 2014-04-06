@@ -723,6 +723,7 @@ if(isset($_SESSION['name'])){
 								playerRound[tempno]++;
 								var msg = {};
 								msg.act = "addround";
+                                msg.playround = playerRound[tempno];
 								msg.playerno = myPlayerNo;
 								socket.send(JSON.stringify(msg));
 								//$("#p_money").html(eval($("#p_money").html())+eval(<?=$settings["round_money"];?>)); //add money
@@ -849,7 +850,9 @@ if(isset($_SESSION['name'])){
 						}
 					}else if(retData["act"] == "selfwarn"){
 						gameshowmsg(retData["sendcontent"]);
-					}
+					}else if(retData["act"] == "endgame"){
+                        console.log(retData);
+                    }
 				};
 				socket.onclose = function(e) {
 					gameshowmsg('Disconnected - status ' + this.readyState); 

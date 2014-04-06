@@ -23,9 +23,8 @@ session_destroy();
     <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 </head>
 <body>
-    <audio loop autoplay="true">
-
-  <source src="1.mp3" type="audio/mpeg">
+<audio loop autoplay="true">
+    <source src="1.mp3" type="audio/mpeg">
 </audio>
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
      width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
