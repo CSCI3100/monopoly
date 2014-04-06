@@ -52,7 +52,7 @@ if($uid || isset($_SESSION['uid'])){
 ?>
             <ul>
                 <li class="avatar"><img id="toavatar" src="./data/<?=$toname;?>.png"><br/><br/>
-                        <b><?=$_SESSION['dname'];?></b></li>
+                       <b><?=$_SESSION['dname'];?></b></li>
                 <li>You are in:<b id="p_stop"></b></li>
                 <li>Money:<b id="p_money"><?=$settings['start_money']?></b></li>
 						<li><button id="dicebutton" onclick="pDice()" class="function_button orangebg"><i class="fa fa-envelope"></i> Dice</button></li>
@@ -242,6 +242,8 @@ $msg="Incorrect password";
         <script src="js/main.js"></script>
 
         <script>
+		$('#dicebutton').prop('disabled', true);
+		$('#finishbutton').prop('disabled', true);
 var socket;		// WebSocket
 var jail = 0;
 var gamenotice;
@@ -723,9 +725,20 @@ if(isset($_SESSION['name'])){
 					if(retData['act']=='playerno'){
 						myPlayerNo = retData['playerno'];
 						movable = retData['movable'];
+						if(myPlayerNo == 1){
+							$('#toavatar').css("border-color","#393");
+						}else if(myPlayerNo == 2){
+							$('#toavatar').css("border-color","#eee");
+						}else if(myPlayerNo == 3){
+							$('#toavatar').css("border-color","#ff0000");
+						}else if(myPlayerNo == 4){
+							$('#toavatar').css("border-color","#0000ff");
+						}
                         $('#dicebutton').prop('disabled', true);
 						if(retData['movable']){
 							$('#dicebutton').prop('disabled', false);
+							$('#finishbutton').prop('disabled', false);
+							
                             readyToFinish = 0;
 							gameshowmsg('It is your turn now!');
 						}

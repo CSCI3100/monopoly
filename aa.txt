@@ -358,3 +358,9 @@ array(1) {
   }
 }
 
+
+Notice: Undefined index: SERVER_NAME in C:\xampp\htdocs\mono\config.php on line 6
+Server Started : 2014-04-07 03:09:22
+Master socket  : Resource id #12
+Listening on   : 0.0.0.0 port 9876
+
