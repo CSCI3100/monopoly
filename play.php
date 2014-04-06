@@ -206,6 +206,16 @@ if($uid || isset($_SESSION['uid'])){
     </div>
 		<button class="cancel_button">Close</button>
     </div> <!-- /container -->
+    <div class="ingamepopup verdict">
+    	<div class="ingamepopup_header">
+		Verdict
+    	</div>
+    	<div class="create_room_content">
+		<ul class="verdict_player">
+		</ul>
+		<a href="./roomlist.php"><button class="cancel_button">Lobby</button></a>
+		 </div>
+    </div> <!-- /container -->
 <?php
 }else{
 $msg="Incorrect password";
@@ -233,6 +243,7 @@ $msg="Incorrect password";
 
         <script>
 var socket;		// WebSocket
+var jail = 0;
 var gamenotice;
 var payto;
 var readyToFinish;
@@ -477,7 +488,7 @@ function cDice(){
     var msg = {};
     msg.act = "dice";
     msg.rid = <?=$_GET['rid'];?>;
-    msg.step = 20;
+    msg.step = 22;
     msg.playerno=myPlayerNo;
     socket.send(JSON.stringify(msg));
 }
@@ -496,7 +507,19 @@ function finishRound() {
         $("b[id=show-time]").html(<?=$settings["round_time"];?>);
 	}else{
 		if(movable == 1){
-			gameshowmsg('You did not dice!');
+			if(jail == 1){
+				jail++;
+				readyToFinish = 1;
+				var msg = {};
+				msg.rid = <?=$_GET['rid'];?>;
+				msg.act = "finishround";
+				msg.playerno=myPlayerNo;
+				socket.send(JSON.stringify(msg));
+				$('#finishbutton').prop('disabled', true);
+				$("b[id=show-time]").html(<?=$settings["round_time"];?>);
+			}else{
+				gameshowmsg('You did not dice!');
+			}
 		}else{
 			if(payrent!=1){
 				gameshowmsg('You did not pay rent!');
@@ -509,14 +532,14 @@ function finishRound() {
 
 //dice
 function pDice(){
-	if(movable == 1 && payrent==1){
+	if(movable == 1 && payrent==1 && jail != 1){
 		var msg = {};
 		msg.act = "dice";
 		msg.rid = <?=$_GET['rid'];?>;
 		var random=Math.random();
 		random=random*6;
 		random=parseInt(random)+1;
-		msg.step = random;
+		msg.step = 22;
 		msg.playerno=myPlayerNo;
 		socket.send(JSON.stringify(msg));
 		movable = 0;
@@ -525,6 +548,12 @@ function pDice(){
 	}else{
 		if(payrent!=1){
 			gameshowmsg('You did not pay rent!');
+		}else if(jail == 1){
+			gameshowmsg('You are jailed');
+			jail++;
+			movable = 0;
+			$('#dicebutton').prop('disabled', true);
+			$('.ingamepopup').hide();
 		}else{
 			alert('It is not your turn now');
 		}
@@ -723,6 +752,7 @@ if(isset($_SESSION['name'])){
 								playerRound[tempno]++;
 								var msg = {};
 								msg.act = "addround";
+								msg.rid = <?=$_GET['rid'];?>;
                                 msg.playround = playerRound[tempno];
 								msg.playerno = myPlayerNo;
 								socket.send(JSON.stringify(msg));
@@ -759,6 +789,7 @@ if(isset($_SESSION['name'])){
 							msg.playerno = myPlayerNo;
 							socket.send(JSON.stringify(msg));
 							gameshowmsg('You are jailed');
+							jail = 1;
 						}
 
 					}else if(retData['act']=='getoffnow'){
@@ -791,6 +822,8 @@ if(isset($_SESSION['name'])){
 							movable = 1;
 							$('#dicebutton').prop('disabled', false);
 							gameshowmsg('It is your turn now!');
+							$('#finishbutton').prop('disabled', false);
+							readyToFinish = 0;
 						}
 					}else if(retData["act"] == "notice"){
 						tempMN = null;
@@ -852,6 +885,15 @@ if(isset($_SESSION['name'])){
 						gameshowmsg(retData["sendcontent"]);
 					}else if(retData["act"] == "endgame"){
                         console.log(retData);
+						$('.verdict').show();
+						$('.verdict_player').html('');
+						var p = 1;
+						for(i=retData["players"].length-1;i>=0;i--){
+							$('.verdict_player').append('<li>'+(p++)+' <img src="./data/'+retData["players"]["name"]+'.png"> '+retData["players"][i]["dname"]+' $'+retData["players"][i]["money"]+'</li>');
+						}
+						$('#dicebutton').prop('disabled', true);
+						$('#finishbutton').prop('disabled', true);
+						readyToFinish = 1;
                     }
 				};
 				socket.onclose = function(e) {

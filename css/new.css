@@ -299,3 +299,26 @@
     margin-top: 4px;
     cursor: pointer;
 }
+
+.verdict{
+	width:350px;
+	max-width:70%;
+	height:600px;
+	text-align:center;
+	font-size:30px;
+}
+
+.verdict_player{
+	width:100%;
+	margin-top:-10px;
+	float:left;
+}
+
+.verdict_player li{
+	padding:10px;
+}
+.verdict_player img{
+	border-radius:50%;
+	width:100px;
+	height:100px;
+}

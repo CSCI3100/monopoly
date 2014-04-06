@@ -351,11 +351,15 @@ while(true)
 					console(var_dump($val));
 					$user->money+=$settings["round_money"]; //add money for passing one round
 					console(var_dump($user));
-					$user->room->round = 99999999; //set to max first
+					$minRound = 99999;
 					foreach($user->room->players as $player){
-						if($val['playround'] <= $user->room->round){
-							$user->room->round = $val['playround'];
+						if(floor($player->offset/27)+1 <= $minRound){
+							$minRound = floor($player->offset/27)+1;
 						}
+					}
+					$user->room->round = $minRound;
+					if($user->room->round >= 3){
+						lose($user,$val['rid']);
 					}
 					console(var_dump($user->room));
 					$send_packet=array();
@@ -363,9 +367,9 @@ while(true)
 					$send_packet['playerno'] = $user->playerno;
 					$send_packet['money'] = $user->money;
 					room_msg($user->rid,json_encode($send_packet));
+					console("THIS ROUND IS:".$user->room->round);
 					break;
 					case "drawcard":
-					console(var_dump($val));
 					$send_packet=array();
 					$send_packet['act']="getcard";
 					$send_packet['cardpname']=$user->name;
@@ -532,6 +536,7 @@ while(true)
 
 //---------------------------------------------------------------
 function lose($user, $rid){ //triggered when someone's money is less than zero
+	global $db;
 	$alluser = array();
 	foreach($user->room->players as $player){
 		$tempUser = new tempUser($player);
@@ -552,6 +557,11 @@ function lose($user, $rid){ //triggered when someone's money is less than zero
 	$send_packet['playerno'] = $user->playerno;
 	$send_packet['act'] = "endgame";
 	$send_packet['players'] = $alluser;
+	$userobj = new User($db);
+	$userobj->lose($alluser[0]->name);
+	$userobj->win($alluser[1]->name);
+	$userobj->win($alluser[2]->name);
+	$userobj->win($alluser[3]->name);
 	room_msg($rid, json_encode($send_packet));
 }
 function update_player_list(){

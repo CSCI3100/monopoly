@@ -1,0 +1,8 @@
+Sun Apr 6 23:11:03 HKT 2014
+{"act":"initinfo","players":[{"id":"53416e87ce652","name":"ccc","dname":"ccc","rid":35,"state":0,"playerno":1,"money":1500,"offset":0,"rank":1}]}
+Sun Apr 6 23:11:08 HKT 2014
+{"act":"transfer","uname":"ccc","offset":22,"money":1500,"playerno":1}
+Sun Apr 6 23:11:13 HKT 2014
+{"act":"nextmovable","nextplayerno":2}
+Sun Apr 6 23:22:49 HKT 2014
+{"act":"initinfo","players":[{"id":"53416e87ce652","name":"ccc","dname":"ccc","rid":35,"state":0,"playerno":1,"money":1500,"offset":22,"rank":1},{"id":"534171499a7bb","name":"ddd","dname":"ddd","rid":35,"state":0,"playerno":2,"money":1500,"offset":0,"rank":1}]}
