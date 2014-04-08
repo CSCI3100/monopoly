@@ -745,3 +745,66 @@ button:disabled{
 }
 
 
+.circular{
+    border-radius: 50%;
+    height:70px;
+    width:70px;
+    border:0;
+    color:#eee;
+    font-size:25px;
+	-webkit-transition: all 200ms ease-out 0s;
+   -moz-transition: all 200ms ease-out 0s;
+    -o-transition: all 200ms ease-out 0s;
+   transition: all 200ms ease-out 0s;
+}
+
+.circular .fa{
+	font-size:28px;
+    line-height: 63px;
+}
+
+.greenc{
+	background: #2ecc71;
+	-webkit-box-shadow:inset 0 -4px 0 0 #286B3A;
+	box-shadow:inset 0 -4px 0 0 #286B3A;
+}
+.greenc:hover{
+	text-align: center;
+	width:100px;
+	border-radius:3px;
+}
+.fbc{
+	background: #4c69ba;
+	-webkit-box-shadow:inset 0 -4px 0 0 #3b55a0;
+	box-shadow:inset 0 -4px 0 0 #3b55a0;
+}
+
+.fbc:hover{
+	text-align: center;
+	width:150px;
+	border-radius:3px;
+}
+
+.forgotc{
+	background: #FCB000;
+	-webkit-box-shadow:inset 0 -4px 0 0 #A17000;
+	box-shadow:inset 0 -4px 0 0 #A17000;
+}
+
+.forgotc:hover{
+	text-align: center;
+	width:120px;
+	border-radius:3px;
+}
+
+.registerc{
+	background: #e74c3c;
+	-webkit-box-shadow:inset 0 -4px 0 0 #80322B;
+	box-shadow:inset 0 -4px 0 0 #80322B;
+}
+
+.registerc:hover{
+	text-align: center;
+	width:150px;
+	border-radius:3px;
+}

@@ -282,7 +282,7 @@ while(true)
 					console(var_dump($val));
 					$send_packet = array();
 					$send_packet["act"] = "transfer";
-					$user->offset+=$val['step'];
+					$user->offset += $val['step'];
 					$send_packet["uname"] = $user->name;
 					$send_packet["offset"] = $user->offset;
 					$send_packet["money"] = $user->money;
@@ -515,7 +515,7 @@ while(true)
 					case "checkprop": //check my property
                         $mybuilding = array();
                         foreach($user->room->relations as $relation){
-                            if($relation->playerno == $user->playerno){
+                            if($relation->playerno == $val['playerno']){
                                 array_push($mybuilding, $relation);
                             }
                         }

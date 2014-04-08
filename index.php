@@ -13,7 +13,7 @@ session_destroy();
     <title>Monopoly</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
     </style>
@@ -60,10 +60,10 @@ session_destroy();
             <input type="text" id="username" name="username" placeholder="Username"><br />
             <input type="password" id="password" name="password" placeholder="Password"><br />
         </form>
-        <button type="submit" class="button loginin">Sign in</button>
-        <a href="./facebook_login.php"><button type="submit" class="button facebook_login">Facebook Login</button></a>
-        <a href="./forgot.php"><button class="button forgot">Forgot Password</button></a>
-        <a href="./register.php"><button class="button reg">Register</button></a>
+        <button type="submit" class="circular greenc"><i class="fa fa-sign-in"></i> Login</button>
+        <a href="./facebook_login.php"><button type="submit" class="circular fbc"><i class="fa fa-facebook"></i> Facebook</button></a>
+        <a href="./forgot.php"><button type="submit" class="circular forgotc"><i class="fa fa-key"></i> Forget</button></a>
+        <a href="./register.php"><button type="submit" class="circular registerc"><i class="fa fa-user"></i> Register</button></a>
 
     </div>
 </div>
@@ -81,7 +81,7 @@ session_destroy();
     $(document).ready(function(){
         $('svg').fadeOut(500);
         $('.bg1').show(300);
-        $('.loginin').click(function(){
+        $('.greenc').click(function(){
             if($('#username').val()==""){
                 alert('Please enter a username');
                 $('#username').focus();

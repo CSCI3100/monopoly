@@ -198,7 +198,7 @@ if($uid || isset($_SESSION['uid'])){
     </div>
     <div class="ingamepopup mybuilding">
     	<div class="ingamepopup_header">
-    	My Property
+    	Property
     	</div>
     	<div class="create_room_content showmybuilding">
 		<div class="my_small_prop">
@@ -479,8 +479,12 @@ foreach($buildingArray as $building){
 
 }
 
-function checkProp(){
+function checkProp(playerno){
+    if(playerno == null){
+        playerno = myPlayerNo;
+    }
     var msg={};
+    msg.playerno = playerno;
     msg.act = "checkprop";
     msg.rid = <?=$_GET['rid'];?>;
     msg.playerno=myPlayerNo;
@@ -490,7 +494,7 @@ function cDice(){
     var msg = {};
     msg.act = "dice";
     msg.rid = <?=$_GET['rid'];?>;
-    msg.step = 22;
+    msg.step = 13;
     msg.playerno=myPlayerNo;
     socket.send(JSON.stringify(msg));
 }
@@ -749,7 +753,7 @@ if(isset($_SESSION['name'])){
 							if(tempplayer['playerno'] != myPlayerNo){
 								$('.room_players_other_indiv:eq('+tempplayerno+')').html('');
 								$('.room_players_other_indiv:eq('+tempplayerno+')').addClass(''+tempplayer["playerno"]+'');
-								$('.room_players_other_indiv:eq('+tempplayerno+')').html('<img src="./data/'+tempplayer['name']+'.png">'+tempplayer['dname']+'<br />Money: <b class="opmoney">'+tempplayer['money']+'</b> <button value="'+ tempplayer['playerno'] +'"class="checkprop">Property</button>');
+								$('.room_players_other_indiv:eq('+tempplayerno+')').html('<img src="./data/'+tempplayer['name']+'.png">'+tempplayer['dname']+'<br />Money: <b class="opmoney">'+tempplayer['money']+'</b> <button onclick="checkProp('+tempplayer['playerno']+')" value="'+ tempplayer['playerno'] +'"class="checkprop">Property</button>');
 								tempplayerno++;
 							}
 						}

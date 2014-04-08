@@ -162,6 +162,11 @@
         <button class="pageno" value="<?=($i+1);?>"><?=($i+1);?></button>
         <?php
         }
+        if($i==0){
+        ?>
+        <button class="pageno" value="<?=($i+1);?>"><?=($i+1);?></button>
+        <?php
+        }
         ?>
         <button class="no_createroom">Create</button>
             </div>
