@@ -501,6 +501,31 @@ function cDice(){
     msg.playerno=myPlayerNo;
     socket.send(JSON.stringify(msg));
 }
+function test(){
+ var msg = {};
+        msg.rid = <?=$_GET['rid'];?>;
+        msg.act = "test";
+        msg.playerno=myPlayerNo;
+        socket.send(JSON.stringify(msg));
+        alert("yes");
+}
+
+function inchance(){
+var msg = {};
+        msg.rid = <?=$_GET['rid'];?>;
+        msg.act = "chance";
+        msg.playerno=myPlayerNo;
+        socket.send(JSON.stringify(msg));
+         
+}
+function outjail(){
+    var msg = {};
+        msg.rid = <?=$_GET['rid'];?>;
+        msg.act = "jail";
+        msg.playerno=myPlayerNo;
+        socket.send(JSON.stringify(msg));
+        jail = 0;
+}
 
 
 //finish this round
