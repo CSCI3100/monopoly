@@ -437,6 +437,7 @@ while(true)
 										$send_packet['payto'] = $foundbuilding->playerno;
 										$send_packet['img'] = $foundbuilding->img;
 										$send_packet['name'] = $foundbuilding->name;
+										$send_packet['dname'] = $foundbuilding->dname;
 										$send_packet['rent'] = $foundbuilding->rent;
 										console(var_dump($send_packet));
 										send($user->socket,json_encode($send_packet));

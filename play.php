@@ -866,7 +866,7 @@ if(isset($_SESSION['name'])){
 						console.log(retData);
 						payto = retData["payto"];
 						$('.building_rent').html(retData["rent"]);
-						$('.building_owner').html(retData["name"]);
+						$('.building_owner').html(retData["dname"]);
 						$('.rentimg').attr('src', "./img/big/"+retData['img']);
 						$('.payrent').show();
 					}else if(retData["act"] == "mybuilding"){
