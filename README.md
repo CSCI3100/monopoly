@@ -24,5 +24,3 @@ Features to be implemented:
 
 2) Fix the issue of buying property
 
-...............www
-
