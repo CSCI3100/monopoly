@@ -542,11 +542,11 @@ function pDice(){
 		var msg = {};
 		msg.act = "dice";
 		msg.rid = <?=$_GET['rid'];?>;
-		var random=Math.random();
-		random=random*6;
-		random=parseInt(random)+1;
-		msg.step = 22;
-		msg.playerno=myPlayerNo;
+		var random = Math.random();
+		random = random*6;
+		random = parseInt(random)+1;
+		msg.step = random;
+		msg.playerno = myPlayerNo;
 		socket.send(JSON.stringify(msg));
 		movable = 0;
 		$('#dicebutton').prop('disabled', true);
@@ -745,6 +745,7 @@ if(isset($_SESSION['name'])){
 							
                             readyToFinish = 0;
 							gameshowmsg('It is your turn now!');
+                            alert('It is your turn now!');
 						}
 					}else if(retData['act'] == 'initinfo'){
 						var tempplayerno = 0;
@@ -794,14 +795,14 @@ if(isset($_SESSION['name'])){
 						playerOffset[tempno] = gameStop[playerOffset[tempno]];
 						//alert(playerOffset[tempno]);
 						//console.log(retData.uname);
-						if(tempno==myPlayerNo-1){
+						if(tempno == myPlayerNo-1){
 							$("#p_stop").html(gameStopName[tempstop]); //update the stop name
 						}
 						gameshowmsg(retData['uname'] +' moves to '+ gameStopName[tempstop]);
 						$('.chat_box').append('<b class="systemmsg">[SYSTEM] : '+retData['uname'] +' moves to '+ gameStopName[tempstop]+'.</b><br />');
 						$('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
 						if(playerOffset[tempno]==66.5 && tempno==myPlayerNo-1){//to be edited(same playerno)
-							var msg={};
+							var msg = {};
 							msg.act = "jail";
 							msg.playerno = myPlayerNo;
 							socket.send(JSON.stringify(msg));
@@ -834,11 +835,12 @@ if(isset($_SESSION['name'])){
 							$('.buybimg').attr('src', "./img/big/"+retData['img']);
 							$('.buybuilding').show();
 						}
-					}else if(retData["act"]=="nextmovable"){
+					}else if(retData["act"] == "nextmovable"){
 						if(myPlayerNo == retData["nextplayerno"]){
 							movable = 1;
 							$('#dicebutton').prop('disabled', false);
 							gameshowmsg('It is your turn now!');
+                            alert('It is your turn now!');
 							$('#finishbutton').prop('disabled', false);
 							readyToFinish = 0;
 						}
