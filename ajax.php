@@ -103,7 +103,7 @@ switch ($func) {
 	case 'readMsg':
 		session_start();
 		require './database.php';
-		$query = $db->prepare("SELECT id, f.name AS sender, msg, m.read r, timestamp FROM `message` m, `user` f, `user` t WHERE m.receiverId = t.uid AND t.uid = :uid AND f.uid = m.senderId ORDER BY `timestamp` DESC");
+		$query = $db->prepare("SELECT id, f.displayName AS sender, msg, m.read r, timestamp FROM `message` m, `user` f, `user` t WHERE m.receiverId = t.uid AND t.uid = :uid AND f.uid = m.senderId ORDER BY `timestamp` DESC");
 		$query->bindValue(":uid",$_SESSION['uid']);
 		try{
 			$query->execute();

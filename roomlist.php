@@ -360,7 +360,7 @@
                             method: 'feed',
                             name: '冚家富貴! Click the link and get bonus!',
                             link: 'http://b5.hk/mono/register.php?referLink=<?=$userinfo['referLink']?>',
-                            picture: 'http://b5.hk/mono/img/big/shaw.png',
+                            picture: 'http://b5.hk/mono/img/room.png',
                             description: 'Let\'s play Wealthy Family Monopoly. \nClick this link to get bonus!'
                         },
                         function(response) {
@@ -689,6 +689,7 @@ if(isset($_SESSION['name'])){
                 });
                 $('#message').click(function(){
                     $('#messagePopup').show();
+                    $('.read_button').click();
                     $('.cancel_button').click(function(){
                         $('#messagePopup').hide();
                     });
@@ -727,6 +728,9 @@ if(isset($_SESSION['name'])){
                 });
                 $(document.body).on( "click", '.smallsendmsg', function() {
                     $('#messagePopup').show();
+                    $('#message').click();
+                    $('#readMsg').hide();
+                    $('#sendMsg').show();
                     $('#toUser').val($(this).attr('attr'));
                 });
                 $(document.body).on( "click", '.msgLink', function() {
