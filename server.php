@@ -467,6 +467,7 @@ while(true)
 									$newRelation->img = $building->img;
 									$newRelation->rent = $building->rent;
 									$newRelation->name = $user->name;
+									$newRelation->dname = $user->dname;
 									array_push($user->room->relations, $newRelation);
 									console(var_dump($user));
 									console(var_dump($user->room));
@@ -474,7 +475,7 @@ while(true)
 									$send_packet['act'] = "notice";
 									$send_packet['playerno'] = $user->playerno;
 									$send_packet['money'] = $user->money;
-									$send_packet['sendcontent'] = $user->name . " has purchased ". $building->rname;
+									$send_packet['sendcontent'] = $user->dname . " has purchased ". $building->rname;
 									$send_packet['bought'] = 1;
 									room_msg($user->rid,json_encode($send_packet));
 								}else{ //no money to buy
@@ -509,7 +510,8 @@ while(true)
 							room_msg($val['rid'],json_encode($send_packet));
 						}else{
 							console("You do have enough money");
-							lose($user); //this player loses
+							$user->money = 0;
+							lose($user, $val['rid']); //this player loses
 						}
 					break;
 					case "checkprop": //check my property
