@@ -1,0 +1,18 @@
+Wed Apr 9 23:35:25 HKT 2014
+{"act":"initinfo","players":[{"id":"534568bd2d57c","name":"aaa","dname":"aaa","rid":35,"state":0,"playerno":1,"money":1500,"offset":0,"rank":1}]}
+Wed Apr 9 23:35:27 HKT 2014
+{"act":"initinfo","players":[{"id":"534568bd2d57c","name":"aaa","dname":"aaa","rid":35,"state":0,"playerno":1,"money":1500,"offset":0,"rank":1},{"id":"534568bfa91ee","name":"bbb","dname":"bbb","rid":35,"state":0,"playerno":2,"money":1500,"offset":0,"rank":1}]}
+Wed Apr 9 23:35:31 HKT 2014
+{"act":"transfer","uname":"bbb","offset":13,"money":1500,"playerno":2}
+Wed Apr 9 23:35:31 HKT 2014
+{"playerno":2,"act":"recordstopno","marker":13,"bname":"NA Tower","money":1,"img":"natower.png"}
+Wed Apr 9 23:35:33 HKT 2014
+{"act":"notice","playerno":2,"money":1499,"sendcontent":"bbb has purchased NA Tower","bought":1}
+Wed Apr 9 23:35:36 HKT 2014
+{"act":"transfer","uname":"aaa","offset":13,"money":1500,"playerno":1}
+Wed Apr 9 23:36:01 HKT 2014
+{"act":"roomlist","roomlist":[]}
+Wed Apr 9 23:36:01 HKT 2014
+{"players":[{"id":"534568bfa91ee","name":"bbb","dname":"bbb","rid":35,"state":0,"playerno":2,"money":1499,"offset":13,"rank":1}],"act":"userinfo"}
+Wed Apr 9 23:36:02 HKT 2014
+{"act":"initinfo","players":[{"id":"534568bfa91ee","name":"bbb","dname":"bbb","rid":35,"state":0,"playerno":2,"money":1499,"offset":13,"rank":1},{"id":"534568e25190e","name":"aaa","dname":"aaa","rid":35,"state":0,"playerno":3,"money":1500,"offset":0,"rank":1}]}

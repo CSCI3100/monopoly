@@ -483,11 +483,11 @@ function checkProp(playerno){
     if(playerno == null){
         playerno = myPlayerNo;
     }
+    //alert(playerno); //for debugging
     var msg={};
     msg.playerno = playerno;
     msg.act = "checkprop";
     msg.rid = <?=$_GET['rid'];?>;
-    msg.playerno=myPlayerNo;
     socket.send(JSON.stringify(msg));
 }
 function cDice(){
@@ -872,7 +872,7 @@ if(isset($_SESSION['name'])){
 					}else if(retData["act"] == "mybuilding"){
 						
 						if(retData["mybuilding"].length == 0){
-							alert("You have no property");
+							alert("No property");
 						}else{
 							$('.mybuilding').show();
 							myprops = retData["mybuilding"];
@@ -906,7 +906,7 @@ if(isset($_SESSION['name'])){
 						$('.verdict_player').html('');
 						var p = 1;
 						for(i=retData["players"].length-1;i>=0;i--){
-							$('.verdict_player').append('<li>'+(p++)+' <img src="./data/'+retData["players"]["name"]+'.png"> '+retData["players"][i]["dname"]+' $'+retData["players"][i]["money"]+'</li>');
+							$('.verdict_player').append('<li>'+(p++)+' <img src="./data/'+retData["players"][i]["name"]+'.png"> '+retData["players"][i]["dname"]+' $'+retData["players"][i]["money"]+'</li>');
 						}
 						$('#dicebutton').prop('disabled', true);
 						$('#finishbutton').prop('disabled', true);
