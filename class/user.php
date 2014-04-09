@@ -6,6 +6,20 @@ class User{
 	public function __construct($database) {
 	    $this->db = $database;
 	}
+	public function t3($name){
+	     $query = $this->db->prepare("UPDATE user SET t3 = t3 - 1 WHERE name = '".$name."'");
+	     $query->execute();
+	}
+	public function t2($name){
+		 $query = $this->db->prepare("UPDATE user SET t2 = t2 - 1 WHERE name = '".$name."'");
+	     $query->execute();
+	
+	}
+	public function t1($name){
+		$query = $this->db->prepare("UPDATE user SET t1 = t1 - 1 WHERE name = '".$name."'");
+	     $query->execute();
+	
+	}
 	public function win($name){
 		$query = $this->db->prepare("UPDATE user SET win = win + 1 WHERE name = '".$name."'");
 		$query->execute();
