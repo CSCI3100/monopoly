@@ -58,9 +58,7 @@ if($uid || isset($_SESSION['uid'])){
 						<li><button id="dicebutton" onclick="pDice()" class="function_button orangebg"><i class="fa fa-envelope"></i> Dice</button></li>
                 <li><button onclick="cDice()" class="function_button orangebg"><i class="fa fa-envelope"></i> Dice</button></li>
                 <li><button onclick="checkProp()" class="function_button bluebg"><i class="fa fa-credit-card"></i> Property</button></li>
-                <li><button onclick="test()" class="function_button orangebg" id="testbutton"><i class="fa fa-envelope"></i> Quickcash</button></li>
-                <li><button onclick="inchance()" class="function_button orangebg" id="chancebutton"><i class="fa fa-envelope"></i> Chance now</button></li>
-                <li><button onclick="outjail()" class="function_button orangebg" id="jailbutton"><i class="fa fa-envelope"></i> Out jail now</button></li>
+                <li style="text-align:center"><button onclick="test()" class="quickcash" id="testbutton"></button> <button onclick="inchance()" class="chancenowc" id="chancebutton"></button> <button onclick="outjail()" class="outjail" id="jailbutton"></button></li>
                 <li>You still have <b id="show-time"><?=$settings["round_time"];?></b> seconds<br /><button onclick="finishRound()" id="finishbutton" class="function_button greenbg"><i class="fa fa-sign-out"></i> Finish this round</button></li>
             </ul>
             </div>
@@ -507,7 +505,6 @@ function test(){
         msg.act = "test";
         msg.playerno=myPlayerNo;
         socket.send(JSON.stringify(msg));
-        alert("yes");
 }
 
 function inchance(){
@@ -516,7 +513,6 @@ var msg = {};
         msg.act = "chance";
         msg.playerno=myPlayerNo;
         socket.send(JSON.stringify(msg));
-         
 }
 function outjail(){
     var msg = {};
@@ -577,7 +573,7 @@ function pDice(){
 		var random = Math.random();
 		random = random*6;
 		random = parseInt(random)+1;
-		msg.step = 22;
+		msg.step = random;
 		msg.playerno = myPlayerNo;
 		socket.send(JSON.stringify(msg));
 		movable = 0;
@@ -835,8 +831,8 @@ if(isset($_SESSION['name'])){
 						if(tempno == myPlayerNo-1){
 							$("#p_stop").html(gameStopName[tempstop]); //update the stop name
 						}
-						gameshowmsg(retData['uname'] +' moves to '+ gameStopName[tempstop]);
-						$('.chat_box').append('<b class="systemmsg">[SYSTEM] : '+retData['uname'] +' moves to '+ gameStopName[tempstop]+'.</b><br />');
+						gameshowmsg(retData['dname'] +' moves to '+ gameStopName[tempstop]);
+						$('.chat_box').append('<b class="systemmsg">[SYSTEM] : '+retData['dname'] +' moves to '+ gameStopName[tempstop]+'.</b><br />');
 						$('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
 						if(playerOffset[tempno]==66.5 && tempno==myPlayerNo-1){//to be edited(same playerno)
 							var msg = {};
@@ -853,6 +849,7 @@ if(isset($_SESSION['name'])){
 						window.location.href = './roomlist.php';
 					}else if(retData['act']=='getcard'){
 						if(retData['playerno'] == myPlayerNo){
+                            alert('You ' + retData['cardmsg']);
 							gameshowmsg('You ' + retData['cardmsg']);
 							$("#p_money").html(eval(retData['money'])); //add money
 						}else{
@@ -969,7 +966,6 @@ if(isset($_SESSION['name'])){
                             }
                     }else if(retData["act"] == "chance2"){
                             if(retData['id'] == myPlayerNo){
-                                alert('chance2');
                                 $('.drawcard').show();
                             }
                     }else if(retData["act"] == "jail1"){
@@ -979,7 +975,6 @@ if(isset($_SESSION['name'])){
                     }else if(retData["act"] == "jail2"){
                         if(retData['id'] == myPlayerNo){
                             jail = 0;
-                            alert(jail);
                              $('#jailbutton').prop('disabled', true);
                             }
 

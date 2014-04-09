@@ -327,3 +327,49 @@
 	height:30px;
 	font-size:30px;
 }
+
+.quickcash{
+    border:0;
+    width:48px;
+    height:48px;
+    background:url(../img/stop.png);   
+    background-size:48px 48px;
+}
+.quickcash:disabled{
+    border:0;
+    width:48px;
+    height:48px;
+    background:url(../img/stop.png);   
+    background-size:48px 48px;
+    opacity: 0.3;
+}
+.chancenowc{
+    border:0;
+    width:48px;
+    height:48px;
+    background:url(../img/rent.png);   
+    background-size:48px 48px;
+}
+.chancenowc:disabled{
+    border:0;
+    width:48px;
+    height:48px;
+    background:url(../img/rent.png);   
+    background-size:48px 48px;
+    opacity: 0.3;
+}
+.outjail{
+    border:0;
+    width:48px;
+    height:48px;
+    background:url(../img/stop.png);   
+    background-size:48px 48px;
+}
+.outjail:disabled{
+    border:0;
+    width:48px;
+    height:48px;
+    background:url(../img/cash.png);   
+    background-size:48px 48px;
+    opacity: 0.3;
+}

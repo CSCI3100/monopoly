@@ -284,6 +284,7 @@ while(true)
 					$send_packet["act"] = "transfer";
 					$user->offset += $val['step'];
 					$send_packet["uname"] = $user->name;
+					$send_packet["dname"] = $user->dname;
 					$send_packet["offset"] = $user->offset;
 					$send_packet["money"] = $user->money;
 					$send_packet["playerno"] = $val["playerno"];
@@ -430,7 +431,7 @@ while(true)
 					case "drawcard":
 					$send_packet=array();
 					$send_packet['act']="getcard";
-					$send_packet['cardpname']=$user->name;
+					$send_packet['cardpname']=$user->dname;
 					$send_packet['playerno']=$val['playerno'];
 						switch($val['cardno']){
 							case "1":
