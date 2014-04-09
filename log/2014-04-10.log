@@ -1,0 +1,30 @@
+Thu Apr 10 3:46:53 HKT 2014
+{"act":"initinfo","players":[{"id":"5345a3ade16a1","name":"aaa","dname":"aaa","rid":35,"state":0,"playerno":1,"money":1500,"offset":0,"rank":1}]}
+Thu Apr 10 3:47:00 HKT 2014
+{"act":"initinfo","players":[{"id":"5345a3ade16a1","name":"aaa","dname":"aaa","rid":35,"state":0,"playerno":1,"money":1500,"offset":0,"rank":1},{"id":"5345a3b4d4046","name":"bbb","dname":"KJHGCFHJK","rid":35,"state":0,"playerno":2,"money":1500,"offset":0,"rank":1}]}
+Thu Apr 10 3:47:18 HKT 2014
+{"act":"initinfo","players":[{"id":"5345a3ade16a1","name":"aaa","dname":"aaa","rid":35,"state":0,"playerno":1,"money":1500,"offset":0,"rank":1},{"id":"5345a3b4d4046","name":"bbb","dname":"KJHGCFHJK","rid":35,"state":0,"playerno":2,"money":1500,"offset":0,"rank":1},{"id":"5345a3c6d4ac0","name":"ccc","dname":"ccc","rid":35,"state":0,"playerno":3,"money":1500,"offset":0,"rank":1}]}
+Thu Apr 10 3:47:21 HKT 2014
+{"act":"initinfo","players":[{"id":"5345a3ade16a1","name":"aaa","dname":"aaa","rid":35,"state":0,"playerno":1,"money":1500,"offset":0,"rank":1},{"id":"5345a3b4d4046","name":"bbb","dname":"KJHGCFHJK","rid":35,"state":0,"playerno":2,"money":1500,"offset":0,"rank":1},{"id":"5345a3c6d4ac0","name":"ccc","dname":"ccc","rid":35,"state":0,"playerno":3,"money":1500,"offset":0,"rank":1},{"id":"5345a3c909d4a","name":"ddd","dname":"ddd","rid":35,"state":0,"playerno":4,"money":1500,"offset":0,"rank":1}]}
+Thu Apr 10 3:47:28 HKT 2014
+{"act":"transfer","uname":"aaa","offset":22,"money":1500,"playerno":1}
+Thu Apr 10 3:47:31 HKT 2014
+{"act":"jail2","uname":"aaa","offset":22,"money":1500,"playerno":1,"id":1}
+Thu Apr 10 3:47:33 HKT 2014
+{"act":"nextmovable","nextplayerno":2}
+Thu Apr 10 3:47:35 HKT 2014
+{"act":"transfer","uname":"bbb","offset":22,"money":1500,"playerno":2}
+Thu Apr 10 3:47:36 HKT 2014
+{"act":"nextmovable","nextplayerno":3}
+Thu Apr 10 3:47:40 HKT 2014
+{"act":"transfer","uname":"ccc","offset":22,"money":1500,"playerno":3}
+Thu Apr 10 3:47:43 HKT 2014
+{"act":"nextmovable","nextplayerno":4}
+Thu Apr 10 3:47:46 HKT 2014
+{"act":"transfer","uname":"ddd","offset":22,"money":1500,"playerno":4}
+Thu Apr 10 3:47:47 HKT 2014
+{"act":"nextmovable","nextplayerno":1}
+Thu Apr 10 3:47:51 HKT 2014
+{"act":"transfer","uname":"aaa","offset":44,"money":1500,"playerno":1}
+Thu Apr 10 3:47:51 HKT 2014
+{"act":"notice","playerno":1,"money":1700}

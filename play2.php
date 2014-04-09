@@ -58,9 +58,6 @@ if($uid || isset($_SESSION['uid'])){
 						<li><button id="dicebutton" onclick="pDice()" class="function_button orangebg"><i class="fa fa-envelope"></i> Dice</button></li>
                 <li><button onclick="cDice()" class="function_button orangebg"><i class="fa fa-envelope"></i> Dice</button></li>
                 <li><button onclick="checkProp()" class="function_button bluebg"><i class="fa fa-credit-card"></i> Property</button></li>
-                <li><button onclick="test()" class="function_button orangebg" id="testbutton"><i class="fa fa-envelope"></i> Quickcash</button></li>
-                <li><button onclick="inchance()" class="function_button orangebg" id="chancebutton"><i class="fa fa-envelope"></i> Chance now</button></li>
-                <li><button onclick="outjail()" class="function_button orangebg" id="jailbutton"><i class="fa fa-envelope"></i> Out jail now</button></li>
                 <li>You still have <b id="show-time"><?=$settings["round_time"];?></b> seconds<br /><button onclick="finishRound()" id="finishbutton" class="function_button greenbg"><i class="fa fa-sign-out"></i> Finish this round</button></li>
             </ul>
             </div>
@@ -501,31 +498,6 @@ function cDice(){
     msg.playerno=myPlayerNo;
     socket.send(JSON.stringify(msg));
 }
-function test(){
- var msg = {};
-        msg.rid = <?=$_GET['rid'];?>;
-        msg.act = "test";
-        msg.playerno=myPlayerNo;
-        socket.send(JSON.stringify(msg));
-        alert("yes");
-}
-
-function inchance(){
-var msg = {};
-        msg.rid = <?=$_GET['rid'];?>;
-        msg.act = "chance";
-        msg.playerno=myPlayerNo;
-        socket.send(JSON.stringify(msg));
-         
-}
-function outjail(){
-    var msg = {};
-        msg.rid = <?=$_GET['rid'];?>;
-        msg.act = "jail";
-        msg.playerno=myPlayerNo;
-        socket.send(JSON.stringify(msg));
-        jail = 0;
-}
 
 
 //finish this round
@@ -538,8 +510,6 @@ function finishRound() {
 		msg.playerno=myPlayerNo;
 		socket.send(JSON.stringify(msg));
 		$('#finishbutton').prop('disabled', true);
-        $('#testbutton').prop('disabled',true);
-        $('#chancebutton').prop('disabled',true);
         $("b[id=show-time]").html(<?=$settings["round_time"];?>);
 	}else{
 		if(movable == 1){
@@ -552,8 +522,6 @@ function finishRound() {
 				msg.playerno=myPlayerNo;
 				socket.send(JSON.stringify(msg));
 				$('#finishbutton').prop('disabled', true);
-                $('#testbutton').prop('disabled',true);
-                $('#chancebutton').prop('disabled',true);
 				$("b[id=show-time]").html(<?=$settings["round_time"];?>);
 			}else{
 				gameshowmsg('You did not dice!');
@@ -577,7 +545,7 @@ function pDice(){
 		var random = Math.random();
 		random = random*6;
 		random = parseInt(random)+1;
-		msg.step = 22;
+		msg.step = random;
 		msg.playerno = myPlayerNo;
 		socket.send(JSON.stringify(msg));
 		movable = 0;
@@ -771,15 +739,10 @@ if(isset($_SESSION['name'])){
 							$('#toavatar').css("border-color","#0000ff");
 						}
                         $('#dicebutton').prop('disabled', true);
-                        $('#finishbutton').prop('disabled', true);
-                        $('#testbutton').prop('disabled',true);
-                        $('#chancebutton').prop('disabled',true);
-                        $('#jailbutton').prop('disabled', true);
 						if(retData['movable']){
 							$('#dicebutton').prop('disabled', false);
 							$('#finishbutton').prop('disabled', false);
-						    $('#testbutton').prop('disabled',false);
-                            $('#chancebutton').prop('disabled',false);
+							
                             readyToFinish = 0;
 							gameshowmsg('It is your turn now!');
                             alert('It is your turn now!');
@@ -840,12 +803,11 @@ if(isset($_SESSION['name'])){
 						$('.chat_box').scrollTop($('.chat_box')[0].scrollHeight);
 						if(playerOffset[tempno]==66.5 && tempno==myPlayerNo-1){//to be edited(same playerno)
 							var msg = {};
-							msg.act = "jailhaha";
+							msg.act = "jail";
 							msg.playerno = myPlayerNo;
 							socket.send(JSON.stringify(msg));
 							gameshowmsg('You are jailed');
 							jail = 1;
-                       $('#jailbutton').prop('disabled',false);
 						}
 
 					}else if(retData['act']=='getoffnow'){
@@ -877,11 +839,9 @@ if(isset($_SESSION['name'])){
 						if(myPlayerNo == retData["nextplayerno"]){
 							movable = 1;
 							$('#dicebutton').prop('disabled', false);
-                            $('#testbutton').prop('disabled',false);
-                            $('#chancebutton').prop('disabled',false);
-                            $('#finishbutton').prop('disabled', false);
 							gameshowmsg('It is your turn now!');
                             alert('It is your turn now!');
+							$('#finishbutton').prop('disabled', false);
 							readyToFinish = 0;
 						}
 					}else if(retData["act"] == "notice"){
@@ -953,36 +913,6 @@ if(isset($_SESSION['name'])){
 						$('#dicebutton').prop('disabled', true);
 						$('#finishbutton').prop('disabled', true);
 						readyToFinish = 1;
-                    }else if(retData["act"] == "test2"){
-                           if(retData['id'] == myPlayerNo){
-                                $("#p_money").html(eval(retData['money'])); 
-                            }else{
-                                updatemoney(retData['id'],retData['money']);
-                            }                    
-                    }else if(retData["act"] == "test1"){
-                            if(retData['id'] == myPlayerNo){
-                                alert('You do not have enough tools. Please buy it.');
-                            }
-                    }else if(retData["act"] == "chance1"){
-                            if(retData['id'] == myPlayerNo){
-                                alert('You do not have enough tools. Please buy it.');
-                            }
-                    }else if(retData["act"] == "chance2"){
-                            if(retData['id'] == myPlayerNo){
-                                alert('chance2');
-                                $('.drawcard').show();
-                            }
-                    }else if(retData["act"] == "jail1"){
-                            if(retData['id'] == myPlayerNo){
-                                alert('You do not have enough tools. Please buy it.');
-                            }
-                    }else if(retData["act"] == "jail2"){
-                        if(retData['id'] == myPlayerNo){
-                            jail = 0;
-                            alert(jail);
-                             $('#jailbutton').prop('disabled', true);
-                            }
-
                     }
 				};
 				socket.onclose = function(e) {

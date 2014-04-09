@@ -372,21 +372,21 @@ while(true)
 					
 					
 					case "test":
-					$use = new User($db);
-					$t3 = $use->userinfoByName($user->name);
-                    if($t3['t1']>0){
-                    $user->money += 20;
-					$send_packet["act"] = "test2";
-					$send_packet["money"] = $user->money;
-					$send_packet["id"] = $user->playerno;
-					$use->t1($user->name);
-					room_msg($val['rid'],json_encode($send_packet));
-                }else{
-                	$send_packet["act"] = "test1";
-					$send_packet["money"] = $user->money;
-					$send_packet["id"] = $user->playerno;
-					room_msg($val['rid'],json_encode($send_packet));
-                }
+					$use = new User($db); //THIS IS GEEKY
+					$t3 = $use->userinfoByName($user->name); //array of amount of tools
+                    if($t3['t1']>0){ //AMOUNT OF TOOL ONE
+	                    $user->money += 20;
+						$send_packet["act"] = "test2";
+						$send_packet["money"] = $user->money;
+						$send_packet["id"] = $user->playerno;
+						$use->t1($user->name);
+						room_msg($val['rid'], json_encode($send_packet));
+                	}else{
+	                	$send_packet["act"] = "test1";
+						$send_packet["money"] = $user->money;
+						$send_packet["id"] = $user->playerno;
+						room_msg($val['rid'], json_encode($send_packet));
+                	}
 					break;
 
 
@@ -395,39 +395,36 @@ while(true)
 					console("chance");
 					$use = new User($db);
 					$t3 = $use->userinfoByName($user->name);
-                    if($t3['t2']>0){
-					$send_packet["act"] = "chance2";
-					$send_packet["money"] = $user->money;
-					$send_packet["id"] = $user->playerno;
-					$use->t2($user->name);
-					console(var_dump($t3));
-					room_msg($val['rid'],json_encode($send_packet));
-                }else{
-                	$send_packet["act"] = "chance1";
-					$send_packet["money"] = $user->money;
-					$send_packet["id"] = $user->playerno;
-					room_msg($val['rid'],json_encode($send_packet));
-                }
+                    if($t3['t2']>0){ //AMOUNT OF TOOL TWO
+						$send_packet["act"] = "chance2";
+						$send_packet["money"] = $user->money;
+						$send_packet["id"] = $user->playerno;
+						$use->t2($user->name);
+						console(var_dump($t3));
+						room_msg($val['rid'],json_encode($send_packet));
+                	}else{
+	                	$send_packet["act"] = "chance1";
+						$send_packet["money"] = $user->money;
+						$send_packet["id"] = $user->playerno;
+						room_msg($val['rid'],json_encode($send_packet));
+                	}
 					break;
-
-
-
 
 					case "jail":
 					$use = new User($db);
 					$t3 = $use->userinfoByName($user->name);
-                    if($t3['t3']>0){
-					$send_packet["act"] = "jail2";
-					$send_packet["money"] = $user->money;
-					$send_packet["id"] = $user->playerno;
-					$use->t3($user->name);
-					room_msg($val['rid'],json_encode($send_packet));
-                }else{
-                	$send_packet["act"] = "jail1";
-					$send_packet["money"] = $user->money;
-					$send_packet["id"] = $user->playerno;
-					room_msg($val['rid'],json_encode($send_packet));
-                }
+                    if($t3['t3']>0){ //AMOUND OF TOOL THREE
+						$send_packet["act"] = "jail2";
+						$send_packet["money"] = $user->money;
+						$send_packet["id"] = $user->playerno;
+						$use->t3($user->name);
+						room_msg($val['rid'], json_encode($send_packet));
+                	}else{
+	                	$send_packet["act"] = "jail1";
+						$send_packet["money"] = $user->money;
+						$send_packet["id"] = $user->playerno;
+						room_msg($val['rid'], json_encode($send_packet));
+                	}
 					break;
 
 					case "drawcard":
