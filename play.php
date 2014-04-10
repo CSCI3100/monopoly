@@ -56,7 +56,7 @@ if($uid || isset($_SESSION['uid'])){
                 <li>You are in:<b id="p_stop"></b></li>
                 <li>Money:<b id="p_money"><?=$settings['start_money']?></b></li>
 						<li><button id="dicebutton" onclick="pDice()" class="function_button orangebg"><i class="fa fa-envelope"></i> Dice</button></li>
-                <li><button onclick="cDice()" class="function_button orangebg"><i class="fa fa-envelope"></i> Dice</button></li>
+                <li><button onclick="cDice()" class="function_button orangebg"><i class="fa fa-envelope"></i> Cheat Dice</button></li>
                 <li><button onclick="checkProp()" class="function_button bluebg"><i class="fa fa-credit-card"></i> Property</button></li>
                 <li style="text-align:center"><button onclick="test()" class="quickcash" id="testbutton"></button> <button onclick="inchance()" class="chancenowc" id="chancebutton"></button> <button onclick="outjail()" class="outjail" id="jailbutton"></button></li>
                 <li>You still have <b id="show-time"><?=$settings["round_time"];?></b> seconds<br /><button onclick="finishRound()" id="finishbutton" class="function_button greenbg"><i class="fa fa-sign-out"></i> Finish this round</button></li>
@@ -492,12 +492,30 @@ function checkProp(playerno){
     socket.send(JSON.stringify(msg));
 }
 function cDice(){
-    var msg = {};
-    msg.act = "dice";
-    msg.rid = <?=$_GET['rid'];?>;
-    msg.step = 13;
-    msg.playerno=myPlayerNo;
-    socket.send(JSON.stringify(msg));
+    if(movable == 1 && payrent==1 && jail != 1){
+        var msg = {};
+        msg.act = "dice";
+        msg.rid = <?=$_GET['rid'];?>;
+        var random = prompt("Please enter a Number name","0");
+        msg.step = random;
+        msg.playerno = myPlayerNo;
+        socket.send(JSON.stringify(msg));
+        movable = 0;
+        $('#dicebutton').prop('disabled', true);
+        $('.ingamepopup').hide();
+    }else{
+        if(payrent!=1){
+            gameshowmsg('You did not pay rent!');
+        }else if(jail == 1){
+            gameshowmsg('You are jailed');
+            jail++;
+            movable = 0;
+            $('#dicebutton').prop('disabled', true);
+            $('.ingamepopup').hide();
+        }else{
+            alert('It is not your turn now');
+        }
+    }
 }
 function test(){
  var msg = {};

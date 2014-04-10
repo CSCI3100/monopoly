@@ -232,9 +232,9 @@
          <br/>
         Enter the amount you want to purchase
         <br/><br/>
-        <input type="number" min="0" name="stopCard" id="stopCard" placeholder="PAUSE CARD ($1) : Pause target player for 1 round">
-        <input type="number" min="0" name="doubleRentCard" id="doubleRentCard" placeholder="RENT CARD ($3) : Get double rent">
-        <input type="number" min="0" name="cashCard" id="cashCard" placeholder="INSTANT CASH ($2) : Get $10000 cash">
+        <input type="number" min="0" name="stopCard" id="stopCard" placeholder="QUICK CASH CARD ($1) : Get cash instantly">
+        <input type="number" min="0" name="doubleRentCard" id="doubleRentCard" placeholder="CHANCE CARD ($3) : Get a chance card">
+        <input type="number" min="0" name="cashCard" id="cashCard" placeholder="JailBreak ($2) : Get out from jail quickly">
         <button class="save_button" id="purchaseItem">Purchase</button> 
         <button class="cancel_button">Close</button>
         </form>

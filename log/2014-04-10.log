@@ -1,4 +1,12 @@
-Thu Apr 10 5:31:39 HKT 2014
-{"act":"initinfo","players":[{"id":"5345bc3b34e64","name":"aaa","dname":"qweqwe","rid":35,"state":0,"playerno":1,"money":1500,"offset":0,"rank":1}]}
-Thu Apr 10 5:31:42 HKT 2014
-{"act":"test2","players":[{"id":"5345bc3b34e64","name":"aaa","dname":"qweqwe","rid":35,"state":0,"playerno":1,"money":1500,"offset":0,"rank":1}],"money":1520,"id":1}
+Thu Apr 10 13:25:15 HKT 2014
+{"act":"initinfo","players":[{"id":"53462b3b682f3","name":"bbb","dname":"KJHGCFHJK","rid":35,"state":0,"playerno":1,"money":1500,"offset":0,"rank":1}]}
+Thu Apr 10 13:25:18 HKT 2014
+{"act":"initinfo","players":[{"id":"53462b3b682f3","name":"bbb","dname":"KJHGCFHJK","rid":35,"state":0,"playerno":1,"money":1500,"offset":0,"rank":1},{"id":"53462b3dee0fc","name":"aaa","dname":"qweqwe","rid":35,"state":0,"playerno":2,"money":1500,"offset":0,"rank":1}]}
+Thu Apr 10 13:25:23 HKT 2014
+{"act":"transfer","uname":"bbb","dname":"KJHGCFHJK","offset":5,"money":1500,"playerno":1}
+Thu Apr 10 13:25:25 HKT 2014
+{"act":"getcard","cardpname":"KJHGCFHJK","playerno":1,"cardmsg":"gets $600","money":2100}
+Thu Apr 10 13:25:29 HKT 2014
+{"act":"nextmovable","nextplayerno":2}
+Thu Apr 10 13:25:34 HKT 2014
+{"act":"transfer","uname":"aaa","dname":"qweqwe","offset":22,"money":1500,"playerno":2}
