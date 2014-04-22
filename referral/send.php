@@ -17,7 +17,7 @@ require '../class/user.php';
 	$body = "Play Monopoly Together!\n\n";
 	$body .= "Your friend " . $_SESSION['dname'] ." is playing Wealthy Family Monopoly. Come and join us!\n";
 	$body .= "Click the link below and register. You and your friend will get great bonus!\n\n";
-	$body .= "http://".$_SERVER['SERVER_NAME']."/mono/register.php?referLink=".$data['referLink'];
+	$body .= "http://".$_SERVER['SERVER_NAME']."/register.php?referLink=".$data['referLink'];
 	$body .= "\n\nRegards,\nTeam Monopoly\nCUHK";
 	
 /*	

@@ -217,7 +217,7 @@ class User{
 
 			$body = "Wealthy Family Monopoly - Confirm your account!\n\nDear $displayname,\n\n";
 			$body .= "Thanks for playing Wealthy Family Monopoly. Please click the following link to activate your account and setup password.\n\n";
-			$body .= "http://".$_SERVER['SERVER_NAME']."/mono/register.php?authentication=".hash("sha256", $username)."\n\n";
+			$body .= "http://".$_SERVER['SERVER_NAME']."/register.php?authentication=".hash("sha256", $username)."\n\n";
 			$body .= "\n\nRegards,\nTeam Monopoly\nCUHK";
 
 			// send code, do not edit unless you know what your doing
