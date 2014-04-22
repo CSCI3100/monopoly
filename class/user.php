@@ -227,7 +227,29 @@ class User{
 		    $header .= "Organization: Team Monopoly\r\n"; 
 		    $header .= "Content-Type: text/plain\r\n"; 
 
-		    if($sendEmail) mail("$email", "$subject", "$body", $header);
+		    //if($sendEmail) mail("$email", "$subject", "$body", $header);
+		    $url = 'http://sendgrid.com/';
+		 	$user = 'azure_b72e71991371237cefc7f451149bdd9d@azure.com';
+		 	$pass = '6OZC0Za20fq8Y5s';
+
+		 	$params = array(
+		      'api_user' => $user,
+		      'api_key' => $pass,
+		      'to' => $email,
+		      'subject' => $subject,
+		      'text' => $body,
+		      'from' => $fromemail,
+		   	);
+		 	if($sendEmail){
+			 	$request = $url.'api/mail.send.json';
+			 	$session = curl_init($request);
+			 	curl_setopt ($session, CURLOPT_POST, true);
+			 	curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
+			 	curl_setopt($session, CURLOPT_HEADER, false);
+			 	curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+			 	curl_exec($session);
+			 	curl_close($session);
+			}
 		    return true;
 		}catch(PDOException $e){
 			die($e->getMessage());

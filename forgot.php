@@ -91,7 +91,28 @@ if(isset($_POST['username'])){
 	    $header .= "Organization: Team Monopoly\r\n"; 
 	    $header .= "Content-Type: text/plain\r\n"; 
 
-	    mail($userinfo['email'], "$subject", "$body", $header);
+	    //mail($userinfo['email'], "$subject", "$body", $header);
+        $url = 'http://sendgrid.com/';
+        $user = 'azure_b72e71991371237cefc7f451149bdd9d@azure.com';
+        $pass = '6OZC0Za20fq8Y5s';
+
+        $params = array(
+          'api_user' => $user,
+          'api_key' => $pass,
+          'to' => $email,
+          'subject' => $subject,
+          'text' => $body,
+          'from' => $fromemail,
+        );
+
+        $request = $url.'api/mail.send.json';
+        $session = curl_init($request);
+        curl_setopt ($session, CURLOPT_POST, true);
+        curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
+        curl_setopt($session, CURLOPT_HEADER, false);
+        curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($session);
+        curl_close($session);
 	}
 	$msg = "Password Reset Mail Sent";
 	$submsg = "If your information is correct, you will receive an email containing a temporary password.";
